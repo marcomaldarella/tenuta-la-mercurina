@@ -1,0 +1,63 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  padding: 0 var(--gutter) clamp(40px, 6vw, 80px);
+}
+
+.field {
+  font-size: clamp(24px, 3.4vw, 44px);
+  font-style: italic;
+  font-weight: 300;
+  padding: 14px 0 10px;
+  border-bottom: 1px solid var(--line);
+  width: 100%;
+}
+
+.field::placeholder {
+  font-style: italic;
+}
+
+.newsletter {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: clamp(32px, 5vw, 72px);
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.newsletter input {
+  accent-color: var(--ink);
+  width: 16px;
+  height: 16px;
+}
+
+.submit {
+  align-self: flex-start;
+  margin-top: 28px;
+  font-size: clamp(24px, 3vw, 40px);
+  font-weight: 400;
+}
+
+.submit:hover {
+  opacity: 0.7;
+}
+
+.submit:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+.arrow {
+  font-size: 0.8em;
+}
+
+.confirmation {
+  padding: 0 var(--gutter) clamp(40px, 6vw, 80px);
+  font-size: clamp(24px, 3vw, 40px);
+}
+
+.error {
+  margin-top: 14px;
+  font-size: 15px;
+}

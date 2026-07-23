@@ -1,0 +1,18 @@
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 24px;
+  padding: 40px var(--gutter) 20px;
+  font-size: 13px;
+}
+
+.left {
+  display: flex;
+  gap: clamp(16px, 3vw, 40px);
+  flex-wrap: wrap;
+}
+
+.footer a:hover {
+  opacity: 0.7;
+}

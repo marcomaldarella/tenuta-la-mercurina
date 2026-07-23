@@ -1,0 +1,84 @@
+:root {
+  --bg: #faf1e6;
+  --ink: #5c4632;
+  --ink-soft: #93816f;
+  --menu-bg: #4b3a2f;
+  --cream: #faf1e6;
+  --line: rgba(92, 70, 50, 0.35);
+  --line-cream: rgba(250, 241, 230, 0.35);
+  --gutter: clamp(16px, 2vw, 28px);
+  --display: clamp(38px, 5.5vw, 72px);
+  --display-hero: clamp(30px, 4.6vw, 60px);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  scrollbar-width: none;
+}
+
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  display: none;
+  width: 0;
+}
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.45;
+  font-size: 16px;
+}
+
+img,
+video {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+input {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: none;
+  border-radius: 0;
+}
+
+input:focus {
+  outline: none;
+}
+
+::placeholder {
+  color: var(--ink-soft);
+  opacity: 0.6;
+}
+
+main {
+  min-height: 100svh;
+}
+
+/* a menu aperto anche overscroll e chrome Safari leggono il marrone */
+html.menu-open,
+html.menu-open body {
+  background: var(--menu-bg);
+}

@@ -1,0 +1,15 @@
+.endCta {
+  display: block;
+  padding: clamp(24px, 4vw, 56px) var(--gutter);
+  font-size: var(--display);
+  font-weight: 400;
+  line-height: 1.05;
+}
+
+.endCta:hover {
+  opacity: 0.7;
+}
+
+.endCtaArrow {
+  font-size: 0.7em;
+}

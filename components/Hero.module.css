@@ -1,0 +1,33 @@
+.hero {
+  position: relative;
+  height: min(78svh, 900px);
+}
+
+.carousel {
+  position: absolute;
+  inset: 0;
+}
+
+.carousel img {
+  position: absolute;
+  inset: 0;
+}
+
+.text {
+  position: absolute;
+  left: var(--gutter);
+  right: var(--gutter);
+  bottom: 24px;
+  color: var(--cream);
+  font-size: var(--display-hero);
+  font-weight: 400;
+  line-height: 1.1;
+  max-width: 1050px;
+  z-index: 3;
+}
+
+@media (max-width: 900px) {
+  .hero {
+    height: min(60svh, 620px);
+  }
+}

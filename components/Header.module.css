@@ -1,0 +1,225 @@
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 20;
+  display: flex;
+  align-items: flex-start;
+  gap: clamp(24px, 4vw, 64px);
+  padding: var(--gutter);
+  color: var(--ink);
+  font-size: 14px;
+  line-height: 1.35;
+  transition: color 0.25s ease;
+}
+
+.onImage {
+  color: var(--cream);
+}
+
+.logo {
+  font-weight: 600;
+  font-size: 17px;
+  line-height: 1.05;
+  letter-spacing: 0.01em;
+  flex-shrink: 0;
+  margin-right: auto;
+}
+
+.nav {
+  display: flex;
+  flex: 1 1 auto;
+  justify-content: space-between;
+  gap: clamp(16px, 3vw, 48px);
+  max-width: 72%;
+}
+
+.group {
+  display: flex;
+  flex-direction: column;
+}
+
+.groupLabel {
+  font-weight: 600;
+}
+
+/* sottovoci: visibili di default, collassano allo scroll, tornano in hover */
+.subList {
+  display: grid;
+  grid-template-rows: 1fr;
+  opacity: 1;
+  transition:
+    grid-template-rows 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+    opacity 0.35s ease,
+    transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translateY(0);
+}
+
+.subListInner {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  min-height: 0;
+}
+
+.scrolled .subList {
+  grid-template-rows: 0fr;
+  opacity: 0;
+  transform: translateY(-6px);
+  pointer-events: none;
+}
+
+.scrolled .group:hover .subList,
+.scrolled .group:focus-within .subList {
+  grid-template-rows: 1fr;
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.subItem {
+  font-weight: 400;
+  opacity: 0.92;
+}
+
+.subItem:hover,
+.groupLabel:hover {
+  opacity: 0.65;
+}
+
+.lang {
+  display: flex;
+  gap: 4px;
+  font-weight: 600;
+  flex-shrink: 0;
+}
+
+.langSep {
+  margin: 0 4px;
+  opacity: 0.6;
+}
+
+.langLink {
+  opacity: 0.55;
+}
+
+.langLink:hover {
+  opacity: 1;
+}
+
+.langActive {
+  opacity: 1;
+}
+
+.menuButton {
+  display: none;
+  font-size: 14px;
+}
+
+/* overlay mobile: entra dall'alto; in uscita le voci sfumano prima, poi risale */
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  background: var(--menu-bg);
+  color: var(--cream);
+  display: flex;
+  flex-direction: column;
+  padding: var(--gutter);
+  overflow-y: auto;
+  transform: translateY(-101%);
+  transition: transform 0.6s cubic-bezier(0.87, 0, 0.13, 1);
+  transition-delay: 120ms; /* uscita: aspetta che le voci sfumino */
+}
+
+.overlayShown {
+  transform: translateY(0);
+  transition-delay: 0ms;
+}
+
+.overlayTop {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 24px;
+}
+
+.overlayLogo {
+  font-weight: 600;
+  font-size: 17px;
+  line-height: 1.05;
+}
+
+.closeButton {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.overlayNav {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.overlayItem,
+.overlayItemAnim {
+  opacity: 0;
+  transform: translateY(16px);
+  /* stato di uscita: rapido e senza stagger */
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease;
+}
+
+.overlayShown .overlayItem,
+.overlayShown .overlayItemAnim {
+  opacity: 1;
+  transform: translateY(0);
+  /* entrata: cascata morbida dopo l'arrivo del pannello */
+  transition:
+    opacity 0.5s ease,
+    transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+  transition-delay: calc(200ms + var(--i, 0) * 38ms);
+}
+
+.overlayItem {
+  padding: 11px 0;
+  border-bottom: 1px solid var(--line-cream);
+  font-size: 17px;
+}
+
+.overlayLang {
+  display: flex;
+  justify-content: space-between;
+  padding: 11px 0;
+  border-bottom: 1px solid var(--line-cream);
+  font-size: 17px;
+}
+
+.overlayFooter {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding-top: 28px;
+  font-size: 13px;
+}
+
+.overlayFooter a {
+  display: block;
+}
+
+.overlayFooterRight {
+  text-align: right;
+}
+
+@media (max-width: 900px) {
+  .nav,
+  .lang {
+    display: none;
+  }
+
+  .menuButton {
+    display: block;
+  }
+}
