@@ -14,8 +14,8 @@
   transition: color 0.25s ease;
 }
 
-.onImage {
-  color: var(--cream);
+.header [data-nav-item] {
+  transition: color 0.25s ease;
 }
 
 .logo {

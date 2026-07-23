@@ -2,14 +2,13 @@
 
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import type { Locale } from '../lib/i18n'
 import { locales } from '../lib/i18n'
 import { t } from '../lib/l10n'
 import { navEntries } from '../lib/nav'
 import styles from './Header.module.css'
 
-const DARK_PAGES = ['contatti', 'prenota']
 const THEME_CREAM = '#faf1e6'
 const THEME_BROWN = '#4b3a2f'
 
@@ -29,17 +28,49 @@ export default function Header({
   const [visible, setVisible] = useState(false) // overlay nel DOM
   const [shown, setShown] = useState(false) // overlay animato in posizione
   const [scrolled, setScrolled] = useState(false)
+  const headerRef = useRef<HTMLElement>(null)
 
   useEffect(() => {
     setOpen(false)
   }, [pathname])
 
+  // dinamico PER VOCE: ogni elemento del menu diventa crema se il suo punto
+  // centrale sta sopra un blocco foto ([data-header-dark]), marrone altrove
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 80)
-    onScroll()
-    window.addEventListener('scroll', onScroll, { passive: true })
-    return () => window.removeEventListener('scroll', onScroll)
-  }, [])
+    let raf = 0
+    const check = () => {
+      setScrolled(window.scrollY > 80)
+      const zones = Array.from(document.querySelectorAll('[data-header-dark]'))
+        .map((zone) => zone.getBoundingClientRect())
+        .filter((rect) => rect.width > 0 && rect.bottom > 0 && rect.top < 200)
+      const items =
+        headerRef.current?.querySelectorAll<HTMLElement>('[data-nav-item]') ?? []
+      for (const item of items) {
+        const rect = item.getBoundingClientRect()
+        const cx = rect.left + rect.width / 2
+        const cy = rect.top + rect.height / 2
+        const over = zones.some(
+          (z) => cx >= z.left && cx <= z.right && cy >= z.top && cy <= z.bottom
+        )
+        item.style.color = over ? 'var(--cream)' : ''
+      }
+    }
+    const schedule = () => {
+      cancelAnimationFrame(raf)
+      raf = requestAnimationFrame(check)
+    }
+    check()
+    window.addEventListener('scroll', schedule, { passive: true })
+    window.addEventListener('resize', schedule)
+    const observer = new MutationObserver(schedule)
+    observer.observe(document.body, { childList: true, subtree: true })
+    return () => {
+      cancelAnimationFrame(raf)
+      window.removeEventListener('scroll', schedule)
+      window.removeEventListener('resize', schedule)
+      observer.disconnect()
+    }
+  }, [pathname])
 
   // apertura/chiusura animata: display none quando inattivo (regola iOS),
   // transizione via classe .shown applicata al frame successivo
@@ -69,20 +100,21 @@ export default function Header({
     }
   }, [open])
 
-  const segment = pathname.split('/')[2] ?? ''
-  const onDark = !DARK_PAGES.includes(segment)
-
   const switchLocale = (target: Locale) =>
     `/${target}${pathname.replace(/^\/(it|en)/, '') || ''}`
 
   return (
     <>
       <header
-        className={`${styles.header} ${onDark && !scrolled ? styles.onImage : ''} ${
-          scrolled ? styles.scrolled : ''
-        }`}
+        ref={headerRef}
+        className={`${styles.header} ${scrolled ? styles.scrolled : ''}`}
       >
-        <Link href={`/${locale}`} className={styles.logo} aria-label="Tenuta Lamercurina">
+        <Link
+          href={`/${locale}`}
+          className={styles.logo}
+          aria-label="Tenuta Lamercurina"
+          data-nav-item
+        >
           tenuta
           <br />
           lamercurına
@@ -92,7 +124,9 @@ export default function Header({
           {navEntries.map((entry) =>
             entry.items ? (
               <div key={entry.label.it} className={styles.group}>
-                <span className={styles.groupLabel}>{entry.label[locale]}</span>
+                <span className={styles.groupLabel} data-nav-item>
+                  {entry.label[locale]}
+                </span>
                 <div className={styles.subList}>
                   <div className={styles.subListInner}>
                     {entry.items.map((item) => (
@@ -100,6 +134,7 @@ export default function Header({
                         key={item.slug}
                         href={`/${locale}/${item.slug}`}
                         className={styles.subItem}
+                        data-nav-item
                       >
                         {item.label[locale]}
                       </Link>
@@ -112,6 +147,7 @@ export default function Header({
                 key={entry.slug}
                 href={`/${locale}/${entry.slug}`}
                 className={styles.groupLabel}
+                data-nav-item
               >
                 {entry.label[locale]}
               </Link>
@@ -119,7 +155,7 @@ export default function Header({
           )}
         </nav>
 
-        <div className={styles.lang}>
+        <div className={styles.lang} data-nav-item>
           {locales.map((l, i) => (
             <span key={l}>
               {i > 0 && <span className={styles.langSep}>|</span>}
@@ -133,7 +169,11 @@ export default function Header({
           ))}
         </div>
 
-        <button className={styles.menuButton} onClick={() => setOpen(true)}>
+        <button
+          className={styles.menuButton}
+          onClick={() => setOpen(true)}
+          data-nav-item
+        >
           {t('menu', locale)}
         </button>
       </header>

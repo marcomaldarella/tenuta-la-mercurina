@@ -17,14 +17,14 @@ export default function Carousel({
   const [index, setIndex] = useState(0)
 
   if (urls.length === 0) {
-    return <div className={`${styles.frame} ${styles.empty} ${className}`} />
+    return <div className={`${styles.frame} ${styles.empty} ${className}`} data-header-dark />
   }
 
   const step = (delta: number) =>
     setIndex((current) => (current + delta + urls.length) % urls.length)
 
   return (
-    <div className={`${styles.frame} ${className}`}>
+    <div className={`${styles.frame} ${className}`} data-header-dark>
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img src={urls[index]} alt={alt} className={styles.image} />
       {urls.length > 1 && (
