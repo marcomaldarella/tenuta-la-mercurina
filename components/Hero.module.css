@@ -1,6 +1,6 @@
 .hero {
   position: relative;
-  height: min(78svh, 900px);
+  height: 100svh;
 }
 
 .carousel {
@@ -26,8 +26,3 @@
   z-index: 3;
 }
 
-@media (max-width: 900px) {
-  .hero {
-    height: min(60svh, 620px);
-  }
-}
