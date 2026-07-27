@@ -46,6 +46,14 @@ export async function generateMetadata({
       siteName: 'Tenuta Lamercurina',
       locale: locale === 'it' ? 'it_IT' : 'en_US',
       type: 'website',
+      images: [
+        { url: '/og-image.png', width: 1200, height: 630, alt: 'Tenuta Lamercurina' },
+        { url: '/og-image-1920.png', width: 1920, height: 1080, alt: 'Tenuta Lamercurina' },
+      ],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      images: ['/twitter-card.png'],
     },
   }
 }
