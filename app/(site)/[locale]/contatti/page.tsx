@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import FixedPage from '../../../../components/FixedPage'
 import type { Locale } from '../../../../lib/i18n'
 import { pick } from '../../../../lib/l10n'
 import { getSiteSettings } from '../../../../lib/queries'
@@ -32,6 +33,7 @@ export default async function ContactsPage({
 
   return (
     <main className={styles.main}>
+      <FixedPage />
       <h1 className={styles.block}>
         {address.split('\n').map((line) => (
           <span key={line} className={styles.line}>

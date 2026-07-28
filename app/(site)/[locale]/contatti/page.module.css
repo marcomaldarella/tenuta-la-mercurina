@@ -2,8 +2,20 @@
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  gap: clamp(28px, 5vw, 64px);
+  gap: clamp(20px, 5vw, 64px);
   padding: calc(var(--gutter) + 120px) var(--gutter) clamp(24px, 4vw, 48px);
+}
+
+/* a schermo pieno la tipografia si adatta all'altezza disponibile */
+@media (max-height: 760px) {
+  .main {
+    gap: clamp(16px, 3vh, 32px);
+    padding-top: calc(var(--gutter) + 88px);
+  }
+
+  .block {
+    font-size: clamp(24px, 4.6vh, 44px);
+  }
 }
 
 .block {

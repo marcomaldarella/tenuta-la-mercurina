@@ -82,3 +82,17 @@ html.menu-open,
 html.menu-open body {
   background: var(--menu-bg);
 }
+
+/* pagina fissa (contatti): nessuno scroll, footer sempre a schermo */
+body.fixedPage {
+  height: 100dvh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+body.fixedPage main {
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+}
