@@ -14,7 +14,7 @@ export const navEntries: NavEntry[] = [
     items: [
       { slug: 'chi-siamo', label: { it: 'chi siamo', en: 'about us' } },
       { slug: 'foresteria', label: { it: 'foresteria', en: 'guesthouse' } },
-      { slug: 'taneto', label: { it: 'taneto', en: 'taneto' } },
+      { slug: 'taneto', label: { it: 'ontaneto', en: 'alder grove' } },
       { slug: 'location', label: { it: 'location', en: 'location' } },
     ],
   },
