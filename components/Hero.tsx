@@ -17,7 +17,15 @@ export default function Hero({
       <Carousel urls={urls} className={styles.carousel} light />
       {heading ? (
         <div className={styles.block}>
-          <h1 className={styles.heading}>{heading}</h1>
+          <h1
+            className={
+              heading.includes('\n')
+                ? `${styles.heading} ${styles.headingManual}`
+                : styles.heading
+            }
+          >
+            {heading}
+          </h1>
           {subheading && <p className={styles.subheading}>{subheading}</p>}
         </div>
       ) : (
