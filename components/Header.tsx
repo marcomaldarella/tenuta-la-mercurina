@@ -6,7 +6,7 @@ import { useEffect, useRef, useState } from 'react'
 import type { Locale } from '../lib/i18n'
 import { locales } from '../lib/i18n'
 import { t } from '../lib/l10n'
-import { navEntries } from '../lib/nav'
+import { flatNavItems, navEntries } from '../lib/nav'
 import styles from './Header.module.css'
 
 const THEME_CREAM = '#faf1e6'
@@ -83,7 +83,7 @@ export default function Header({
       return () => cancelAnimationFrame(raf)
     }
     setShown(false)
-    const timer = setTimeout(() => setVisible(false), 800)
+    const timer = setTimeout(() => setVisible(false), 900)
     return () => clearTimeout(timer)
   }, [open])
 
@@ -129,11 +129,12 @@ export default function Header({
                 </span>
                 <div className={styles.subList}>
                   <div className={styles.subListInner}>
-                    {entry.items.map((item) => (
+                    {entry.items.map((item, i) => (
                       <Link
                         key={item.slug}
                         href={`/${locale}/${item.slug}`}
                         className={styles.subItem}
+                        style={{ '--i': i } as React.CSSProperties}
                         data-nav-item
                       >
                         {item.label[locale]}
@@ -179,7 +180,11 @@ export default function Header({
       </header>
 
       {visible && (
-        <div className={`${styles.overlay} ${shown ? styles.overlayShown : ''}`}>
+        <div
+          className={`${styles.overlay} ${shown ? styles.overlayShown : ''}`}
+          style={{ '--n': flatNavItems.length + 1 } as React.CSSProperties}
+          data-lenis-prevent
+        >
           <div className={styles.overlayTop}>
             <span className={styles.overlayLogo}>
               tenuta
@@ -192,24 +197,20 @@ export default function Header({
           </div>
 
           <nav className={styles.overlayNav}>
-            {navEntries
-              .flatMap((entry) =>
-                entry.items ? entry.items : [{ slug: entry.slug!, label: entry.label }]
-              )
-              .map((item, i) => (
-                <Link
-                  key={item.slug}
-                  href={`/${locale}/${item.slug}`}
-                  className={styles.overlayItem}
-                  style={{ '--i': i } as React.CSSProperties}
-                  onClick={() => setOpen(false)}
-                >
-                  {item.label[locale]}
-                </Link>
-              ))}
+            {flatNavItems.map((item, i) => (
+              <Link
+                key={item.slug}
+                href={`/${locale}/${item.slug}`}
+                className={styles.overlayItem}
+                style={{ '--i': i } as React.CSSProperties}
+                onClick={() => setOpen(false)}
+              >
+                {item.label[locale]}
+              </Link>
+            ))}
             <div
               className={`${styles.overlayLang} ${styles.overlayItemAnim}`}
-              style={{ '--i': 13 } as React.CSSProperties}
+              style={{ '--i': flatNavItems.length } as React.CSSProperties}
             >
               {locales.map((l) => (
                 <Link
@@ -226,7 +227,7 @@ export default function Header({
 
           <div
             className={`${styles.overlayFooter} ${styles.overlayItemAnim}`}
-            style={{ '--i': 14 } as React.CSSProperties}
+            style={{ '--i': flatNavItems.length + 1 } as React.CSSProperties}
           >
             <div>
               {instagram && (

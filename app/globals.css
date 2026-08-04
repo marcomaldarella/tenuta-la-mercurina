@@ -22,6 +22,8 @@
 html {
   -webkit-text-size-adjust: 100%;
   scrollbar-width: none;
+  /* niente rubber-band in cima: il rimbalzo scopriva il crema sopra l'hero */
+  overscroll-behavior: none;
 }
 
 html::-webkit-scrollbar,
@@ -32,6 +34,7 @@ body::-webkit-scrollbar {
 
 body {
   background: var(--bg);
+  overscroll-behavior: none;
   color: var(--ink);
   -webkit-font-smoothing: antialiased;
   line-height: 1.45;

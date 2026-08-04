@@ -3,6 +3,7 @@ import { DM_Sans } from 'next/font/google'
 import { notFound } from 'next/navigation'
 import Footer from '../../../components/Footer'
 import Header from '../../../components/Header'
+import SmoothScroll from '../../../components/SmoothScroll'
 import { isLocale, locales, type Locale } from '../../../lib/i18n'
 import { pick } from '../../../lib/l10n'
 import { getSiteSettings } from '../../../lib/queries'
@@ -94,6 +95,7 @@ export default async function LocaleLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
+        <SmoothScroll />
         <Header
           locale={locale as Locale}
           phone={settings?.phone}

@@ -78,6 +78,25 @@
   pointer-events: auto;
 }
 
+/* riapertura in hover: sottovoci a cascata (animation + backwards così il
+   fade dell'hover sul singolo link non eredita il delay dello stagger) */
+.scrolled .group:hover .subItem,
+.scrolled .group:focus-within .subItem {
+  animation: subItemIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) backwards;
+  animation-delay: calc(50ms + var(--i, 0) * 35ms);
+}
+
+@keyframes subItemIn {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 0.92;
+    transform: translateY(0);
+  }
+}
+
 .subItem {
   font-weight: 400;
   opacity: 0.92;
@@ -130,7 +149,7 @@
   overflow-y: auto;
   transform: translateY(-101%);
   transition: transform 0.6s cubic-bezier(0.87, 0, 0.13, 1);
-  transition-delay: 120ms; /* uscita: aspetta che le voci sfumino */
+  transition-delay: 240ms; /* uscita: aspetta la cascata delle voci */
 }
 
 .overlayShown {
@@ -166,10 +185,11 @@
 .overlayItemAnim {
   opacity: 0;
   transform: translateY(16px);
-  /* stato di uscita: rapido e senza stagger */
+  /* uscita: cascata leggera dal basso verso l'alto, poi il pannello risale */
   transition:
     opacity 0.2s ease,
     transform 0.2s ease;
+  transition-delay: calc((var(--n, 15) - var(--i, 0)) * 10ms);
 }
 
 .overlayShown .overlayItem,
