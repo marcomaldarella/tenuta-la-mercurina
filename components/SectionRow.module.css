@@ -35,6 +35,15 @@
   opacity: 0.7;
 }
 
+/* pre-header di sezione: standfirst sotto il titolo */
+.subtitle {
+  margin-top: 12px;
+  font-size: clamp(14px, 1.2vw, 17px);
+  line-height: 1.4;
+  max-width: 46ch;
+  opacity: 0.85;
+}
+
 .arrow {
   font-size: 0.75em;
 }

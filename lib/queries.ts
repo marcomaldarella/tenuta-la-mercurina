@@ -15,6 +15,7 @@ export type L10n<T = string> = { it?: T; en?: T }
 export type Section = {
   _key: string
   title?: L10n
+  subtitle?: L10n
   text?: L10n
   images?: SanityImage[]
   cta?: 'none' | 'contatti' | 'prenota' | 'page'
@@ -24,7 +25,7 @@ export type Section = {
 export type Page = {
   title?: L10n
   slug: string
-  hero?: { images?: SanityImage[]; text?: L10n }
+  hero?: { images?: SanityImage[]; heading?: L10n; subheading?: L10n; text?: L10n }
   sections?: Section[]
   details?: L10n<unknown[]>
   endCta?: boolean
@@ -52,9 +53,9 @@ export async function getPage(slug: string): Promise<Page | null> {
     groq`*[_type == "page" && slug.current == $slug][0]{
       title,
       "slug": slug.current,
-      hero{ "images": images[]${imageProjection}, text },
+      hero{ "images": images[]${imageProjection}, heading, subheading, text },
       sections[]{
-        _key, title, text, cta,
+        _key, title, subtitle, text, cta,
         "images": images[]${imageProjection},
         "pageSlug": page->slug.current
       },

@@ -5,6 +5,7 @@ import styles from './SectionRow.module.css'
 
 export default function SectionRow({
   title,
+  subtitle,
   text,
   urls,
   reverse = false,
@@ -12,6 +13,7 @@ export default function SectionRow({
   cta,
 }: {
   title?: string
+  subtitle?: string
   text?: string
   urls: string[]
   reverse?: boolean
@@ -32,6 +34,7 @@ export default function SectionRow({
     <section className={`${styles.row} ${reverse ? styles.reverse : ''}`}>
       <div className={styles.copy}>
         {heading}
+        {subtitle && <p className={styles.subtitle}>{subtitle}</p>}
         <div className={styles.bottom}>
           {text && <p className={styles.text}>{text}</p>}
           {cta && (

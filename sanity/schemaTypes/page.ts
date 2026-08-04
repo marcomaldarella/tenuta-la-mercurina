@@ -24,7 +24,17 @@ export const page = defineType({
           type: 'array',
           of: [{ type: 'image', options: { hotspot: true } }],
         }),
-        defineField({ name: 'text', title: 'Testo in overlay', type: 'localeText' }),
+        defineField({ name: 'heading', title: 'Header (titolo)', type: 'localeString' }),
+        defineField({
+          name: 'subheading',
+          title: 'Pre-header (sottotitolo)',
+          type: 'localeText',
+        }),
+        defineField({
+          name: 'text',
+          title: 'Testo in overlay (legacy, usato se manca l’header)',
+          type: 'localeText',
+        }),
       ],
     }),
     defineField({
@@ -37,6 +47,11 @@ export const page = defineType({
           name: 'section',
           fields: [
             defineField({ name: 'title', title: 'Titolo', type: 'localeString' }),
+            defineField({
+              name: 'subtitle',
+              title: 'Pre-header (sottotitolo)',
+              type: 'localeText',
+            }),
             defineField({ name: 'text', title: 'Testo', type: 'localeText' }),
             defineField({
               name: 'images',

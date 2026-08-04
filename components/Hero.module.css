@@ -26,3 +26,29 @@
   z-index: 3;
 }
 
+/* header + pre-header: titolo display e standfirst più piccolo sotto */
+.block {
+  position: absolute;
+  left: var(--gutter);
+  right: var(--gutter);
+  bottom: 28px;
+  z-index: 3;
+  color: var(--cream);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.heading {
+  font-size: clamp(30px, 4.2vw, 60px);
+  font-weight: 400;
+  line-height: 1.05;
+  max-width: 22ch;
+}
+
+.subheading {
+  font-size: clamp(15px, 1.35vw, 19px);
+  line-height: 1.4;
+  max-width: 58ch;
+}
+

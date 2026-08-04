@@ -46,6 +46,7 @@ export default async function ContentPage({ params }: { params: Params }) {
   const sections: Array<{
     key: string
     title?: string
+    subtitle?: string
     text?: string
     urls: string[]
     cta?: { label: string; href: string }
@@ -63,6 +64,7 @@ export default async function ContentPage({ params }: { params: Params }) {
     : (page.sections ?? []).map((section: Section) => ({
         key: section._key,
         title: pick(section.title, locale),
+        subtitle: pick(section.subtitle, locale),
         text: pick(section.text, locale),
         urls: imageUrls(section.images, 1200),
         cta:
@@ -79,12 +81,15 @@ export default async function ContentPage({ params }: { params: Params }) {
     <main>
       <Hero
         urls={imageUrls(page.hero?.images)}
+        heading={pick(page.hero?.heading, locale)}
+        subheading={pick(page.hero?.subheading, locale)}
         text={pick(page.hero?.text, locale)}
       />
       {sections.map((section, index) => (
         <SectionRow
           key={section.key}
           title={section.title}
+          subtitle={section.subtitle}
           text={section.text}
           urls={section.urls}
           reverse={index % 2 === 1}

@@ -19,6 +19,8 @@ export default async function HomePage({
     <main>
       <Hero
         urls={imageUrls(page?.hero?.images)}
+        heading={pick(page?.hero?.heading, locale)}
+        subheading={pick(page?.hero?.subheading, locale)}
         text={pick(page?.hero?.text, locale)}
       />
       {page?.sections?.map((section, index) => (
