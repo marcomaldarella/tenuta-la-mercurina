@@ -34,13 +34,25 @@ export default async function ContactsPage({
   return (
     <main className={styles.main}>
       <FixedPage />
-      <h1 className={styles.block}>
+      <div>
+        <h1 className={styles.block}>
+          {locale === 'en'
+            ? 'We look forward to welcoming you'
+            : 'Ti aspettiamo in Tenuta'}
+        </h1>
+        <p className={styles.sub}>
+          {locale === 'en'
+            ? 'Contact us to organise a stay, a visit or your next event.'
+            : 'Contattaci per organizzare un soggiorno, una visita o il tuo prossimo evento.'}
+        </p>
+      </div>
+      <p className={styles.block}>
         {address.split('\n').map((line) => (
           <span key={line} className={styles.line}>
             {line}
           </span>
         ))}
-      </h1>
+      </p>
       <p className={styles.block}>
         {locale === 'en' ? (
           <>
