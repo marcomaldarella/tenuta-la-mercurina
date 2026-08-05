@@ -108,12 +108,14 @@ export default async function ContentPage({ params }: { params: Params }) {
       {details && details.length > 0 && <RichText value={details} />}
       {BOOK_PAGES.includes(slug) && (
         <Link href={`/${locale}/prenota`} className={styles.endCta}>
-          {t('book', locale)} <Arrow />
+          {t('book', locale)}
+          <Arrow />
         </Link>
       )}
       {page.endCta && (
         <Link href={`/${locale}/contatti`} className={styles.endCta}>
-          {t('contact', locale)} <Arrow />
+          {t('contact', locale)}
+          <Arrow />
         </Link>
       )}
     </main>

@@ -23,7 +23,7 @@ export default function SectionRow({
   const heading = href ? (
     <Link href={href} className={styles.titleLink}>
       <h2 className={styles.title}>
-        {title} <Arrow />
+        {title}<Arrow />
       </h2>
     </Link>
   ) : (
@@ -39,7 +39,8 @@ export default function SectionRow({
           {text && <p className={styles.text}>{text}</p>}
           {cta && (
             <Link href={cta.href} className={styles.cta}>
-              {cta.label} <Arrow size="0.78em" />
+              {cta.label}
+              <Arrow size="0.78em" />
             </Link>
           )}
         </div>
