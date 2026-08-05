@@ -14,20 +14,24 @@ export const navEntries: NavEntry[] = [
     items: [
       { slug: 'la-tenuta', label: { it: 'la tenuta', en: 'the estate' } },
       { slug: 'la-storia', label: { it: 'la storia', en: 'the history' } },
-      { slug: 'casa-di-caccia', label: { it: 'casa di caccia', en: 'hunting lodge' } },
-      { slug: 'taneto', label: { it: 'ontaneto', en: 'alder grove' } },
+      { slug: 'casa-di-caccia', label: { it: 'ex casa di caccia', en: 'ex hunting lodge' } },
+      { slug: 'taneto', label: { it: 'il taneto', en: 'the alder grove' } },
       {
         slug: 'prodotti',
-        label: { it: 'prodotti della tenuta', en: 'estate products' },
+        label: { it: 'i prodotti della tenuta', en: 'the estate products' },
       },
     ],
   },
   {
-    label: { it: 'ospitalità', en: 'hospitality' },
+    label: { it: 'foresteria', en: 'guesthouse' },
     items: [
-      { slug: 'foresteria', label: { it: 'foresteria', en: 'guesthouse' } },
-      { slug: 'camere', label: { it: 'camere', en: 'rooms' } },
-      { slug: 'spazi-comuni', label: { it: 'spazi comuni', en: 'common spaces' } },
+      { slug: 'camere', label: { it: 'le camere', en: 'the rooms' } },
+      { slug: 'il-porticato', label: { it: 'il porticato', en: 'the portico' } },
+      {
+        slug: 'la-corte-giardino',
+        label: { it: 'la corte giardino', en: 'the garden courtyard' },
+      },
+      { slug: 'spazi-interni', label: { it: 'spazi interni', en: 'interior spaces' } },
     ],
   },
   {
@@ -59,7 +63,10 @@ export const navEntries: NavEntry[] = [
       },
     ],
   },
-  { slug: 'fondazione', label: { it: 'fondazione', en: 'foundation' } },
+  {
+    slug: 'fondazione',
+    label: { it: 'fondazione darefrutto', en: 'darefrutto foundation' },
+  },
   { slug: 'contatti', label: { it: 'contatti', en: 'contacts' } },
 ]
 

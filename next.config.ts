@@ -11,7 +11,8 @@ const nextConfig: NextConfig = {
   async redirects() {
     return [
       { source: "/:locale/chi-siamo", destination: "/:locale/la-tenuta", permanent: true },
-      { source: "/:locale/location", destination: "/:locale/spazi-comuni", permanent: true },
+      { source: "/:locale/location", destination: "/:locale/spazi-interni", permanent: true },
+      { source: "/:locale/spazi-comuni", destination: "/:locale/spazi-interni", permanent: true },
       {
         source: "/:locale/percorsi-naturalistici",
         destination: "/:locale/percorsi",
