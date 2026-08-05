@@ -31,8 +31,21 @@
   display: flex;
   flex: 1 1 auto;
   justify-content: space-between;
-  gap: clamp(16px, 3vw, 48px);
+  gap: clamp(12px, 2vw, 48px);
   max-width: 72%;
+  /* responsive fluido: le voci non vanno mai a capo, si stringe il corpo */
+  white-space: nowrap;
+  font-size: clamp(11.5px, 1.08vw, 14px);
+}
+
+@media (max-width: 1280px) {
+  .header {
+    gap: clamp(14px, 2vw, 32px);
+  }
+
+  .nav {
+    max-width: none;
+  }
 }
 
 .group {
