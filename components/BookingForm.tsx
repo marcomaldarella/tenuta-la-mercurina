@@ -2,7 +2,6 @@
 
 import { useActionState } from 'react'
 import { createBooking, type BookingState } from '../lib/actions'
-import Arrow from './Arrow'
 import type { Locale } from '../lib/i18n'
 import { t } from '../lib/l10n'
 import styles from './BookingForm.module.css'
@@ -52,14 +51,25 @@ export default function BookingForm({ locale }: { locale: Locale }) {
         placeholder={t('formChildren', locale)}
       />
 
-      <label className={styles.newsletter}>
-        <input type="checkbox" name="newsletter" />
-        {t('formNewsletter', locale)}
-      </label>
+      <div className={styles.footer}>
+        <div className={styles.checks}>
+          <label className={styles.newsletter}>
+            <input type="checkbox" name="newsletter" />
+            {t('formNewsletter', locale)}
+          </label>
+          <label className={styles.newsletter}>
+            <input type="checkbox" name="privacy" required />
+            {t('formPrivacy', locale)}
+          </label>
+        </div>
 
-      <button className={styles.submit} type="submit" disabled={pending}>
-        {pending ? t('sending', locale) : t('send', locale)} <Arrow />
-      </button>
+        <div className={styles.actions}>
+          <span className={styles.price}>10€</span>
+          <button className={styles.submit} type="submit" disabled={pending}>
+            {pending ? t('sending', locale) : t('buyNow', locale)}
+          </button>
+        </div>
+      </div>
 
       {state.status === 'error' && <p className={styles.error}>{t('error', locale)}</p>}
     </form>

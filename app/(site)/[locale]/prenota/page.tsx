@@ -3,7 +3,7 @@ import type { PortableTextBlock } from 'next-sanity'
 import BookingForm from '../../../../components/BookingForm'
 import RichText from '../../../../components/RichText'
 import type { Locale } from '../../../../lib/i18n'
-import { pick } from '../../../../lib/l10n'
+import { pick, t } from '../../../../lib/l10n'
 import { getPage } from '../../../../lib/queries'
 import styles from './page.module.css'
 
@@ -29,6 +29,7 @@ export default async function BookingPage({
 
   return (
     <main className={styles.main}>
+      <h1 className={styles.title}>{t('bookingTitle', locale)}</h1>
       {intro && intro.length > 0 && <RichText value={intro} />}
       <BookingForm locale={locale} />
     </main>

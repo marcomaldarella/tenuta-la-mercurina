@@ -1,3 +1,11 @@
 .main {
   padding-top: calc(var(--gutter) + 120px);
 }
+
+.title {
+  padding: 0 var(--gutter);
+  margin-bottom: clamp(16px, 2.5vw, 32px);
+  font-size: var(--display);
+  font-weight: 400;
+  line-height: 1.05;
+}

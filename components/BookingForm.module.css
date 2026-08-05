@@ -17,11 +17,26 @@
   font-style: italic;
 }
 
+/* checkbox a sinistra, prezzo + buy now a destra (come da figma) */
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 24px;
+  flex-wrap: wrap;
+  margin-top: clamp(32px, 5vw, 72px);
+}
+
+.checks {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
 .newsletter {
   display: flex;
   align-items: center;
   gap: 10px;
-  margin-top: clamp(32px, 5vw, 72px);
   font-size: 15px;
   cursor: pointer;
 }
@@ -32,10 +47,24 @@
   height: 16px;
 }
 
+.actions {
+  display: flex;
+  align-items: stretch;
+}
+
+.price {
+  display: flex;
+  align-items: center;
+  padding: 14px clamp(20px, 2.5vw, 36px);
+  border: 1px solid var(--ink);
+  font-size: clamp(18px, 1.8vw, 26px);
+}
+
 .submit {
-  align-self: flex-start;
-  margin-top: 28px;
-  font-size: clamp(24px, 3vw, 40px);
+  padding: 14px clamp(28px, 4vw, 64px);
+  background: var(--ink);
+  color: var(--cream);
+  font-size: clamp(18px, 1.8vw, 26px);
   font-weight: 400;
 }
 
