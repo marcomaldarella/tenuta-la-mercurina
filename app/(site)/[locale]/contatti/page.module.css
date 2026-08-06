@@ -1,39 +1,50 @@
 .main {
+  /* il corpo scala sul lato più stretto del viewport: così a finestra bassa
+     rimpicciolisce invece di traboccare sopra l'header */
+  --contatti-display: clamp(26px, min(5.5vw, 6.6vh), 72px);
+  /* spazio riservato all'header (logo + nav con sottovoci sempre aperte) */
+  --contatti-header: clamp(104px, 15vh, 156px);
+
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  gap: clamp(20px, 5vw, 64px);
-  padding: calc(var(--gutter) + 120px) var(--gutter) clamp(24px, 4vw, 48px);
-}
-
-/* a schermo pieno la tipografia si adatta all'altezza disponibile */
-@media (max-height: 760px) {
-  .main {
-    gap: clamp(16px, 3vh, 32px);
-    padding-top: calc(var(--gutter) + 88px);
-  }
-
-  .block {
-    font-size: clamp(24px, 4.6vh, 44px);
-  }
+  gap: clamp(12px, 3.4vh, 56px);
+  padding: calc(var(--gutter) + var(--contatti-header)) var(--gutter)
+    clamp(18px, 3vh, 48px);
 }
 
 .block {
-  font-size: var(--display);
+  font-size: var(--contatti-display);
   font-weight: 400;
-  line-height: 1.08;
+  line-height: 1.06;
 }
 
+/* l'indirizzo non va mai a capo: il corpo si adatta alla riga più lunga */
 .line {
   display: block;
+  white-space: nowrap;
 }
 
-/* pre-header sotto il titolo, corpo piccolo come i subheading degli hero */
+/* pre-header attaccato al titolo, non staccato come un paragrafo a sé */
 .sub {
-  margin-top: 12px;
-  font-size: clamp(15px, 1.35vw, 19px);
-  line-height: 1.4;
+  margin-top: clamp(1px, 0.3vh, 4px);
+  font-size: clamp(13px, min(1.35vw, 1.85vh), 19px);
+  line-height: 1.3;
   max-width: 58ch;
+}
+
+/* mobile: in verticale l'altezza abbonda, il vincolo è la larghezza */
+@media (max-width: 700px) {
+  .main {
+    /* tarato sulla riga più lunga (l'indirizzo) perché non vada mai a capo */
+    --contatti-display: clamp(17px, 7vw, 34px);
+    --contatti-header: 88px;
+  }
+
+  .sub {
+    margin-top: 4px;
+    white-space: normal;
+  }
 }
 
 .block a {

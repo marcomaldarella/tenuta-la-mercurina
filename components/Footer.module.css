@@ -16,3 +16,21 @@
 .footer a:hover {
   opacity: 0.7;
 }
+
+/* mobile: in riga singola i contatti si spezzano, meglio impilati */
+@media (max-width: 700px) {
+  .footer {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    padding-top: 28px;
+  }
+
+  .left {
+    gap: 8px 20px;
+  }
+
+  .footer > span {
+    white-space: nowrap;
+  }
+}

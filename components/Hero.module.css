@@ -53,6 +53,14 @@
   max-width: none;
 }
 
+/* da mobile gli a-capo del CMS sono pensati per il desktop: qui il testo
+   va a capo da solo sulla larghezza disponibile */
+@media (max-width: 700px) {
+  .heading {
+    white-space: normal;
+  }
+}
+
 .subheading {
   font-size: clamp(15px, 1.35vw, 19px);
   line-height: 1.4;
