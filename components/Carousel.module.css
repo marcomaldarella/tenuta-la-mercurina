@@ -7,10 +7,34 @@
   background: #767068;
 }
 
+/* fuori flusso: il riquadro decide il crop, l'immagine lo riempie sempre.
+   Così anche le foto verticali restano nello stesso taglio orizzontale. */
 .image {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+/* velo scuro appena accennato, in alto e in basso */
+.frame::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.16) 0%,
+    rgba(0, 0, 0, 0) 32%,
+    rgba(0, 0, 0, 0) 64%,
+    rgba(0, 0, 0, 0.22) 100%
+  );
+}
+
+.empty::after {
+  background: none;
 }
 
 .arrow {

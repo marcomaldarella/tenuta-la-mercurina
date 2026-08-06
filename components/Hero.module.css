@@ -8,11 +8,6 @@
   inset: 0;
 }
 
-.carousel img {
-  position: absolute;
-  inset: 0;
-}
-
 .text {
   position: absolute;
   left: var(--gutter);
