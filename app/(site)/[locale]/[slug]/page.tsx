@@ -14,15 +14,6 @@ import styles from './page.module.css'
 
 export const dynamic = 'force-dynamic'
 
-// pagine con bottone "prenota ora" a fine pagina (colonna E dell'xls cliente)
-const BOOK_PAGES = [
-  'percorsi',
-  'workshop-floreali',
-  'visite-e-lezioni',
-  'il-mercato',
-  'pranzo-a-tema',
-]
-
 type Params = Promise<{ locale: Locale; slug: string }>
 
 export async function generateMetadata({
@@ -106,7 +97,7 @@ export default async function ContentPage({ params }: { params: Params }) {
         />
       ))}
       {details && details.length > 0 && <RichText value={details} />}
-      {BOOK_PAGES.includes(slug) && (
+      {page.bookCta && (
         <Link href={`/${locale}/prenota`} className={styles.endCta}>
           {t('book', locale)}
           <Arrow />

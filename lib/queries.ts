@@ -29,6 +29,8 @@ export type Page = {
   sections?: Section[]
   details?: L10n<unknown[]>
   endCta?: boolean
+  bookCta?: boolean
+  price?: string
 }
 
 export type MarketDate = {
@@ -60,7 +62,9 @@ export async function getPage(slug: string): Promise<Page | null> {
         "pageSlug": page->slug.current
       },
       details,
-      endCta
+      endCta,
+      bookCta,
+      price
     }`,
     { slug }
   )

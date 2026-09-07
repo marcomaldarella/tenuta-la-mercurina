@@ -98,6 +98,19 @@ export const page = defineType({
       type: 'boolean',
       initialValue: false,
     }),
+    defineField({
+      name: 'bookCta',
+      title: 'Mostra "Prenota ora" grande a fine pagina',
+      type: 'boolean',
+      initialValue: false,
+    }),
+    defineField({
+      name: 'price',
+      title: 'Prezzo mostrato nel form di prenotazione',
+      type: 'string',
+      hidden: ({ document }) =>
+        (document?.slug as { current?: string } | undefined)?.current !== 'prenota',
+    }),
   ],
   preview: {
     select: { title: 'title.it', subtitle: 'slug.current' },

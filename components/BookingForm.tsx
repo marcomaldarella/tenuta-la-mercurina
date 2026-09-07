@@ -8,7 +8,13 @@ import styles from './BookingForm.module.css'
 
 const initialState: BookingState = { status: 'idle' }
 
-export default function BookingForm({ locale }: { locale: Locale }) {
+export default function BookingForm({
+  locale,
+  price,
+}: {
+  locale: Locale
+  price?: string
+}) {
   const [state, formAction, pending] = useActionState(createBooking, initialState)
 
   if (state.status === 'ok') {
@@ -64,7 +70,7 @@ export default function BookingForm({ locale }: { locale: Locale }) {
         </div>
 
         <div className={styles.actions}>
-          <span className={styles.price}>10€</span>
+          {price && <span className={styles.price}>{price}</span>}
           <button className={styles.submit} type="submit" disabled={pending}>
             {pending ? t('sending', locale) : t('buyNow', locale)}
           </button>

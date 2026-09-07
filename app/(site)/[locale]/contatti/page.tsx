@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import FixedPage from '../../../../components/FixedPage'
 import type { Locale } from '../../../../lib/i18n'
 import { pick } from '../../../../lib/l10n'
-import { getSiteSettings } from '../../../../lib/queries'
+import { getPage, getSiteSettings } from '../../../../lib/queries'
 import styles from './page.module.css'
 
 export const dynamic = 'force-dynamic'
@@ -22,8 +22,16 @@ export default async function ContactsPage({
   params: Promise<{ locale: Locale }>
 }) {
   const { locale } = await params
-  const settings = await getSiteSettings()
+  const [settings, page] = await Promise.all([getSiteSettings(), getPage('contatti')])
 
+  const heading =
+    pick(page?.hero?.heading, locale) ??
+    (locale === 'en' ? 'We look forward to welcoming you' : 'Ti aspettiamo in Tenuta')
+  const sub =
+    pick(page?.hero?.subheading, locale) ??
+    (locale === 'en'
+      ? 'Contact us to organise a stay, a visit or your next event.'
+      : 'Contattaci per organizzare un soggiorno, una visita o il tuo prossimo evento.')
   const address =
     pick(settings?.address, locale) ??
     'Tenuta Lamercurina\nVia Cascina San Marzano, 5\nPieve del Cairo, Pavia'
@@ -35,16 +43,8 @@ export default async function ContactsPage({
     <main className={styles.main}>
       <FixedPage />
       <div>
-        <h1 className={styles.block}>
-          {locale === 'en'
-            ? 'We look forward to welcoming you'
-            : 'Ti aspettiamo in Tenuta'}
-        </h1>
-        <p className={styles.sub}>
-          {locale === 'en'
-            ? 'Contact us to organise a stay, a visit or your next event.'
-            : 'Contattaci per organizzare un soggiorno, una visita o il tuo prossimo evento.'}
-        </p>
+        <h1 className={styles.block}>{heading}</h1>
+        <p className={styles.sub}>{sub}</p>
       </div>
       <p className={styles.block}>
         {address.split('\n').map((line) => (

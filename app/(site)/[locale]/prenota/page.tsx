@@ -15,7 +15,8 @@ export async function generateMetadata({
   params: Promise<{ locale: Locale }>
 }): Promise<Metadata> {
   const { locale } = await params
-  return { title: locale === 'en' ? 'Book your visit' : 'Prenota la tua visita' }
+  const page = await getPage('prenota')
+  return { title: pick(page?.title, locale) ?? t('bookingTitle', locale) }
 }
 
 export default async function BookingPage({
@@ -29,9 +30,11 @@ export default async function BookingPage({
 
   return (
     <main className={styles.main}>
-      <h1 className={styles.title}>{t('bookingTitle', locale)}</h1>
+      <h1 className={styles.title}>
+        {pick(page?.title, locale) ?? t('bookingTitle', locale)}
+      </h1>
       {intro && intro.length > 0 && <RichText value={intro} />}
-      <BookingForm locale={locale} />
+      <BookingForm locale={locale} price={page?.price ?? '10€'} />
     </main>
   )
 }
