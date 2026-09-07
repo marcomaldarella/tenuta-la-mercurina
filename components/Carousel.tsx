@@ -8,11 +8,13 @@ export default function Carousel({
   alt = '',
   className = '',
   light = false,
+  shaded = false,
 }: {
   urls: string[]
   alt?: string
   className?: string
   light?: boolean
+  shaded?: boolean
 }) {
   const [index, setIndex] = useState(0)
 
@@ -24,7 +26,10 @@ export default function Carousel({
     setIndex((current) => (current + delta + urls.length) % urls.length)
 
   return (
-    <div className={`${styles.frame} ${className}`} data-header-dark>
+    <div
+      className={`${styles.frame} ${shaded ? styles.shaded : ''} ${className}`}
+      data-header-dark
+    >
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img src={urls[index]} alt={alt} className={styles.image} />
       {urls.length > 1 && (

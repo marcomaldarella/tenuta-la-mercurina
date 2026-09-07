@@ -14,7 +14,7 @@ export default function Hero({
 }) {
   return (
     <section className={styles.hero}>
-      <Carousel urls={urls} className={styles.carousel} light />
+      <Carousel urls={urls} className={styles.carousel} light shaded />
       {heading ? (
         <div className={styles.block}>
           <h1
