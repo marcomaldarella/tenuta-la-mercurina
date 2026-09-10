@@ -22,9 +22,7 @@ export default function SectionRow({
 }) {
   const heading = href ? (
     <Link href={href} className={styles.titleLink}>
-      <h2 className={styles.title}>
-        {title}<Arrow />
-      </h2>
+      <h2 className={styles.title}>{title}</h2>
     </Link>
   ) : (
     <h2 className={styles.title}>{title}</h2>

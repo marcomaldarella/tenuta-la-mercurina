@@ -56,10 +56,10 @@
   flex-direction: column;
 }
 
-/* figma (frame 1512): voci menu 25px semibold → 1.65vw, esatte da 1512 in su */
+/* voci menu: il clamp del figma (16-25px) risultava gigante sui desktop normali, fissato a taglia nav */
 .groupLabel {
   font-weight: 600;
-  font-size: clamp(16px, 1.65vw, 25px);
+  font-size: 16px;
 }
 
 /* sottovoci: visibili di default, collassano allo scroll, tornano in hover */
@@ -91,7 +91,7 @@
 
 .subItem {
   font-weight: 400;
-  font-size: clamp(12px, 1.12vw, 17px);
+  font-size: 12px;
   opacity: 0.92;
 }
 
@@ -104,7 +104,7 @@
   display: flex;
   gap: 4px;
   font-weight: 600;
-  font-size: clamp(16px, 1.65vw, 25px);
+  font-size: 16px;
   flex-shrink: 0;
 }
 

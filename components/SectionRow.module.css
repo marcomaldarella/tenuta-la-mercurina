@@ -75,8 +75,11 @@
   font-size: 0.85em;
 }
 
+/* rapporto esatto dal figma (box 880×633, non la foto sorgente): non deve
+   stirarsi con l'align-items:stretch del .row, quindi align-self:start */
 .media {
-  min-height: clamp(320px, 42vw, 560px);
+  align-self: start;
+  aspect-ratio: 880 / 633;
 }
 
 @media (max-width: 900px) {

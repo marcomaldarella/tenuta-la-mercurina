@@ -8,7 +8,8 @@
   --line-cream: rgba(250, 241, 230, 0.35);
   --gutter: clamp(16px, 2vw, 28px);
   --display: clamp(38px, 5.5vw, 72px);
-  --track-display: -0.02em;
+  /* -5% da figma (richiesta cliente, sappiamo che è molto) + un pelo in più */
+  --track-display: -0.07em;
   /* tarato sui testi reali (più lunghi del lorem dei mockup): il blocco
      in overlay deve chiudere nel terzo basso dell'hero, non invaderlo */
   --display-hero: clamp(19px, 2.25vw, 32px);
@@ -40,9 +41,8 @@ body {
   -webkit-font-smoothing: antialiased;
   line-height: 1.45;
   font-size: 16px;
-  /* passata di kerning: tracking leggermente negativo su tutto il sito,
-     più marcato sui corpi display (vedi --track-display nei moduli) */
-  letter-spacing: -0.01em;
+  /* kerning -5% da figma su tutto il sito (richiesta cliente) + un pelo in più */
+  letter-spacing: -0.07em;
 }
 
 img,

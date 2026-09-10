@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Link from 'next/link'
 import FixedPage from '../../../../components/FixedPage'
 import Logo from '../../../../components/Logo'
 import type { Locale } from '../../../../lib/i18n'
@@ -47,9 +48,13 @@ export default async function ContactsPage({
         <h1 className={styles.block}>{heading}</h1>
         <p className={styles.sub}>{sub}</p>
       </div>
-      {/* il nome lo dice il logo: dall'indirizzo cade l'eventuale prima riga */}
-      <Logo className={styles.logo} />
-      <p className={styles.block}>
+      {/* il nome lo dice il logo: dall'indirizzo cade l'eventuale prima riga.
+          qui è anche l'unico modo per tornare alla home: nell'header di
+          questa pagina il logo è nascosto (vedi .fixedPage in Header.module.css) */}
+      <Link href={`/${locale}`} className={styles.logoLink} aria-label="Home">
+        <Logo className={styles.logo} />
+      </Link>
+      <p className={`${styles.block} ${styles.body} ${styles.address}`}>
         {address
           .split('\n')
           .filter((line) => !/tenuta\s*lamercurina/i.test(line))
@@ -59,7 +64,7 @@ export default async function ContactsPage({
             </span>
           ))}
       </p>
-      <p className={styles.block}>
+      <p className={`${styles.block} ${styles.body} ${styles.contact}`}>
         {locale === 'en' ? (
           <>
             <span className={styles.line}>

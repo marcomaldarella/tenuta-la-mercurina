@@ -25,12 +25,23 @@
   font-size: var(--contatti-body);
 }
 
+/* wordmark grande, unico link alla home in questa pagina (l'header qui non
+   ha il logo cliccabile, vedi .fixedPage in Header.module.css) */
+.logoLink {
+  display: block;
+  width: fit-content;
+  margin-top: clamp(32px, 11.2vh, 110px);
+}
+
+.logoLink:hover {
+  opacity: 0.85;
+}
+
 /* wordmark grande: nel figma 380px su 1512 */
 .logo {
   display: block;
   width: clamp(160px, min(25.1vw, 39vh), 380px);
   height: auto;
-  margin-top: clamp(32px, 11.2vh, 110px);
 }
 
 .address {
@@ -64,9 +75,12 @@
     --contatti-header: 88px;
   }
 
+  .logoLink {
+    margin-top: 32px;
+  }
+
   .logo {
     width: clamp(150px, 46vw, 220px);
-    margin-top: 32px;
   }
 
   .address {
