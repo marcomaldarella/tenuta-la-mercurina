@@ -6,6 +6,7 @@
 
 .field {
   font-size: clamp(24px, 3.4vw, 44px);
+  letter-spacing: var(--track-display);
   font-style: italic;
   font-weight: 300;
   padding: 14px 0 10px;
@@ -84,6 +85,7 @@
 .confirmation {
   padding: 0 var(--gutter) clamp(40px, 6vw, 80px);
   font-size: clamp(24px, 3vw, 40px);
+  letter-spacing: var(--track-display);
 }
 
 .error {

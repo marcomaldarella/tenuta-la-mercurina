@@ -1,22 +1,44 @@
 .main {
-  /* il corpo scala sul lato più stretto del viewport: così a finestra bassa
-     rimpicciolisce invece di traboccare sopra l'header */
-  --contatti-display: clamp(26px, min(5.5vw, 6.6vh), 72px);
-  /* spazio riservato all'header (logo + nav con sottovoci sempre aperte) */
+  /* misure dal figma 09_Contatti (frame 1512×982): heading 72px, corpi 40px;
+     scalano su viewport più piccoli senza traboccare sopra l'header */
+  --contatti-display: clamp(26px, min(4.76vw, 7.3vh), 72px);
+  --contatti-body: clamp(18px, min(2.65vw, 4.1vh), 40px);
+  /* spazio riservato all'header (nav con sottovoci sempre aperte) */
   --contatti-header: clamp(104px, 15vh, 156px);
 
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  gap: clamp(12px, 3.4vh, 56px);
   padding: calc(var(--gutter) + var(--contatti-header)) var(--gutter)
-    clamp(18px, 3vh, 48px);
+    clamp(12px, 2vh, 20px);
 }
 
 .block {
   font-size: var(--contatti-display);
+  letter-spacing: var(--track-display);
   font-weight: 400;
   line-height: 1.06;
+}
+
+/* indirizzo e contatti: corpo minore del titolo, come nel figma */
+.body {
+  font-size: var(--contatti-body);
+}
+
+/* wordmark grande: nel figma 380px su 1512 */
+.logo {
+  display: block;
+  width: clamp(160px, min(25.1vw, 39vh), 380px);
+  height: auto;
+  margin-top: clamp(32px, 11.2vh, 110px);
+}
+
+.address {
+  margin-top: clamp(32px, 12.2vh, 120px);
+}
+
+.contact {
+  margin-top: clamp(14px, 4.6vh, 45px);
 }
 
 /* l'indirizzo non va mai a capo: il corpo si adatta alla riga più lunga */
@@ -37,8 +59,22 @@
 @media (max-width: 700px) {
   .main {
     /* tarato sulla riga più lunga (l'indirizzo) perché non vada mai a capo */
-    --contatti-display: clamp(17px, 7vw, 34px);
+    --contatti-display: clamp(22px, 8.4vw, 44px);
+    --contatti-body: clamp(17px, 6.6vw, 30px);
     --contatti-header: 88px;
+  }
+
+  .logo {
+    width: clamp(150px, 46vw, 220px);
+    margin-top: 32px;
+  }
+
+  .address {
+    margin-top: 36px;
+  }
+
+  .contact {
+    margin-top: 18px;
   }
 
   .sub {
@@ -47,12 +83,7 @@
   }
 }
 
-.block a {
-  text-decoration: underline;
-  text-underline-offset: 5px;
-  text-decoration-thickness: 2px;
-}
-
+/* nel figma i link non sono sottolineati */
 .block a:hover {
   opacity: 0.7;
 }

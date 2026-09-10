@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import FixedPage from '../../../../components/FixedPage'
+import Logo from '../../../../components/Logo'
 import type { Locale } from '../../../../lib/i18n'
 import { pick } from '../../../../lib/l10n'
 import { getPage, getSiteSettings } from '../../../../lib/queries'
@@ -26,7 +27,7 @@ export default async function ContactsPage({
 
   const heading =
     pick(page?.hero?.heading, locale) ??
-    (locale === 'en' ? 'We look forward to welcoming you' : 'Ti aspettiamo in Tenuta')
+    (locale === 'en' ? 'we look forward to welcoming you' : 'ti aspettiamo in tenuta')
   const sub =
     pick(page?.hero?.subheading, locale) ??
     (locale === 'en'
@@ -46,12 +47,17 @@ export default async function ContactsPage({
         <h1 className={styles.block}>{heading}</h1>
         <p className={styles.sub}>{sub}</p>
       </div>
+      {/* il nome lo dice il logo: dall'indirizzo cade l'eventuale prima riga */}
+      <Logo className={styles.logo} />
       <p className={styles.block}>
-        {address.split('\n').map((line) => (
-          <span key={line} className={styles.line}>
-            {line}
-          </span>
-        ))}
+        {address
+          .split('\n')
+          .filter((line) => !/tenuta\s*lamercurina/i.test(line))
+          .map((line) => (
+            <span key={line} className={styles.line}>
+              {line}
+            </span>
+          ))}
       </p>
       <p className={styles.block}>
         {locale === 'en' ? (

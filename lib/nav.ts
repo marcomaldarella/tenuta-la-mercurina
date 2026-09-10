@@ -6,11 +6,15 @@ export type NavEntry = {
   label: L10nString
   slug?: string
   items?: NavItem[]
+  /* true: le voci non sono pagine ma ancore dentro la pagina unica entry.slug */
+  anchors?: boolean
 }
 
 export const navEntries: NavEntry[] = [
   {
     label: { it: 'tenuta', en: 'estate' },
+    slug: 'tenuta',
+    anchors: true,
     items: [
       { slug: 'la-tenuta', label: { it: 'la tenuta', en: 'the estate' } },
       { slug: 'la-storia', label: { it: 'la storia', en: 'the history' } },
@@ -24,6 +28,8 @@ export const navEntries: NavEntry[] = [
   },
   {
     label: { it: 'foresteria', en: 'guesthouse' },
+    slug: 'foresteria',
+    anchors: true,
     items: [
       { slug: 'camere', label: { it: 'le camere', en: 'the rooms' } },
       { slug: 'il-porticato', label: { it: 'il porticato', en: 'the portico' } },
@@ -63,13 +69,30 @@ export const navEntries: NavEntry[] = [
       },
     ],
   },
-  {
-    slug: 'fondazione',
-    label: { it: 'fondazione darefrutto', en: 'darefrutto foundation' },
-  },
   { slug: 'contatti', label: { it: 'contatti', en: 'contacts' } },
 ]
 
-export const flatNavItems: NavItem[] = navEntries.flatMap((entry) =>
-  entry.items ? entry.items : [{ slug: entry.slug!, label: entry.label }]
+/* pagine uniche: slug del gruppo → label + sotto-pagine (slug = id ancora,
+   label = titolo del blocco editoriale) */
+export const anchorGroups: Record<string, { label: L10nString; items: NavItem[] }> =
+  Object.fromEntries(
+    navEntries
+      .filter((entry) => entry.anchors && entry.slug && entry.items)
+      .map((entry) => [entry.slug!, { label: entry.label, items: entry.items! }])
+  )
+
+/* voci piatte per l'overlay mobile: path già pronto (con #ancora per i gruppi) */
+export const flatNavItems: { path: string; label: L10nString }[] = navEntries.flatMap(
+  (entry) =>
+    entry.items
+      ? entry.items.map((item) => ({
+          path: entry.anchors ? `${entry.slug}#${item.slug}` : item.slug,
+          label: item.label,
+        }))
+      : [{ path: entry.slug!, label: entry.label }]
+)
+
+/* pagine reali (senza ancore), per la sitemap */
+export const topLevelSlugs: string[] = navEntries.flatMap((entry) =>
+  entry.anchors || !entry.items ? [entry.slug!] : entry.items.map((item) => item.slug)
 )

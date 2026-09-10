@@ -7,7 +7,8 @@ export default function SmoothScroll() {
   useEffect(() => {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
 
-    const lenis = new Lenis({ lerp: 0.12 })
+    // anchors: i link #ancora (sottovoci tenuta/foresteria) scrollano smooth
+    const lenis = new Lenis({ lerp: 0.12, anchors: true })
     let raf = 0
     const loop = (time: number) => {
       lenis.raf(time)

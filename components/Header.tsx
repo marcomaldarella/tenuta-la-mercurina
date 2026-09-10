@@ -7,6 +7,7 @@ import type { Locale } from '../lib/i18n'
 import { locales } from '../lib/i18n'
 import { t } from '../lib/l10n'
 import { flatNavItems, navEntries } from '../lib/nav'
+import Logo from './Logo'
 import styles from './Header.module.css'
 
 const THEME_CREAM = '#faf1e6'
@@ -115,24 +116,34 @@ export default function Header({
           aria-label="Tenuta Lamercurina"
           data-nav-item
         >
-          tenuta
-          <br />
-          lamercurına
+          <Logo className={styles.logoMark} />
         </Link>
 
         <nav className={styles.nav}>
           {navEntries.map((entry) =>
             entry.items ? (
               <div key={entry.label.it} className={styles.group}>
-                <span className={styles.groupLabel} data-nav-item>
-                  {entry.label[locale]}
-                </span>
+                {entry.anchors ? (
+                  <Link
+                    href={`/${locale}/${entry.slug}`}
+                    className={styles.groupLabel}
+                    data-nav-item
+                  >
+                    {entry.label[locale]}
+                  </Link>
+                ) : (
+                  <span className={styles.groupLabel} data-nav-item>
+                    {entry.label[locale]}
+                  </span>
+                )}
                 <div className={styles.subList}>
                   <div className={styles.subListInner}>
                     {entry.items.map((item, i) => (
                       <Link
                         key={item.slug}
-                        href={`/${locale}/${item.slug}`}
+                        href={`/${locale}/${
+                          entry.anchors ? `${entry.slug}#${item.slug}` : item.slug
+                        }`}
                         className={styles.subItem}
                         style={{ '--i': i } as React.CSSProperties}
                         data-nav-item
@@ -187,9 +198,7 @@ export default function Header({
         >
           <div className={styles.overlayTop}>
             <span className={styles.overlayLogo}>
-              tenuta
-              <br />
-              lamercurına
+              <Logo className={styles.logoMark} />
             </span>
             <button className={styles.closeButton} onClick={() => setOpen(false)}>
               {t('close', locale)}
@@ -199,8 +208,8 @@ export default function Header({
           <nav className={styles.overlayNav}>
             {flatNavItems.map((item, i) => (
               <Link
-                key={item.slug}
-                href={`/${locale}/${item.slug}`}
+                key={item.path}
+                href={`/${locale}/${item.path}`}
                 className={styles.overlayItem}
                 style={{ '--i': i } as React.CSSProperties}
                 onClick={() => setOpen(false)}

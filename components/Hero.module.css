@@ -1,6 +1,12 @@
 .hero {
   position: relative;
-  height: 100svh;
+  /* 85vh, non full screen: sotto la piega deve spuntare il contenuto */
+  height: 85svh;
+}
+
+/* un po' d'aria tra l'hero e la prima sezione che segue */
+.hero + * {
+  margin-top: clamp(20px, 2.2vw, 32px);
 }
 
 .carousel {
@@ -15,6 +21,7 @@
   bottom: 24px;
   color: var(--cream);
   font-size: var(--display-hero);
+  letter-spacing: var(--track-display);
   font-weight: 400;
   line-height: 1.1;
   max-width: 1050px;
@@ -36,6 +43,7 @@
 
 .heading {
   font-size: clamp(30px, 4.2vw, 60px);
+  letter-spacing: var(--track-display);
   font-weight: 400;
   line-height: 1.05;
   max-width: 22ch;

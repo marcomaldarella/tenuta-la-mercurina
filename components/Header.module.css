@@ -19,32 +19,35 @@
 }
 
 .logo {
-  font-weight: 600;
-  font-size: 17px;
-  line-height: 1.05;
-  letter-spacing: 0.01em;
   flex-shrink: 0;
   margin-right: auto;
+}
+
+/* contatti (figma 09): niente logo nell'header, c'è quello grande in pagina */
+:global(body.fixedPage) .logo {
+  visibility: hidden;
+}
+
+/* wordmark SVG: altezza pari al vecchio logo testuale (2 righe da 17px) */
+.logoMark {
+  display: block;
+  height: 36px;
+  width: auto;
 }
 
 .nav {
   display: flex;
   flex: 1 1 auto;
-  justify-content: space-between;
-  gap: clamp(12px, 2vw, 48px);
-  max-width: 72%;
+  /* blocco compatto a destra: gap fisso e uniforme tra tutte le voci */
+  justify-content: flex-end;
+  gap: clamp(20px, 2.6vw, 48px);
   /* responsive fluido: le voci non vanno mai a capo, si stringe il corpo */
   white-space: nowrap;
-  font-size: clamp(11.5px, 1.08vw, 14px);
 }
 
 @media (max-width: 1280px) {
   .header {
     gap: clamp(14px, 2vw, 32px);
-  }
-
-  .nav {
-    max-width: none;
   }
 }
 
@@ -53,8 +56,10 @@
   flex-direction: column;
 }
 
+/* figma (frame 1512): voci menu 25px semibold → 1.65vw, esatte da 1512 in su */
 .groupLabel {
   font-weight: 600;
+  font-size: clamp(16px, 1.65vw, 25px);
 }
 
 /* sottovoci: visibili di default, collassano allo scroll, tornano in hover */
@@ -76,6 +81,7 @@
   min-height: 0;
 }
 
+/* allo scroll le sottovoci spariscono e restano nascoste (niente hover) */
 .scrolled .subList {
   grid-template-rows: 0fr;
   opacity: 0;
@@ -83,35 +89,9 @@
   pointer-events: none;
 }
 
-.scrolled .group:hover .subList,
-.scrolled .group:focus-within .subList {
-  grid-template-rows: 1fr;
-  opacity: 1;
-  transform: translateY(0);
-  pointer-events: auto;
-}
-
-/* riapertura in hover: sottovoci a cascata (animation + backwards così il
-   fade dell'hover sul singolo link non eredita il delay dello stagger) */
-.scrolled .group:hover .subItem,
-.scrolled .group:focus-within .subItem {
-  animation: subItemIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) backwards;
-  animation-delay: calc(50ms + var(--i, 0) * 35ms);
-}
-
-@keyframes subItemIn {
-  from {
-    opacity: 0;
-    transform: translateY(-6px);
-  }
-  to {
-    opacity: 0.92;
-    transform: translateY(0);
-  }
-}
-
 .subItem {
   font-weight: 400;
+  font-size: clamp(12px, 1.12vw, 17px);
   opacity: 0.92;
 }
 
@@ -124,6 +104,7 @@
   display: flex;
   gap: 4px;
   font-weight: 600;
+  font-size: clamp(16px, 1.65vw, 25px);
   flex-shrink: 0;
 }
 
@@ -178,9 +159,7 @@
 }
 
 .overlayLogo {
-  font-weight: 600;
-  font-size: 17px;
-  line-height: 1.05;
+  display: block;
 }
 
 .closeButton {

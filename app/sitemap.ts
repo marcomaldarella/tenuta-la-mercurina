@@ -1,11 +1,11 @@
 import type { MetadataRoute } from 'next'
 import { locales } from '../lib/i18n'
-import { flatNavItems } from '../lib/nav'
+import { topLevelSlugs } from '../lib/nav'
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://tenutalamercurina.com'
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const paths = ['', ...flatNavItems.map((item) => `/${item.slug}`), '/prenota']
+  const paths = ['', ...topLevelSlugs.map((slug) => `/${slug}`), '/prenota']
 
   return paths.flatMap((path) =>
     locales.map((locale) => ({

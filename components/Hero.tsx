@@ -6,18 +6,21 @@ export default function Hero({
   heading,
   subheading,
   text,
+  headingTag: Tag = 'h1',
 }: {
   urls: string[]
   heading?: string
   subheading?: string
   text?: string
+  /* h2 per i blocchi successivi delle pagine unite (un solo h1 a pagina) */
+  headingTag?: 'h1' | 'h2'
 }) {
   return (
     <section className={styles.hero}>
       <Carousel urls={urls} className={styles.carousel} light shaded />
       {heading ? (
         <div className={styles.block}>
-          <h1
+          <Tag
             className={
               heading.includes('\n')
                 ? `${styles.heading} ${styles.headingManual}`
@@ -25,11 +28,11 @@ export default function Hero({
             }
           >
             {heading}
-          </h1>
+          </Tag>
           {subheading && <p className={styles.subheading}>{subheading}</p>}
         </div>
       ) : (
-        text && <h1 className={styles.text}>{text}</h1>
+        text && <Tag className={styles.text}>{text}</Tag>
       )}
     </section>
   )
