@@ -92,6 +92,8 @@
 .subItem {
   font-weight: 400;
   font-size: 12px;
+  /* solo qui un filo più larghe del -7% globale: a questa taglia il testo si legge meglio */
+  letter-spacing: -0.03em;
   opacity: 0.92;
 }
 
