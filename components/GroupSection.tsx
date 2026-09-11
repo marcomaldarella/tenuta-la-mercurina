@@ -1,9 +1,10 @@
 import Link from 'next/link'
 import Arrow from './Arrow'
+import Carousel from './Carousel'
 import styles from './GroupSection.module.css'
 
 /* blocco editoriale delle pagine unite (tenuta/foresteria): titolo grande,
-   testi in colonna, fino a due immagini statiche affiancate; l'id è l'ancora
+   testi in colonna, gallery unica con frecce; l'id è l'ancora
    raggiunta dalle sottovoci di menu */
 export default function GroupSection({
   id,
@@ -20,8 +21,6 @@ export default function GroupSection({
   reverse?: boolean
   cta?: { label: string; href: string }
 }) {
-  const images = urls.slice(0, 2)
-
   return (
     <section id={id} className={`${styles.row} ${reverse ? styles.reverse : ''}`}>
       <div className={styles.copy}>
@@ -44,18 +43,7 @@ export default function GroupSection({
           )}
         </div>
       </div>
-      {images.length > 0 && (
-        <div
-          className={
-            images.length > 1 ? styles.media : `${styles.media} ${styles.mediaSingle}`
-          }
-        >
-          {images.map((url, i) => (
-            // eslint-disable-next-line @next/next/no-img-element
-            <img key={url} src={url} alt="" loading="lazy" className={styles.img} />
-          ))}
-        </div>
-      )}
+      <Carousel urls={urls} className={styles.media} light />
     </section>
   )
 }

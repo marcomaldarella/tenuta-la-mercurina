@@ -63,26 +63,10 @@
   opacity: 0.7;
 }
 
-/* due immagini affiancate ad altezze diverse, come nel figma */
+/* gallery unica con frecce, come nel figma; il min tiene il riquadro
+   pieno anche con testi corti, con testi lunghi si stira col .row */
 .media {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: clamp(12px, 1.5vw, 24px);
-  align-items: start;
-}
-
-.mediaSingle {
-  grid-template-columns: 1fr;
-}
-
-.img {
-  width: 100%;
-  height: clamp(360px, 46vw, 620px);
-  object-fit: cover;
-}
-
-.media .img:nth-child(2) {
-  height: clamp(260px, 34vw, 460px);
+  min-height: clamp(360px, 46vw, 620px);
 }
 
 @media (max-width: 900px) {
@@ -109,9 +93,8 @@
     font-size: clamp(30px, 9vw, 44px);
   }
 
-  .img,
-  .media .img:nth-child(2) {
-    height: auto;
+  .media {
+    min-height: 0;
     aspect-ratio: 4 / 3;
   }
 }

@@ -54,7 +54,8 @@
   display: flex;
   flex-direction: column;
   gap: 14px;
-  max-width: 440px;
+  /* un pelo più larga dei 440px originali: con i paragrafi lunghi andava a capo troppo stretto */
+  max-width: 520px;
 }
 
 .text {
@@ -75,12 +76,10 @@
   font-size: 0.85em;
 }
 
-/* rapporto esatto dal figma (box 880×633, non la foto sorgente): non deve
-   stirarsi con l'align-items:stretch del .row, quindi align-self:start */
-.media {
-  align-self: start;
-  aspect-ratio: 880 / 633;
-}
+/* con i testi lunghi (ex card brevi, ora paragrafi come in /tenuta) il
+   rapporto fisso dal figma spezzava l'allineamento: tolto, .media torna a
+   stirarsi con align-items:stretch del .row così segue sempre l'altezza
+   del testo, mai il contrario */
 
 @media (max-width: 900px) {
   .row,

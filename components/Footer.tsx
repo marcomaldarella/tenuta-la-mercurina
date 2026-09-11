@@ -22,8 +22,14 @@ export default function Footer({
           <a href={`tel:${settings.phone.replace(/\s/g, '')}`}>{settings.phone}</a>
         )}
         {settings?.email && <a href={`mailto:${settings.email}`}>{settings.email}</a>}
+        <span>{t('privacy', locale)}</span>
       </div>
-      <span>{t('privacy', locale)}</span>
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src="/logos/darefrutto.png"
+        alt="Fondazione Darefrutto"
+        className={styles.foundationLogo}
+      />
     </footer>
   )
 }
