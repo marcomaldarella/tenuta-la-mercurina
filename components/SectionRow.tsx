@@ -43,7 +43,8 @@ export default function SectionRow({
           )}
         </div>
       </div>
-      <Carousel urls={urls} className={styles.media} />
+      {/* frecce crema come nel figma: stanno sopra la foto, non sul crema */}
+      <Carousel urls={urls} className={styles.media} light />
     </section>
   )
 }
