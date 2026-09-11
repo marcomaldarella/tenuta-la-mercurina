@@ -57,16 +57,18 @@
   z-index: 2;
 }
 
+/* sulle foto chiare il crema sparisce: un'ombra corta le tiene leggibili */
 .light {
   color: var(--cream);
+  filter: drop-shadow(0 1px 6px rgba(0, 0, 0, 0.45));
 }
 
 .prev {
-  left: 4px;
+  left: clamp(4px, 1.2vw, 16px);
 }
 
 .next {
-  right: 4px;
+  right: clamp(4px, 1.2vw, 16px);
 }
 
 .arrow:hover {

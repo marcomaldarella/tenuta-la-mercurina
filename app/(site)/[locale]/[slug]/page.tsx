@@ -164,10 +164,11 @@ export default async function ContentPage({ params }: { params: Params }) {
         parts: [
           { key: 'rigenerazione', title: undefined, text: pick(rigenerazione.text, locale) },
         ],
-        urls: [
-          ...imageUrls(rigenerazione.images, 1200),
-          ...imageUrls(fondazione?.hero?.images, 1200),
-        ],
+        /* l'hero della fondazione solo come tappabuchi: se la sezione ha
+           già le sue foto, la gallery resta quella */
+        urls: rigenerazione.images?.length
+          ? imageUrls(rigenerazione.images, 1200)
+          : imageUrls(fondazione?.hero?.images, 1200),
         cta: {
           label: locale === 'en' ? 'Discover the Foundation' : 'Scopri la Fondazione',
           href: `/${locale}/fondazione`,
