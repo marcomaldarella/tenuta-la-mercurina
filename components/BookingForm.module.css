@@ -42,6 +42,11 @@
   cursor: pointer;
 }
 
+.privacyLink {
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
 .newsletter input {
   accent-color: var(--ink);
   width: 16px;

@@ -6,7 +6,7 @@ import { useEffect, useRef, useState } from 'react'
 import type { Locale } from '../lib/i18n'
 import { locales } from '../lib/i18n'
 import { t } from '../lib/l10n'
-import { flatNavItems, navEntries } from '../lib/nav'
+import { navEntries, overlayRows } from '../lib/nav'
 import Logo from './Logo'
 import styles from './Header.module.css'
 
@@ -123,27 +123,19 @@ export default function Header({
           {navEntries.map((entry) =>
             entry.items ? (
               <div key={entry.label.it} className={styles.group}>
-                {entry.anchors ? (
-                  <Link
-                    href={`/${locale}/${entry.slug}`}
-                    className={styles.groupLabel}
-                    data-nav-item
-                  >
-                    {entry.label[locale]}
-                  </Link>
-                ) : (
-                  <span className={styles.groupLabel} data-nav-item>
-                    {entry.label[locale]}
-                  </span>
-                )}
+                <Link
+                  href={`/${locale}/${entry.slug}`}
+                  className={styles.groupLabel}
+                  data-nav-item
+                >
+                  {entry.label[locale]}
+                </Link>
                 <div className={styles.subList}>
                   <div className={styles.subListInner}>
                     {entry.items.map((item, i) => (
                       <Link
                         key={item.slug}
-                        href={`/${locale}/${
-                          entry.anchors ? `${entry.slug}#${item.slug}` : item.slug
-                        }`}
+                        href={`/${locale}/${entry.slug}#${item.slug}`}
                         className={styles.subItem}
                         style={{ '--i': i } as React.CSSProperties}
                         data-nav-item
@@ -193,7 +185,7 @@ export default function Header({
       {visible && (
         <div
           className={`${styles.overlay} ${shown ? styles.overlayShown : ''}`}
-          style={{ '--n': flatNavItems.length + 1 } as React.CSSProperties}
+          style={{ '--n': overlayRows.length + 1 } as React.CSSProperties}
           data-lenis-prevent
         >
           <div className={styles.overlayTop}>
@@ -206,20 +198,20 @@ export default function Header({
           </div>
 
           <nav className={styles.overlayNav}>
-            {flatNavItems.map((item, i) => (
+            {overlayRows.map((row, i) => (
               <Link
-                key={item.path}
-                href={`/${locale}/${item.path}`}
+                key={row.path}
+                href={`/${locale}/${row.path}`}
                 className={styles.overlayItem}
                 style={{ '--i': i } as React.CSSProperties}
                 onClick={() => setOpen(false)}
               >
-                {item.label[locale]}
+                {row.label[locale]}
               </Link>
             ))}
             <div
               className={`${styles.overlayLang} ${styles.overlayItemAnim}`}
-              style={{ '--i': flatNavItems.length } as React.CSSProperties}
+              style={{ '--i': overlayRows.length } as React.CSSProperties}
             >
               {locales.map((l) => (
                 <Link
@@ -236,7 +228,7 @@ export default function Header({
 
           <div
             className={`${styles.overlayFooter} ${styles.overlayItemAnim}`}
-            style={{ '--i': flatNavItems.length + 1 } as React.CSSProperties}
+            style={{ '--i': overlayRows.length + 1 } as React.CSSProperties}
           >
             <div>
               {instagram && (
@@ -247,7 +239,12 @@ export default function Header({
               {phone && <a href={`tel:${phone.replace(/\s/g, '')}`}>{phone}</a>}
             </div>
             <div className={styles.overlayFooterRight}>
-              <span>{t('privacy', locale)}</span>
+              <Link
+                href={`/${locale}/privacy-policy`}
+                onClick={() => setOpen(false)}
+              >
+                {t('privacy', locale)}
+              </Link>
               {email && <a href={`mailto:${email}`}>{email}</a>}
             </div>
           </div>

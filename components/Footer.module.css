@@ -1,10 +1,12 @@
 .footer {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  /* dal figma il logo sale sopra la riga, non la centra: stessa base */
+  align-items: flex-end;
   gap: 24px;
   padding: 40px var(--gutter) 20px;
   font-size: 13px;
+  font-weight: 600;
 }
 
 .left {
@@ -17,9 +19,15 @@
   opacity: 0.7;
 }
 
-/* logo Fondazione Darefrutto, in fondo a destra come nel figma */
+/* il logo porta al sito della Fondazione */
+.foundationLink {
+  display: block;
+  flex-shrink: 0;
+}
+
+/* logo Fondazione Darefrutto, in fondo a destra: 112×47 come nel figma */
 .foundationLogo {
-  height: 24px;
+  height: 47px;
   width: auto;
   flex-shrink: 0;
 }

@@ -49,7 +49,36 @@ const nextConfig: NextConfig = {
       },
       {
         source: "/:locale/percorsi-naturalistici",
-        destination: "/:locale/percorsi",
+        destination: "/:locale/esperienze#percorsi",
+        permanent: true,
+      },
+      // pagine unite esperienze/eventi (15 set): anche queste sotto-pagine
+      // diventano ancore, i loro slug restavano linkati da home e vecchi link
+      { source: "/:locale/percorsi", destination: "/:locale/esperienze", permanent: true },
+      {
+        source: "/:locale/workshop-floreali",
+        destination: "/:locale/esperienze#workshop-floreali",
+        permanent: true,
+      },
+      {
+        source: "/:locale/visite-e-lezioni",
+        destination: "/:locale/esperienze#visite-e-lezioni",
+        permanent: true,
+      },
+      { source: "/:locale/il-mercato", destination: "/:locale/eventi", permanent: true },
+      {
+        source: "/:locale/pranzo-a-tema",
+        destination: "/:locale/eventi#pranzo-a-tema",
+        permanent: true,
+      },
+      {
+        source: "/:locale/matrimoni",
+        destination: "/:locale/eventi#matrimoni",
+        permanent: true,
+      },
+      {
+        source: "/:locale/eventi-privati",
+        destination: "/:locale/eventi#eventi-privati",
         permanent: true,
       },
     ];

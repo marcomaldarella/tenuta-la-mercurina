@@ -5,7 +5,12 @@ import { topLevelSlugs } from '../lib/nav'
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://tenutalamercurina.com'
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const paths = ['', ...topLevelSlugs.map((slug) => `/${slug}`), '/prenota']
+  const paths = [
+    '',
+    ...topLevelSlugs.map((slug) => `/${slug}`),
+    '/prenota',
+    '/privacy-policy',
+  ]
 
   return paths.flatMap((path) =>
     locales.map((locale) => ({

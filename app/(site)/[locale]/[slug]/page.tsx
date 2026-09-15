@@ -125,27 +125,60 @@ export default async function ContentPage({ params }: { params: Params }) {
   // ancorato al proprio slug per lo scroll dalle voci di menu
   const group = anchorGroups[slug]
   if (group) {
-    const [pages, fondazione] = await Promise.all([
+    const hasMarket = group.items.some((item) => item.slug === 'il-mercato')
+    const [pages, fondazione, groupPage, marketDatesInGroup] = await Promise.all([
       Promise.all(group.items.map((item) => getPage(item.slug))),
       slug === 'tenuta' ? getPage('fondazione') : Promise.resolve(null),
+      group.heroFrom ? getPage(group.heroFrom) : Promise.resolve(null),
+      hasMarket ? getMarketDates() : Promise.resolve([]),
     ])
+    const todayInGroup = new Date().toISOString().slice(0, 10)
 
     const blocks = group.items.flatMap((item, index) => {
       const page = pages[index]
       if (!page) return []
+      /* il mercato non ha sezioni: il suo contenuto sono le date */
+      const dateParts =
+        item.slug === 'il-mercato'
+          ? marketDatesInGroup.map((entry) => ({
+              key: entry._id,
+              title: formatDate(entry.date),
+              text: pick(entry.text, locale),
+            }))
+          : []
       return [
         {
           id: item.slug,
           title: item.label[locale],
-          parts: (page.sections ?? []).map((section: Section) => ({
-            key: section._key,
-            title: pick(section.title, locale),
-            text: pick(section.text, locale),
-          })),
-          urls: (page.sections ?? []).flatMap((section: Section) =>
-            imageUrls(section.images, 1200)
-          ),
-          cta: undefined as { label: string; href: string } | undefined,
+          parts: [
+            ...(page.sections ?? []).map((section: Section) => ({
+              key: section._key,
+              title: pick(section.title, locale),
+              text: pick(section.text, locale),
+            })),
+            ...dateParts,
+          ],
+          /* se la sotto-pagina non ha sezioni con foto (il mercato) la
+             gallery del blocco resta vuota: si usa il suo hero */
+          urls: (() => {
+            const fromSections = (page.sections ?? []).flatMap((section: Section) =>
+              imageUrls(section.images, 1200)
+            )
+            return fromSections.length
+              ? fromSections
+              : imageUrls(page.hero?.images, 1200)
+          })(),
+          /* le pagine con bookCta portavano "prenota ora" in fondo: da blocco
+             il bottone resta, ancorato alla sua sezione */
+          cta: (
+            page.bookCta ||
+            (item.slug === 'il-mercato' &&
+              marketDatesInGroup.some(
+                (entry) => entry.bookable && entry.date >= todayInGroup
+              ))
+              ? { label: t('book', locale), href: `/${locale}/prenota` }
+              : undefined
+          ) as { label: string; href: string } | undefined,
         },
       ]
     })
@@ -176,7 +209,8 @@ export default async function ContentPage({ params }: { params: Params }) {
       })
     }
 
-    const heroPage = pages.find((page): page is Page => Boolean(page))
+    const heroPage =
+      groupPage ?? pages.find((page): page is Page => Boolean(page))
 
     return (
       <main>

@@ -32,9 +32,14 @@ export const ui = {
     it: 'Voglio iscrivermi alla newsletter',
     en: 'I want to subscribe to the newsletter',
   },
+  /* spezzata in due: la seconda parte è il link alla pagina */
   formPrivacy: {
-    it: 'Accetto la privacy policy',
-    en: 'I accept the privacy policy',
+    it: 'Accetto la',
+    en: 'I accept the',
+  },
+  formPrivacyLink: {
+    it: 'privacy policy',
+    en: 'privacy policy',
   },
   bookingTitle: { it: 'Prenota visita', en: 'Book your visit' },
   buyNow: { it: 'buy now', en: 'buy now' },

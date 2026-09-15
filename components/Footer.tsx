@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import type { Locale } from '../lib/i18n'
 import { t } from '../lib/l10n'
 import type { SiteSettings } from '../lib/queries'
@@ -22,14 +23,22 @@ export default function Footer({
           <a href={`tel:${settings.phone.replace(/\s/g, '')}`}>{settings.phone}</a>
         )}
         {settings?.email && <a href={`mailto:${settings.email}`}>{settings.email}</a>}
-        <span>{t('privacy', locale)}</span>
+        <Link href={`/${locale}/privacy-policy`}>{t('privacy', locale)}</Link>
       </div>
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img
-        src="/logos/darefrutto.png"
-        alt="Fondazione Darefrutto"
-        className={styles.foundationLogo}
-      />
+      <a
+        href="https://www.fondazionedarefrutto.it/"
+        target="_blank"
+        rel="noreferrer"
+        className={styles.foundationLink}
+        aria-label="Fondazione Darefrutto"
+      >
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/logos/darefrutto.png"
+          alt="Fondazione Darefrutto"
+          className={styles.foundationLogo}
+        />
+      </a>
     </footer>
   )
 }

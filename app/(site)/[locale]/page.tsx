@@ -2,6 +2,7 @@ import Hero from '../../../components/Hero'
 import SectionRow from '../../../components/SectionRow'
 import type { Locale } from '../../../lib/i18n'
 import { pick } from '../../../lib/l10n'
+import { pagePath } from '../../../lib/nav'
 import { getPage } from '../../../lib/queries'
 import { imageUrls } from '../../../lib/sanity/image'
 
@@ -32,7 +33,7 @@ export default async function HomePage({
           reverse={index % 2 === 1}
           href={
             section.cta === 'page' && section.pageSlug
-              ? `/${locale}/${section.pageSlug}`
+              ? `/${locale}/${pagePath(section.pageSlug)}`
               : undefined
           }
         />

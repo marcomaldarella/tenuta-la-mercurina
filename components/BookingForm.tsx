@@ -1,5 +1,6 @@
 'use client'
 
+import Link from 'next/link'
 import { useActionState } from 'react'
 import { createBooking, type BookingState } from '../lib/actions'
 import type { Locale } from '../lib/i18n'
@@ -65,7 +66,18 @@ export default function BookingForm({
           </label>
           <label className={styles.newsletter}>
             <input type="checkbox" name="privacy" required />
-            {t('formPrivacy', locale)}
+            {/* il consenso deve poter arrivare al testo che accetta: solo le
+                due parole sono link, il resto della label spunta la casella */}
+            <span>
+              {t('formPrivacy', locale)}{' '}
+              <Link
+                href={`/${locale}/privacy-policy`}
+                target="_blank"
+                className={styles.privacyLink}
+              >
+                {t('formPrivacyLink', locale)}
+              </Link>
+            </span>
           </label>
         </div>
 

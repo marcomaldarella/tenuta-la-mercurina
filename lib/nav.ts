@@ -4,17 +4,22 @@ export type NavItem = { slug: string; label: L10nString }
 
 export type NavEntry = {
   label: L10nString
-  slug?: string
+  slug: string
+  /* presenti solo sui gruppi: sono ancore dentro la pagina unica entry.slug */
   items?: NavItem[]
-  /* true: le voci non sono pagine ma ancore dentro la pagina unica entry.slug */
-  anchors?: boolean
 }
 
-export const navEntries: NavEntry[] = [
-  {
+/* pagine uniche: le sotto-pagine sono blocchi ancorati dentro la pagina del
+   gruppo. In nav le ancore non compaiono più (Marco, 15 set): tenuta e
+   foresteria sono link secchi, esperienze ed eventi restano espandibili su
+   desktop ma le loro voci puntano all'ancora, non a una pagina a sé.
+   heroFrom: doc da cui prendere l'hero, se diverso dalla prima sotto-pagina */
+export const anchorGroups: Record<
+  string,
+  { label: L10nString; items: NavItem[]; heroFrom?: string }
+> = {
+  tenuta: {
     label: { it: 'tenuta', en: 'estate' },
-    slug: 'tenuta',
-    anchors: true,
     items: [
       { slug: 'la-tenuta', label: { it: 'la tenuta', en: 'the estate' } },
       { slug: 'la-storia', label: { it: 'la storia', en: 'the history' } },
@@ -26,10 +31,8 @@ export const navEntries: NavEntry[] = [
       },
     ],
   },
-  {
+  foresteria: {
     label: { it: 'foresteria', en: 'guesthouse' },
-    slug: 'foresteria',
-    anchors: true,
     items: [
       { slug: 'camere', label: { it: 'le camere', en: 'the rooms' } },
       { slug: 'il-porticato', label: { it: 'il porticato', en: 'the portico' } },
@@ -40,7 +43,7 @@ export const navEntries: NavEntry[] = [
       { slug: 'spazi-interni', label: { it: 'spazi interni', en: 'interior spaces' } },
     ],
   },
-  {
+  esperienze: {
     label: { it: 'esperienze', en: 'experiences' },
     items: [
       { slug: 'percorsi', label: { it: 'percorsi', en: 'trails' } },
@@ -54,8 +57,11 @@ export const navEntries: NavEntry[] = [
       },
     ],
   },
-  {
+  eventi: {
     label: { it: 'eventi', en: 'events' },
+    /* la pagina "eventi" esiste già a CMS con il suo hero: le sue sezioni
+       restano fuori (i blocchi sono le sotto-pagine), l'hero invece è quello */
+    heroFrom: 'eventi',
     items: [
       {
         slug: 'il-mercato',
@@ -69,30 +75,37 @@ export const navEntries: NavEntry[] = [
       },
     ],
   },
+}
+
+export const navEntries: NavEntry[] = [
+  { slug: 'tenuta', label: anchorGroups.tenuta.label },
+  { slug: 'foresteria', label: anchorGroups.foresteria.label },
+  {
+    slug: 'esperienze',
+    label: anchorGroups.esperienze.label,
+    items: anchorGroups.esperienze.items,
+  },
+  { slug: 'eventi', label: anchorGroups.eventi.label, items: anchorGroups.eventi.items },
   { slug: 'contatti', label: { it: 'contatti', en: 'contacts' } },
 ]
 
-/* pagine uniche: slug del gruppo → label + sotto-pagine (slug = id ancora,
-   label = titolo del blocco editoriale) */
-export const anchorGroups: Record<string, { label: L10nString; items: NavItem[] }> =
-  Object.fromEntries(
-    navEntries
-      .filter((entry) => entry.anchors && entry.slug && entry.items)
-      .map((entry) => [entry.slug!, { label: entry.label, items: entry.items! }])
+/* overlay mobile: solo le voci principali, le ancore restano dentro la pagina */
+export const overlayRows: { path: string; label: L10nString }[] = navEntries.map(
+  (entry) => ({ path: entry.slug, label: entry.label })
+)
+
+/* slug di sotto-pagina → path della sua ancora: serve a chi linka le pagine
+   per slug (le card della home puntano al doc) per non passare dal 308 */
+const anchorPaths: Record<string, string> = Object.fromEntries(
+  Object.entries(anchorGroups).flatMap(([groupSlug, group]) =>
+    group.items.map((item, index) => [
+      item.slug,
+      index === 0 ? groupSlug : `${groupSlug}#${item.slug}`,
+    ])
   )
-
-/* voci piatte per l'overlay mobile: path già pronto (con #ancora per i gruppi) */
-export const flatNavItems: { path: string; label: L10nString }[] = navEntries.flatMap(
-  (entry) =>
-    entry.items
-      ? entry.items.map((item) => ({
-          path: entry.anchors ? `${entry.slug}#${item.slug}` : item.slug,
-          label: item.label,
-        }))
-      : [{ path: entry.slug!, label: entry.label }]
 )
 
-/* pagine reali (senza ancore), per la sitemap */
-export const topLevelSlugs: string[] = navEntries.flatMap((entry) =>
-  entry.anchors || !entry.items ? [entry.slug!] : entry.items.map((item) => item.slug)
-)
+export const pagePath = (slug: string): string => anchorPaths[slug] ?? slug
+
+/* pagine reali (le ancore non sono url a sé), per la sitemap */
+export const topLevelSlugs: string[] = navEntries.map((entry) => entry.slug)
