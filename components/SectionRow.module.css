@@ -1,9 +1,11 @@
 .row {
   display: grid;
   grid-template-columns: 5fr 7fr;
-  gap: clamp(16px, 3vw, 48px);
-  /* solo respiro sotto (figma: 40px, tenuto un filo meno), niente sopra */
-  padding: 0 var(--gutter) clamp(20px, 2.2vw, 32px);
+  /* stretto: il testo deve stare vicino alla foto */
+  gap: clamp(12px, 1.4vw, 24px);
+  /* solo respiro sotto, niente sopra: il figma diceva 40px, ora un filo di
+     più per staccare le sezioni */
+  padding: 0 var(--gutter) clamp(30px, 3.2vw, 52px);
   align-items: stretch;
 }
 
@@ -63,6 +65,8 @@
 
 .text {
   font-size: 16px;
+  /* paragrafi lunghi: interlinea più stretta del 1.45 del body */
+  line-height: 1.3;
 }
 
 .cta {
