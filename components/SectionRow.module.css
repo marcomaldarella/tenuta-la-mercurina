@@ -112,9 +112,13 @@
     font-size: clamp(30px, 9vw, 44px);
   }
 
+  /* iOS Safari: su un grid item con align-items:stretch l'aspect-ratio viene
+     ignorato e il riquadro collassa a zero (le foto sparivano dal telefono).
+     align-self:start lo riattiva, il min-height è la rete di sicurezza */
   .media {
-    min-height: 0;
+    min-height: calc((100vw - 2 * var(--gutter)) * 0.75);
     aspect-ratio: 4 / 3;
+    align-self: start;
   }
 
   .bottom {
