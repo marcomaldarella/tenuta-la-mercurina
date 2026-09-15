@@ -24,9 +24,10 @@
 .copy {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  gap: 24px;
-  min-height: clamp(320px, 42vw, 560px);
+  /* era space-between: con le gallery alte il testo finiva incollato in fondo
+     e restavano 300-400px di crema vuota sotto il titolo */
+  justify-content: flex-start;
+  gap: clamp(24px, 3vw, 48px);
 }
 
 .title {
@@ -40,7 +41,8 @@
   display: flex;
   flex-direction: column;
   gap: 14px;
-  max-width: 440px;
+  /* niente cap: la misura la dà la colonna della griglia */
+  max-width: none;
 }
 
 .partTitle {

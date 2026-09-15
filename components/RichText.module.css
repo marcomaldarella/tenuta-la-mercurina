@@ -22,7 +22,7 @@
 
 .p {
   font-size: 16px;
-  max-width: 720px;
+  max-width: 820px;
 }
 
 .p + .p {
@@ -32,4 +32,5 @@
 .ul {
   margin: 8px 0 8px 18px;
   font-size: 16px;
+  max-width: 820px;
 }

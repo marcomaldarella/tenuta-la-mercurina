@@ -15,25 +15,14 @@ export default function Hero({
   /* h2 per i blocchi successivi delle pagine unite (un solo h1 a pagina) */
   headingTag?: 'h1' | 'h2'
 }) {
+  /* dal figma l'hero porta un solo testo: il pre-header, piccolo e largo in
+     basso a sinistra. Niente display grande sopra la foto */
+  const lead = subheading ?? text ?? heading
+
   return (
     <section className={styles.hero}>
       <Carousel urls={urls} className={styles.carousel} light shaded />
-      {heading ? (
-        <div className={styles.block}>
-          <Tag
-            className={
-              heading.includes('\n')
-                ? `${styles.heading} ${styles.headingManual}`
-                : styles.heading
-            }
-          >
-            {heading}
-          </Tag>
-          {subheading && <p className={styles.subheading}>{subheading}</p>}
-        </div>
-      ) : (
-        text && <Tag className={styles.text}>{text}</Tag>
-      )}
+      {lead && <Tag className={styles.text}>{lead}</Tag>}
     </section>
   )
 }

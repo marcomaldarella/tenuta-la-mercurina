@@ -11,6 +11,9 @@
   color: var(--ink);
   font-size: 14px;
   line-height: 1.35;
+  /* la nav resta al kerning stretto del figma: è tarata per stare in riga
+     anche alle larghezze intermedie, l'alleggerimento vale per il corpo */
+  letter-spacing: -0.07em;
   transition: color 0.25s ease;
 }
 
