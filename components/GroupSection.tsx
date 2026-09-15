@@ -38,7 +38,7 @@ export default function GroupSection({
           {cta && (
             <Link href={cta.href} className={styles.cta}>
               {cta.label}
-              <Arrow size="0.78em" />
+              <Arrow size="0.58em" />
             </Link>
           )}
         </div>

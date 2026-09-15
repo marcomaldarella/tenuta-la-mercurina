@@ -70,17 +70,17 @@
 }
 
 .cta {
+  /* il bordo, non text-decoration: la sottolineatura deve correre anche
+     sotto la freccia, e text-decoration salta gli inline-block (l’svg) */
+  display: inline-block;
   font-size: 16px;
-  text-decoration: underline;
-  text-underline-offset: 3px;
+  border-bottom: 1px solid currentColor;
+  padding-bottom: 3px;
+  align-self: flex-start;
 }
 
 .cta:hover {
   opacity: 0.7;
-}
-
-.ctaArrow {
-  font-size: 0.85em;
 }
 
 /* con i testi lunghi (ex card brevi, ora paragrafi come in /tenuta) il
