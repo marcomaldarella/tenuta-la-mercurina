@@ -1,7 +1,7 @@
 import Hero from '../../../components/Hero'
 import SectionRow from '../../../components/SectionRow'
 import type { Locale } from '../../../lib/i18n'
-import { pick } from '../../../lib/l10n'
+import { pick, t } from '../../../lib/l10n'
 import { pagePath } from '../../../lib/nav'
 import { getPage } from '../../../lib/queries'
 import { imageUrls } from '../../../lib/sanity/image'
@@ -35,6 +35,14 @@ export default async function HomePage({
             section.cta === 'page' && section.pageSlug
               ? `/${locale}/${pagePath(section.pageSlug)}`
               : undefined
+          }
+          /* il figma chiude la home con "Contattaci" sotto l'ultimo blocco */
+          cta={
+            section.cta === 'contatti'
+              ? { label: t('contact', locale), href: `/${locale}/contatti` }
+              : section.cta === 'prenota'
+                ? { label: t('book', locale), href: `/${locale}/prenota` }
+                : undefined
           }
         />
       ))}
