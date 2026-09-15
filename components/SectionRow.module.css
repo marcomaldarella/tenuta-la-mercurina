@@ -22,10 +22,11 @@
 .copy {
   display: flex;
   flex-direction: column;
-  /* come nei blocchi delle pagine unite: il testo sta sotto il titolo, non
-     schiacciato in fondo alla colonna della foto */
-  justify-content: flex-start;
-  gap: clamp(24px, 3vw, 48px);
+  /* titolo in alto, testo in fondo: lo stacco è voluto. Il min-height è anche
+     quello che detta l'altezza della riga (e quindi della foto): toglierlo
+     fa collassare tutto sull'altezza del testo */
+  justify-content: space-between;
+  min-height: clamp(320px, 42vw, 560px);
 }
 
 .title {
