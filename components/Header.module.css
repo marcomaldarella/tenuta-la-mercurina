@@ -26,11 +26,6 @@
   margin-right: auto;
 }
 
-/* contatti (figma 09): niente logo nell'header, c'è quello grande in pagina */
-:global(body.fixedPage) .logo {
-  visibility: hidden;
-}
-
 /* wordmark SVG: altezza pari al vecchio logo testuale (2 righe da 17px) */
 .logoMark {
   display: block;
@@ -65,16 +60,17 @@
   font-size: 16px;
 }
 
-/* sottovoci: visibili di default, collassano allo scroll, tornano in hover */
+/* sottovoci: chiuse di default, si aprono solo all'hover sulla voce */
 .subList {
   display: grid;
-  grid-template-rows: 1fr;
-  opacity: 1;
+  grid-template-rows: 0fr;
+  opacity: 0;
+  transform: translateY(-6px);
+  pointer-events: none;
   transition:
     grid-template-rows 0.45s cubic-bezier(0.16, 1, 0.3, 1),
     opacity 0.35s ease,
     transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
-  transform: translateY(0);
 }
 
 .subListInner {
@@ -84,12 +80,11 @@
   min-height: 0;
 }
 
-/* allo scroll le sottovoci spariscono e restano nascoste (niente hover) */
-.scrolled .subList {
-  grid-template-rows: 0fr;
-  opacity: 0;
-  transform: translateY(-6px);
-  pointer-events: none;
+.group:hover .subList {
+  grid-template-rows: 1fr;
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
 }
 
 .subItem {

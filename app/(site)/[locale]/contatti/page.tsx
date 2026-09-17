@@ -48,9 +48,8 @@ export default async function ContactsPage({
         <h1 className={styles.block}>{heading}</h1>
         <p className={styles.sub}>{sub}</p>
       </div>
-      {/* il nome lo dice il logo: dall'indirizzo cade l'eventuale prima riga.
-          qui è anche l'unico modo per tornare alla home: nell'header di
-          questa pagina il logo è nascosto (vedi .fixedPage in Header.module.css) */}
+      <div>
+      {/* il nome lo dice il logo: dall'indirizzo cade l'eventuale prima riga */}
       <Link href={`/${locale}`} className={styles.logoLink} aria-label="Home">
         <Logo className={styles.logo} />
       </Link>
@@ -93,6 +92,7 @@ export default async function ContactsPage({
           </>
         )}
       </p>
+      </div>
     </main>
   )
 }

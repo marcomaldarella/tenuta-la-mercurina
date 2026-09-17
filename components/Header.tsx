@@ -28,7 +28,6 @@ export default function Header({
   const [open, setOpen] = useState(false)
   const [visible, setVisible] = useState(false) // overlay nel DOM
   const [shown, setShown] = useState(false) // overlay animato in posizione
-  const [scrolled, setScrolled] = useState(false)
   const headerRef = useRef<HTMLElement>(null)
 
   useEffect(() => {
@@ -40,7 +39,6 @@ export default function Header({
   useEffect(() => {
     let raf = 0
     const check = () => {
-      setScrolled(window.scrollY > 80)
       const zones = Array.from(document.querySelectorAll('[data-header-dark]'))
         .map((zone) => zone.getBoundingClientRect())
         .filter((rect) => rect.width > 0 && rect.bottom > 0 && rect.top < 200)
@@ -106,10 +104,7 @@ export default function Header({
 
   return (
     <>
-      <header
-        ref={headerRef}
-        className={`${styles.header} ${scrolled ? styles.scrolled : ''}`}
-      >
+      <header ref={headerRef} className={styles.header}>
         <Link
           href={`/${locale}`}
           className={styles.logo}

@@ -1,14 +1,15 @@
 .main {
-  /* misure dal figma 09_Contatti (frame 1512×982): heading 72px, corpi 40px;
+  /* misure dal figma 09_Contatti (1) (frame 1512×982): heading 72px, corpi 28px;
      scalano su viewport più piccoli senza traboccare sopra l'header */
   --contatti-display: clamp(26px, min(4.76vw, 7.3vh), 72px);
-  --contatti-body: clamp(18px, min(2.65vw, 4.1vh), 40px);
-  /* spazio riservato all'header (nav con sottovoci sempre aperte) */
-  --contatti-header: clamp(104px, 15vh, 156px);
+  --contatti-body: clamp(17px, min(1.85vw, 2.85vh), 28px);
+  /* stacco dall'alto: nel figma il titolo parte a ~29% del viewport */
+  --contatti-header: clamp(96px, 26vh, 255px);
 
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
+  /* titolo in alto, blocco logo/indirizzo/contatti ancorato in basso */
+  justify-content: space-between;
   padding: calc(var(--gutter) + var(--contatti-header)) var(--gutter)
     clamp(12px, 2vh, 20px);
 }
@@ -25,12 +26,10 @@
   font-size: var(--contatti-body);
 }
 
-/* wordmark grande, unico link alla home in questa pagina (l'header qui non
-   ha il logo cliccabile, vedi .fixedPage in Header.module.css) */
+/* wordmark grande in pagina (doppio logo: c'è anche quello nell'header) */
 .logoLink {
   display: block;
   width: fit-content;
-  margin-top: clamp(32px, 11.2vh, 110px);
 }
 
 .logoLink:hover {
@@ -45,11 +44,11 @@
 }
 
 .address {
-  margin-top: clamp(32px, 12.2vh, 120px);
+  margin-top: clamp(18px, 3vh, 30px);
 }
 
 .contact {
-  margin-top: clamp(14px, 4.6vh, 45px);
+  margin-top: clamp(16px, 3.4vh, 34px);
 }
 
 /* l'indirizzo non va mai a capo: il corpo si adatta alla riga più lunga */

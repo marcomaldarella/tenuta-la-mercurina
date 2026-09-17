@@ -1,16 +1,19 @@
 .row {
   display: grid;
-  grid-template-columns: 5fr 7fr;
+  /* figma: foto 627/1512 (~41.5%), testo il resto */
+  grid-template-columns: 58fr 42fr;
   /* stretto: il testo deve stare vicino alla foto */
   gap: clamp(12px, 1.4vw, 24px);
-  /* solo respiro sotto, niente sopra: il figma diceva 40px, ora un filo di
-     più per staccare le sezioni */
-  padding: 0 var(--gutter) clamp(30px, 3.2vw, 52px);
+  /* foto a filo del bordo: il gutter resta solo sul lato testo; solo respiro
+     sotto, niente sopra */
+  padding: 0 0 clamp(30px, 3.2vw, 52px) var(--gutter);
   align-items: stretch;
 }
 
 .reverse {
-  grid-template-columns: 7fr 5fr;
+  grid-template-columns: 42fr 58fr;
+  padding-left: 0;
+  padding-right: var(--gutter);
 }
 
 .reverse .copy {
@@ -28,7 +31,7 @@
      quello che detta l'altezza della riga (e quindi della foto): toglierlo
      fa collassare tutto sull'altezza del testo */
   justify-content: space-between;
-  min-height: clamp(320px, 42vw, 560px);
+  min-height: clamp(270px, 34vw, 450px);
 }
 
 .title {
@@ -83,10 +86,13 @@
   opacity: 0.7;
 }
 
-/* con i testi lunghi (ex card brevi, ora paragrafi come in /tenuta) il
-   rapporto fisso dal figma spezzava l'allineamento: tolto, .media torna a
-   stirarsi con align-items:stretch del .row così segue sempre l'altezza
-   del testo, mai il contrario */
+/* figma (foto 627×451): la foto ha il suo rapporto fisso ed è ancorata in
+   alto; con i testi lunghi la colonna testo può scendere oltre la foto */
+.media {
+  aspect-ratio: 627 / 451;
+  align-self: start;
+  min-height: 260px;
+}
 
 @media (max-width: 900px) {
   .row,
