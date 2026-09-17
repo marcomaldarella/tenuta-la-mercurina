@@ -6,7 +6,8 @@
   z-index: 20;
   display: flex;
   align-items: flex-start;
-  gap: clamp(24px, 4vw, 64px);
+  /* vicino a IT|EN, ma con un filo d'aria */
+  gap: clamp(24px, 2.9vw, 48px);
   padding: var(--gutter);
   color: var(--ink);
   font-size: 14px;
@@ -38,20 +39,25 @@
   flex: 1 1 auto;
   /* blocco compatto a destra: gap fisso e uniforme tra tutte le voci */
   justify-content: flex-end;
-  gap: clamp(20px, 2.6vw, 48px);
+  gap: clamp(24px, 3vw, 56px);
   /* responsive fluido: le voci non vanno mai a capo, si stringe il corpo */
   white-space: nowrap;
 }
 
-@media (max-width: 1280px) {
-  .header {
-    gap: clamp(14px, 2vw, 32px);
-  }
-}
-
+/* le sottovoci larghe non allargano mai la colonna: il gap tra le voci
+   resta quello forzato della nav e i sotto menu escono dal flusso,
+   da aperti passano sotto le voci successive */
 .group {
   display: flex;
   flex-direction: column;
+  position: relative;
+}
+
+.group .subList {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: max-content;
 }
 
 /* voci menu: il clamp del figma (16-25px) risultava gigante sui desktop normali, fissato a taglia nav */
