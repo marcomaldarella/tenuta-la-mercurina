@@ -106,3 +106,33 @@ body.fixedPage main {
   min-height: 0;
   overflow: hidden;
 }
+
+/* transizione pagina→pagina: cross-fade lieve del solo contenuto (il
+   ViewTransition nel layout [locale]); vecchia e nuova pagina si
+   sovrappongono, così il crema sotto non lampeggia mai. Header e footer
+   stanno fuori dal gruppo e restano fermi */
+::view-transition-old(.page-fade) {
+  animation: 220ms ease-out both vt-fade reverse;
+}
+
+::view-transition-new(.page-fade) {
+  animation: 320ms ease-in both vt-fade;
+}
+
+@keyframes vt-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-old(*),
+  ::view-transition-new(*),
+  ::view-transition-group(*) {
+    animation-duration: 0s !important;
+    animation-delay: 0s !important;
+  }
+}
