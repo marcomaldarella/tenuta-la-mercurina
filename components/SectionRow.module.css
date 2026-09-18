@@ -27,11 +27,10 @@
 .copy {
   display: flex;
   flex-direction: column;
-  /* titolo in alto, testo in fondo: lo stacco è voluto. Il min-height è anche
-     quello che detta l'altezza della riga (e quindi della foto): toglierlo
-     fa collassare tutto sull'altezza del testo */
+  /* titolo in alto, testo in fondo; la colonna si stira all'altezza della
+     riga, che è sempre quella della foto: lo stacco titolo/testo si riduce
+     da solo quando il testo cresce o la finestra si stringe */
   justify-content: space-between;
-  min-height: clamp(270px, 34vw, 450px);
 }
 
 .title {
@@ -86,12 +85,12 @@
   opacity: 0.7;
 }
 
-/* figma (foto 627×451): la foto ha il suo rapporto fisso ed è ancorata in
-   alto; con i testi lunghi la colonna testo può scendere oltre la foto */
+/* il testo non deve MAI scendere sotto la foto: la foto si stira sempre
+   all'altezza della riga (align-items: stretch). Il min-height riproduce il
+   rapporto figma 627×451 sulla colonna da 42fr e fa da pavimento quando il
+   testo è corto */
 .media {
-  aspect-ratio: 627 / 451;
-  align-self: start;
-  min-height: 260px;
+  min-height: clamp(260px, 29.8vw, 460px);
 }
 
 @media (max-width: 900px) {

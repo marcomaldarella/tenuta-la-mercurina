@@ -29,11 +29,11 @@
 .copy {
   display: flex;
   flex-direction: column;
-  /* titolo in alto, testo in fondo: lo stacco è voluto. Il min-height è anche
-     quello che detta l'altezza della riga (e quindi della gallery) */
+  /* titolo in alto, testo in fondo; la colonna si stira all'altezza della
+     riga, che è sempre quella della gallery: lo stacco titolo/testo si
+     riduce da solo quando il testo cresce o la finestra si stringe */
   justify-content: space-between;
   gap: 24px;
-  min-height: clamp(270px, 34vw, 450px);
 }
 
 .title {
@@ -77,12 +77,12 @@
   opacity: 0.7;
 }
 
-/* figma (foto 627×451): rapporto fisso, ancorata in alto; con i testi
-   lunghi la colonna testo può scendere oltre la foto */
+/* il testo non deve MAI scendere sotto la foto: la gallery si stira sempre
+   all'altezza della riga (align-items: stretch). Il min-height riproduce il
+   rapporto figma 627×451 sulla colonna da 42fr e fa da pavimento quando il
+   testo è corto */
 .media {
-  aspect-ratio: 627 / 451;
-  align-self: start;
-  min-height: 260px;
+  min-height: clamp(260px, 29.8vw, 460px);
 }
 
 @media (max-width: 900px) {
@@ -99,10 +99,6 @@
 
   .reverse .media {
     order: 2;
-  }
-
-  .copy {
-    min-height: 0;
   }
 
   .title {
