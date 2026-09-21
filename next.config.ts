@@ -64,27 +64,17 @@ const nextConfig: NextConfig = {
         destination: "/:locale/esperienze#workshop-floreali",
         permanent: true,
       },
-      {
-        source: "/:locale/visite-e-lezioni",
-        destination: "/:locale/esperienze#visite-e-lezioni",
-        permanent: true,
-      },
+      // "visite-e-lezioni" esce dal menu (21 set): non è più un'ancora dentro
+      // esperienze, torna a essere una pagina a sé (contenuto Sanity intatto)
+      // -> niente redirect, ricade sulla route [slug] standalone
       { source: "/:locale/il-mercato", destination: "/:locale/eventi", permanent: true },
-      {
-        source: "/:locale/pranzo-a-tema",
-        destination: "/:locale/eventi#pranzo-a-tema",
-        permanent: true,
-      },
       {
         source: "/:locale/matrimoni",
         destination: "/:locale/eventi#matrimoni",
         permanent: true,
       },
-      {
-        source: "/:locale/eventi-privati",
-        destination: "/:locale/eventi#eventi-privati",
-        permanent: true,
-      },
+      // "pranzo-a-tema" e "eventi-privati" escono dal menu (21 set): stesso
+      // discorso, tornano pagine a sé senza redirect verso un'ancora sparita
     ];
   },
 };

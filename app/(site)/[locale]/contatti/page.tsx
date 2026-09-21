@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import ContactIcon from '../../../../components/ContactIcon'
 import FixedPage from '../../../../components/FixedPage'
 import Logo from '../../../../components/Logo'
 import type { Locale } from '../../../../lib/i18n'
@@ -39,7 +40,9 @@ export default async function ContactsPage({
     'Tenuta Lamercurina\nVia Cascina San Marzano, 5\nPieve del Cairo, Pavia'
 
   const emailLink = settings?.email ? `mailto:${settings.email}` : '#'
+  const phoneLink = settings?.phone ? `tel:${settings.phone.replace(/\s/g, '')}` : null
   const instagramLink = settings?.instagram ?? '#'
+  const facebookLink = settings?.facebook ?? null
 
   return (
     <main className={styles.main}>
@@ -48,7 +51,7 @@ export default async function ContactsPage({
         <h1 className={styles.block}>{heading}</h1>
         <p className={styles.sub}>{sub}</p>
       </div>
-      <div>
+      <div className={styles.identity}>
       {/* il nome lo dice il logo: dall'indirizzo cade l'eventuale prima riga */}
       <Link href={`/${locale}`} className={styles.logoLink} aria-label="Home">
         <Logo className={styles.logo} />
@@ -64,32 +67,33 @@ export default async function ContactsPage({
           ))}
       </p>
       <p className={`${styles.block} ${styles.body} ${styles.contact}`}>
-        {locale === 'en' ? (
-          <>
-            <span className={styles.line}>
-              Write us an <a href={emailLink}>email</a>,
-            </span>
-            <span className={styles.line}>
-              follow us on{' '}
-              <a href={instagramLink} target="_blank" rel="noreferrer">
-                Instagram
-              </a>
-              .
-            </span>
-          </>
-        ) : (
-          <>
-            <span className={styles.line}>
-              Scrivici una <a href={emailLink}>email</a>,
-            </span>
-            <span className={styles.line}>
-              seguici su{' '}
-              <a href={instagramLink} target="_blank" rel="noreferrer">
-                Instagram
-              </a>
-              .
-            </span>
-          </>
+        {phoneLink && (
+          <span className={styles.line}>
+            <a href={phoneLink}>
+              <ContactIcon name="phone" />
+              {settings?.phone}
+            </a>
+          </span>
+        )}
+        <span className={styles.line}>
+          <a href={emailLink}>
+            <ContactIcon name="email" />
+            {locale === 'en' ? 'write us an email' : 'scrivici una email'}
+          </a>
+        </span>
+        <span className={styles.line}>
+          <a href={instagramLink} target="_blank" rel="noreferrer">
+            <ContactIcon name="instagram" />
+            {locale === 'en' ? 'follow us on IG' : 'seguici su IG'}
+          </a>
+        </span>
+        {facebookLink && (
+          <span className={styles.line}>
+            <a href={facebookLink} target="_blank" rel="noreferrer">
+              <ContactIcon name="facebook" />
+              {locale === 'en' ? 'follow us on FB' : 'seguici su FB'}
+            </a>
+          </span>
         )}
       </p>
       </div>

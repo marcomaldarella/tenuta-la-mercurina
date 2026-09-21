@@ -125,16 +125,20 @@ export default async function ContentPage({ params }: { params: Params }) {
   // ancorato al proprio slug per lo scroll dalle voci di menu
   const group = anchorGroups[slug]
   if (group) {
-    const hasMarket = group.items.some((item) => item.slug === 'il-mercato')
+    /* le voci CTA (href, es. "crea la tua esperienza") non sono sotto-pagine:
+       non hanno un doc Sanity da interrogare né un blocco da renderizzare,
+       sono link secchi già gestiti dall'header */
+    const anchorItems = group.items.filter((item) => !item.href)
+    const hasMarket = anchorItems.some((item) => item.slug === 'il-mercato')
     const [pages, fondazione, groupPage, marketDatesInGroup] = await Promise.all([
-      Promise.all(group.items.map((item) => getPage(item.slug))),
+      Promise.all(anchorItems.map((item) => getPage(item.slug))),
       slug === 'tenuta' ? getPage('fondazione') : Promise.resolve(null),
       group.heroFrom ? getPage(group.heroFrom) : Promise.resolve(null),
       hasMarket ? getMarketDates() : Promise.resolve([]),
     ])
     const todayInGroup = new Date().toISOString().slice(0, 10)
 
-    const blocks = group.items.flatMap((item, index) => {
+    const blocks = anchorItems.flatMap((item, index) => {
       const page = pages[index]
       if (!page) return []
       /* il mercato non ha sezioni: il suo contenuto sono le date */

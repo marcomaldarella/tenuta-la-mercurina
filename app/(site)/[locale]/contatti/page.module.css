@@ -3,8 +3,8 @@
      scalano su viewport più piccoli senza traboccare sopra l'header */
   --contatti-display: clamp(26px, min(4.76vw, 7.3vh), 72px);
   --contatti-body: clamp(17px, min(1.85vw, 2.85vh), 28px);
-  /* stacco dall'alto: nel figma il titolo parte a ~29% del viewport */
-  --contatti-header: clamp(96px, 26vh, 255px);
+  /* stacco dall'alto: alzato un po' rispetto al figma (Marco, 21 set) */
+  --contatti-header: clamp(80px, 20vh, 200px);
 
   display: flex;
   flex-direction: column;
@@ -26,20 +26,25 @@
   font-size: var(--contatti-body);
 }
 
-/* wordmark grande in pagina (doppio logo: c'è anche quello nell'header) */
+/* logo e indirizzo/contatti nella stessa colonna: il contenitore si
+   allarga quanto la riga più larga (l'indirizzo, che non va mai a capo)
+   e il logo si stira a quella stessa larghezza invece di avere una sua
+   misura indipendente (Marco, 21 set) */
+.identity {
+  width: fit-content;
+}
+
 .logoLink {
   display: block;
-  width: fit-content;
 }
 
 .logoLink:hover {
   opacity: 0.85;
 }
 
-/* wordmark grande: nel figma 380px su 1512 */
 .logo {
   display: block;
-  width: clamp(160px, min(25.1vw, 39vh), 380px);
+  width: 100%;
   height: auto;
 }
 

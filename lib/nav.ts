@@ -1,6 +1,12 @@
 export type L10nString = { it: string; en: string }
 
-export type NavItem = { slug: string; label: L10nString }
+export type NavItem = {
+  slug: string
+  label: L10nString
+  /* solo sulle voci CTA (es. "crea la tua esperienza"): link secco fuori
+     dalla pagina di gruppo, non un'ancora #slug al suo interno */
+  href?: string
+}
 
 export type NavEntry = {
   label: L10nString
@@ -47,14 +53,26 @@ export const anchorGroups: Record<
     label: { it: 'esperienze', en: 'experiences' },
     items: [
       { slug: 'percorsi', label: { it: 'percorsi', en: 'trails' } },
+      /* contenuto Sanity ancora sotto lo slug "workshop-floreali" (non
+         rinominato, per non rompere l'ancora esistente): cambia solo la
+         label in nav, richiesta dal cliente come "workshop" */
       {
         slug: 'workshop-floreali',
-        label: { it: 'workshop floreali', en: 'floral workshops' },
+        label: { it: 'workshop', en: 'workshop' },
       },
+      /* nuova voce: pagina Sanity creata come scheletro (title+slug, nessun
+         contenuto) in attesa dei testi/foto del cliente, vedi scratchpad/seed-retreat.mjs */
+      { slug: 'retreat', label: { it: 'retreat', en: 'retreat' } },
+      /* CTA, non un'ancora editoriale: rimanda a contatti (non esiste ancora
+         una pagina/form dedicata a "crea la tua esperienza") */
       {
-        slug: 'visite-e-lezioni',
-        label: { it: 'visite e lezioni', en: 'visits & lessons' },
+        slug: 'crea-la-tua-esperienza',
+        label: { it: 'crea la tua esperienza', en: 'create your experience' },
+        href: '/contatti',
       },
+      /* "visite-e-lezioni" tolta dal menu su richiesta cliente: il doc Sanity
+         resta intatto, la pagina è ancora raggiungibile a /it|en/visite-e-lezioni
+         (route [slug] standalone), solo non più linkata da nav */
     ],
   },
   eventi: {
@@ -67,12 +85,19 @@ export const anchorGroups: Record<
         slug: 'il-mercato',
         label: { it: 'il mercato della domenica', en: 'the sunday market' },
       },
-      { slug: 'pranzo-a-tema', label: { it: 'pranzo a tema', en: 'themed lunch' } },
       { slug: 'matrimoni', label: { it: 'matrimoni', en: 'weddings' } },
+      /* CTA, non un'ancora editoriale: rimanda a contatti (non esiste ancora
+         una pagina/form dedicata a "crea il tuo evento") */
       {
-        slug: 'eventi-privati',
-        label: { it: 'eventi privati', en: 'private events' },
+        slug: 'crea-il-tuo-evento',
+        label: { it: 'crea il tuo evento', en: 'create your event' },
+        href: '/contatti',
       },
+      /* "pranzo-a-tema" e "eventi-privati" tolte dal menu su richiesta
+         cliente: doc Sanity intatti, pagine ancora raggiungibili standalone
+         a /it|en/pranzo-a-tema e /it|en/eventi-privati, solo non più in nav.
+         "archivio eventi" NON aggiunta: il cliente ha chiesto di ignorarla
+         per ora. */
     ],
   },
 }
@@ -98,10 +123,15 @@ export const overlayRows: { path: string; label: L10nString }[] = navEntries.map
    per slug (le card della home puntano al doc) per non passare dal 308 */
 const anchorPaths: Record<string, string> = Object.fromEntries(
   Object.entries(anchorGroups).flatMap(([groupSlug, group]) =>
-    group.items.map((item, index) => [
-      item.slug,
-      index === 0 ? groupSlug : `${groupSlug}#${item.slug}`,
-    ])
+    /* le voci CTA (href) non sono ancore della pagina di gruppo: non
+       entrano in questa mappa, restano risolte come pagina a sé (vedi
+       pagePath) */
+    group.items
+      .filter((item) => !item.href)
+      .map((item, index) => [
+        item.slug,
+        index === 0 ? groupSlug : `${groupSlug}#${item.slug}`,
+      ])
   )
 )
 

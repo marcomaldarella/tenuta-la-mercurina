@@ -130,7 +130,11 @@ export default function Header({
                     {entry.items.map((item, i) => (
                       <Link
                         key={item.slug}
-                        href={`/${locale}/${entry.slug}#${item.slug}`}
+                        href={
+                          item.href
+                            ? `/${locale}${item.href}`
+                            : `/${locale}/${entry.slug}#${item.slug}`
+                        }
                         className={styles.subItem}
                         style={{ '--i': i } as React.CSSProperties}
                         data-nav-item

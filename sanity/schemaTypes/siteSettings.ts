@@ -11,6 +11,7 @@ export const siteSettings = defineType({
     defineField({ name: 'phone', title: 'Telefono', type: 'string' }),
     defineField({ name: 'address', title: 'Indirizzo', type: 'localeText' }),
     defineField({ name: 'instagram', title: 'Instagram', type: 'url' }),
+    defineField({ name: 'facebook', title: 'Facebook', type: 'url' }),
     defineField({ name: 'ogImage', title: 'Immagine OG', type: 'image' }),
   ],
 })

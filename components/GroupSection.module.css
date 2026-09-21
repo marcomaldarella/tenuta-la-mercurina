@@ -1,7 +1,8 @@
 .row {
   display: grid;
-  /* figma: foto 627/1512 (~41.5%), testo il resto, come SectionRow */
-  grid-template-columns: 58fr 42fr;
+  /* foto più larga del testo (Marco, 21 set): rapporto invertito rispetto al
+     figma originale (627/1512 ~41.5%) */
+  grid-template-columns: 42fr 58fr;
   /* stretto: il testo deve stare vicino alla foto */
   gap: clamp(12px, 1.4vw, 24px);
   /* foto a filo del bordo: il gutter resta solo sul lato testo; solo respiro
@@ -13,7 +14,7 @@
 }
 
 .reverse {
-  grid-template-columns: 42fr 58fr;
+  grid-template-columns: 58fr 42fr;
   padding-left: 0;
   padding-right: var(--gutter);
 }
@@ -29,15 +30,18 @@
 .copy {
   display: flex;
   flex-direction: column;
-  /* titolo in alto, testo in fondo; la colonna si stira all'altezza della
-     riga, che è sempre quella della gallery: lo stacco titolo/testo si
-     riduce da solo quando il testo cresce o la finestra si stringe */
+  /* titolo in alto, testo in fondo: lo stacco è voluto. Il min-height è anche
+     quello che detta l'altezza della riga (e quindi della gallery) */
   justify-content: space-between;
   gap: 24px;
+  /* un pelo più basso di prima (Marco, 21 set) */
+  min-height: clamp(250px, 32vw, 420px);
 }
 
 .title {
-  font-size: var(--display);
+  /* scalato dal --display globale (era 66px reso→55px, Marco 21 set):
+     override locale, --display resta invariato per hero/prenota/RichText */
+  font-size: clamp(32px, 4.6vw, 60px);
   letter-spacing: var(--track-display);
   font-weight: 400;
   line-height: 1.05;
@@ -58,7 +62,7 @@
 }
 
 .text {
-  font-size: 16px;
+  font-size: 15px;
   /* paragrafi lunghi: interlinea più stretta del 1.45 del body */
   line-height: 1.3;
 }
@@ -77,12 +81,12 @@
   opacity: 0.7;
 }
 
-/* il testo non deve MAI scendere sotto la foto: la gallery si stira sempre
-   all'altezza della riga (align-items: stretch). Il min-height riproduce il
-   rapporto figma 627×451 sulla colonna da 42fr e fa da pavimento quando il
-   testo è corto */
+/* figma (foto 627×451): rapporto fisso, ancorata in alto; con i testi
+   lunghi la colonna testo può scendere oltre la foto */
 .media {
-  min-height: clamp(260px, 29.8vw, 460px);
+  aspect-ratio: 627 / 451;
+  align-self: start;
+  min-height: 260px;
 }
 
 @media (max-width: 900px) {
@@ -99,6 +103,10 @@
 
   .reverse .media {
     order: 2;
+  }
+
+  .copy {
+    min-height: 0;
   }
 
   .title {
