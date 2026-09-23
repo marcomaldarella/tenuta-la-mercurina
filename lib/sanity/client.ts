@@ -8,5 +8,8 @@ export const client = createClient({
   projectId,
   dataset,
   apiVersion,
-  useCdn: true,
+  // niente CDN Sanity: ogni pagina è già force-dynamic (zero cache Next),
+  // quindi la CDN non dava alcun vantaggio reale ma introduceva fino a ~60s
+  // di ritardo tra una scrittura e il momento in cui appariva sul sito
+  useCdn: false,
 })

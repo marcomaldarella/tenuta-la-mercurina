@@ -7,6 +7,10 @@
   --line: rgba(92, 70, 50, 0.35);
   --line-cream: rgba(250, 241, 230, 0.35);
   --gutter: clamp(16px, 2vw, 28px);
+  /* altezza reale dell'header fisso: usata per lo scroll-margin-top delle
+     ancore, così l'atterraggio smooth-scroll lascia sempre un margine di
+     crema visibile sotto il menu invece di finire a filo con la foto */
+  --header-h: 84px;
   --display: clamp(38px, 5.5vw, 72px);
   /* -5% da figma (richiesta cliente, sappiamo che è molto) + un pelo in più */
   --track-display: -0.07em;
@@ -107,16 +111,23 @@ body.fixedPage main {
   overflow: hidden;
 }
 
+/* sulla pagina fissa il blocco logo/contatti deve arrivare il più vicino
+   possibile al footer: il padding-top standard del footer (40px) lascia
+   troppo respiro qui */
+body.fixedPage footer {
+  padding-top: 10px;
+}
+
 /* transizione pagina→pagina: cross-fade lieve del solo contenuto (il
    ViewTransition nel layout [locale]); vecchia e nuova pagina si
    sovrappongono, così il crema sotto non lampeggia mai. Header e footer
    stanno fuori dal gruppo e restano fermi */
 ::view-transition-old(.page-fade) {
-  animation: 220ms ease-out both vt-fade reverse;
+  animation: 320ms ease-in-out both vt-fade reverse;
 }
 
 ::view-transition-new(.page-fade) {
-  animation: 320ms ease-in both vt-fade;
+  animation: 420ms ease-in-out both vt-fade;
 }
 
 @keyframes vt-fade {

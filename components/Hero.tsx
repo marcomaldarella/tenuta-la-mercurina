@@ -1,3 +1,4 @@
+import { ViewTransition } from 'react'
 import Carousel from './Carousel'
 import styles from './Hero.module.css'
 
@@ -21,7 +22,12 @@ export default function Hero({
 
   return (
     <section className={styles.hero}>
-      <Carousel urls={urls} className={styles.carousel} light shaded />
+      {/* nome stabile su ogni pagina: la foto hero fa il suo crossfade
+          diretto (foto-su-foto) invece di passare per lo sfondo/crema
+          del page-fade generico che avvolge il resto del contenuto */}
+      <ViewTransition name="hero-media" share="auto">
+        <Carousel urls={urls} className={styles.carousel} light shaded />
+      </ViewTransition>
       {lead && <Tag className={styles.text}>{lead}</Tag>}
     </section>
   )

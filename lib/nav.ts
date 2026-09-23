@@ -30,7 +30,7 @@ export const anchorGroups: Record<
       { slug: 'la-tenuta', label: { it: 'la tenuta', en: 'the estate' } },
       { slug: 'la-storia', label: { it: 'la storia', en: 'the history' } },
       { slug: 'casa-di-caccia', label: { it: 'ex casa di caccia', en: 'ex hunting lodge' } },
-      { slug: 'taneto', label: { it: 'il taneto', en: 'the alder grove' } },
+      { slug: 'taneto', label: { it: "l'ontaneto", en: 'the alder grove' } },
       {
         slug: 'prodotti',
         label: { it: 'i prodotti della tenuta', en: 'the estate products' },
@@ -46,11 +46,12 @@ export const anchorGroups: Record<
         slug: 'la-corte-giardino',
         label: { it: 'la corte giardino', en: 'the garden courtyard' },
       },
-      { slug: 'spazi-interni', label: { it: 'spazi interni', en: 'interior spaces' } },
+      { slug: 'spazi-interni', label: { it: 'gli spazi interni', en: 'the interior spaces' } },
     ],
   },
   esperienze: {
     label: { it: 'esperienze', en: 'experiences' },
+    heroFrom: 'esperienze',
     items: [
       { slug: 'percorsi', label: { it: 'percorsi', en: 'trails' } },
       /* contenuto Sanity ancora sotto lo slug "workshop-floreali" (non
@@ -63,16 +64,13 @@ export const anchorGroups: Record<
       /* nuova voce: pagina Sanity creata come scheletro (title+slug, nessun
          contenuto) in attesa dei testi/foto del cliente, vedi scratchpad/seed-retreat.mjs */
       { slug: 'retreat', label: { it: 'retreat', en: 'retreat' } },
-      /* CTA, non un'ancora editoriale: rimanda a contatti (non esiste ancora
-         una pagina/form dedicata a "crea la tua esperienza") */
+      /* blocco vero della pagina (Marco, 23 set): il foglio ESPERIENZE lo
+         prevede come sezione col suo testo e tasto prenota — il contenuto
+         vive nel doc visite-e-lezioni */
       {
-        slug: 'crea-la-tua-esperienza',
+        slug: 'visite-e-lezioni',
         label: { it: 'crea la tua esperienza', en: 'create your experience' },
-        href: '/contatti',
       },
-      /* "visite-e-lezioni" tolta dal menu su richiesta cliente: il doc Sanity
-         resta intatto, la pagina è ancora raggiungibile a /it|en/visite-e-lezioni
-         (route [slug] standalone), solo non più linkata da nav */
     ],
   },
   eventi: {
@@ -85,19 +83,16 @@ export const anchorGroups: Record<
         slug: 'il-mercato',
         label: { it: 'il mercato della domenica', en: 'the sunday market' },
       },
+      /* reintegrato nel gruppo (Marco, 23 set): il foglio EVENTI lo prevede
+         come sezione della pagina, tra mercato e matrimoni */
+      { slug: 'pranzo-a-tema', label: { it: 'pranzo a tema', en: 'themed lunch' } },
       { slug: 'matrimoni', label: { it: 'matrimoni', en: 'weddings' } },
-      /* CTA, non un'ancora editoriale: rimanda a contatti (non esiste ancora
-         una pagina/form dedicata a "crea il tuo evento") */
+      /* blocco vero della pagina (Marco, 23 set): il foglio EVENTI lo
+         prevede come sezione col suo testo/foto, non più solo un link */
       {
-        slug: 'crea-il-tuo-evento',
+        slug: 'eventi-privati',
         label: { it: 'crea il tuo evento', en: 'create your event' },
-        href: '/contatti',
       },
-      /* "pranzo-a-tema" e "eventi-privati" tolte dal menu su richiesta
-         cliente: doc Sanity intatti, pagine ancora raggiungibili standalone
-         a /it|en/pranzo-a-tema e /it|en/eventi-privati, solo non più in nav.
-         "archivio eventi" NON aggiunta: il cliente ha chiesto di ignorarla
-         per ora. */
     ],
   },
 }

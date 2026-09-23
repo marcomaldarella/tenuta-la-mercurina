@@ -3,6 +3,7 @@ import Link from 'next/link'
 import ContactIcon from '../../../../components/ContactIcon'
 import FixedPage from '../../../../components/FixedPage'
 import Logo from '../../../../components/Logo'
+import LogoWidthMatch from '../../../../components/LogoWidthMatch'
 import type { Locale } from '../../../../lib/i18n'
 import { pick } from '../../../../lib/l10n'
 import { getPage, getSiteSettings } from '../../../../lib/queries'
@@ -52,11 +53,23 @@ export default async function ContactsPage({
         <p className={styles.sub}>{sub}</p>
       </div>
       <div className={styles.identity}>
-      {/* il nome lo dice il logo: dall'indirizzo cade l'eventuale prima riga */}
-      <Link href={`/${locale}`} className={styles.logoLink} aria-label="Home">
+      <LogoWidthMatch>
+      {/* il nome lo dice il logo: dall'indirizzo cade l'eventuale prima riga.
+          Il logo è largo quanto la riga di indirizzo più lunga (misurata via
+          LogoWidthMatch), non un clamp indipendente: così flexa sempre alla
+          stessa larghezza del testo, in ogni lingua e viewport */}
+      <Link
+        href={`/${locale}`}
+        className={styles.logoLink}
+        aria-label="Home"
+        data-match-target
+      >
         <Logo className={styles.logo} />
       </Link>
-      <p className={`${styles.block} ${styles.body} ${styles.address}`}>
+      <p
+        className={`${styles.block} ${styles.body} ${styles.address}`}
+        data-match-source
+      >
         {address
           .split('\n')
           .filter((line) => !/tenuta\s*lamercurina/i.test(line))
@@ -70,32 +83,33 @@ export default async function ContactsPage({
         {phoneLink && (
           <span className={styles.line}>
             <a href={phoneLink}>
-              <ContactIcon name="phone" />
+              <ContactIcon name="phone" size="0.8em" />
               {settings?.phone}
             </a>
           </span>
         )}
         <span className={styles.line}>
           <a href={emailLink}>
-            <ContactIcon name="email" />
+            <ContactIcon name="email" size="0.8em" />
             {locale === 'en' ? 'write us an email' : 'scrivici una email'}
           </a>
         </span>
         <span className={styles.line}>
           <a href={instagramLink} target="_blank" rel="noreferrer">
-            <ContactIcon name="instagram" />
+            <ContactIcon name="instagram" size="0.8em" />
             {locale === 'en' ? 'follow us on IG' : 'seguici su IG'}
           </a>
         </span>
         {facebookLink && (
           <span className={styles.line}>
             <a href={facebookLink} target="_blank" rel="noreferrer">
-              <ContactIcon name="facebook" />
+              <ContactIcon name="facebook" size="0.8em" />
               {locale === 'en' ? 'follow us on FB' : 'seguici su FB'}
             </a>
           </span>
         )}
       </p>
+      </LogoWidthMatch>
       </div>
     </main>
   )

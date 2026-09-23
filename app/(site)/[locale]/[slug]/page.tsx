@@ -173,7 +173,7 @@ export default async function ContentPage({ params }: { params: Params }) {
               : imageUrls(page.hero?.images, 1200)
           })(),
           /* le pagine con bookCta portavano "prenota ora" in fondo: da blocco
-             il bottone resta, ancorato alla sua sezione */
+             il bottone resta, ancorato alla sua sezione; endCta = contattaci */
           cta: (
             page.bookCta ||
             (item.slug === 'il-mercato' &&
@@ -181,7 +181,9 @@ export default async function ContentPage({ params }: { params: Params }) {
                 (entry) => entry.bookable && entry.date >= todayInGroup
               ))
               ? { label: t('book', locale), href: `/${locale}/prenota` }
-              : undefined
+              : page.endCta
+                ? { label: t('contact', locale), href: `/${locale}/contatti` }
+                : undefined
           ) as { label: string; href: string } | undefined,
         },
       ]
@@ -197,7 +199,7 @@ export default async function ContentPage({ params }: { params: Params }) {
       const at = blocks.findIndex((block) => block.id === 'la-storia') + 1
       blocks.splice(at > 0 ? at : blocks.length, 0, {
         id: 'rigenerazione',
-        title: locale === 'en' ? 'regeneration' : 'rigenerazione',
+        title: locale === 'en' ? 'the regeneration' : 'la rigenerazione',
         parts: [
           { key: 'rigenerazione', title: undefined, text: pick(rigenerazione.text, locale) },
         ],
@@ -208,7 +210,9 @@ export default async function ContentPage({ params }: { params: Params }) {
           : imageUrls(fondazione?.hero?.images, 1200),
         cta: {
           label: locale === 'en' ? 'Discover the Foundation' : 'Scopri la Fondazione',
-          href: `/${locale}/fondazione`,
+          /* link diretto al sito della Fondazione (Marco, 23 set), non più
+             alla pagina interna /fondazione */
+          href: 'https://www.fondazionedarefrutto.it/',
         },
       })
     }

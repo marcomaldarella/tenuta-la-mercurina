@@ -2,13 +2,6 @@
    (Marco, 21 set) — inline SVG con currentColor così seguono il colore
    e l'hover del link accanto a cui stanno, stesso pattern di Arrow.tsx */
 
-/* unità base: le icone quadre sono 18×18, quella email è 20×16 nel suo
-   export originale — larghezza/altezza renderizzate restano in quella
-   proporzione (rispetto a 18 = 1em) invece di schiacciare tutto in un
-   riquadro quadrato, altrimenti la busta (non quadrata) appare più
-   piccola delle altre */
-const BASE = 18
-
 const PATHS = {
   phone: {
     viewBox: '0 0 18 18',
@@ -54,9 +47,13 @@ export default function ContactIcon({
     <svg
       viewBox={icon.viewBox}
       aria-hidden="true"
+      /* box quadrato IDENTICO per tutte le icone (stessa width e height
+         a prescindere dal viewBox), così ogni riga di testo attacca
+         esattamente allo stesso x — l'icona non quadrata (email) resta
+         centrata nel box mantenendo le sue proporzioni, senza deformarsi */
       style={{
-        width: `calc(${size} * ${icon.w / BASE})`,
-        height: `calc(${size} * ${icon.h / BASE})`,
+        width: size,
+        height: size,
         display: 'inline-block',
         verticalAlign: '-0.15em',
         marginRight: '0.5em',
