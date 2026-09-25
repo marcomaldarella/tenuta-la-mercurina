@@ -44,6 +44,8 @@ export const ui = {
   bookingTitle: { it: 'Prenota visita', en: 'Book your visit' },
   buyNow: { it: 'buy now', en: 'buy now' },
   privacy: { it: 'privacy e policy', en: 'privacy & policy' },
+  cookieNotice: { it: 'questo sito usa cookie', en: 'this website uses cookies' },
+  cookieOk: { it: 'ok', en: 'ok' },
   instagram: { it: 'instagram', en: 'instagram' },
 } as const
 

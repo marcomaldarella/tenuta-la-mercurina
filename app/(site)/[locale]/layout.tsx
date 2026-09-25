@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from 'next'
 import { DM_Sans } from 'next/font/google'
 import { notFound } from 'next/navigation'
 import { ViewTransition } from 'react'
+import CookieNotice from '../../../components/CookieNotice'
 import Footer from '../../../components/Footer'
 import Header from '../../../components/Header'
 import SmoothScroll from '../../../components/SmoothScroll'
@@ -107,6 +108,7 @@ export default async function LocaleLayout({
             identici tra le pagine e restano fermi (niente flash) */}
         <ViewTransition default="page-fade">{children}</ViewTransition>
         <Footer locale={locale as Locale} settings={settings} />
+        <CookieNotice locale={locale as Locale} />
       </body>
     </html>
   )

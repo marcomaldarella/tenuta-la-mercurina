@@ -1,0 +1,39 @@
+.notice {
+  position: fixed;
+  right: var(--gutter);
+  bottom: var(--gutter);
+  z-index: 40; /* sotto l'overlay del menu, sopra il contenuto */
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 12px 16px;
+  background: var(--menu-bg);
+  color: var(--cream);
+  font-size: 13px;
+  font-weight: 600;
+  border-radius: 4px;
+  max-width: calc(100vw - 2 * var(--gutter));
+}
+
+.notice a {
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.notice a:hover {
+  opacity: 0.7;
+}
+
+.ok {
+  border: 1px solid var(--line-cream);
+  background: none;
+  color: inherit;
+  font: inherit;
+  padding: 4px 14px;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.ok:hover {
+  opacity: 0.7;
+}
