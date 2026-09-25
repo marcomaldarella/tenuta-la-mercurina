@@ -22,11 +22,23 @@ export default function Footer({
         {settings?.phone && (
           <a href={`tel:${settings.phone.replace(/\s/g, '')}`}>{settings.phone}</a>
         )}
-      </div>
-      <div className={styles.colRight}>
-        <Link href={`/${locale}/privacy-policy`}>{t('privacy', locale)}</Link>
         {settings?.email && <a href={`mailto:${settings.email}`}>{settings.email}</a>}
+        <Link href={`/${locale}/privacy-policy`}>{t('privacy', locale)}</Link>
       </div>
+      <a
+        href="https://www.fondazionedarefrutto.it/"
+        target="_blank"
+        rel="noreferrer"
+        className={styles.foundationLink}
+        aria-label="Fondazione Darefrutto"
+      >
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/logos/darefrutto.png"
+          alt="Fondazione Darefrutto"
+          className={styles.foundationLogo}
+        />
+      </a>
     </footer>
   )
 }

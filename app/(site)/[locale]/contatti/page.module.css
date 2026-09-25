@@ -84,6 +84,8 @@
     --contatti-body: clamp(17px, 6.6vw, 30px);
     /* titolo più staccato dall'header su mobile (Marco, 23 set) */
     --contatti-header: 140px;
+    /* il blocco logo/indirizzi non tocca il footer (Marco, 25 set) */
+    padding-bottom: 40px;
   }
 
   .logoLink {
