@@ -1,51 +1,28 @@
+/* dal figma: due colonne impilate — instagram/telefono a sinistra,
+   privacy/email a destra allineati al bordo */
 .footer {
   display: flex;
   justify-content: space-between;
-  /* dal figma il logo sale sopra la riga, non la centra: stessa base */
-  align-items: flex-end;
+  align-items: flex-start;
   gap: 24px;
-  padding: 40px var(--gutter) 20px;
+  padding: 40px var(--gutter) 28px;
   font-size: 13px;
   font-weight: 600;
 }
 
-.left {
+.col,
+.colRight {
   display: flex;
-  gap: clamp(16px, 3vw, 40px);
-  flex-wrap: wrap;
+  flex-direction: column;
+  gap: 4px;
+  line-height: 1.4;
+}
+
+.colRight {
+  align-items: flex-end;
+  text-align: right;
 }
 
 .footer a:hover {
   opacity: 0.7;
-}
-
-/* il logo porta al sito della Fondazione */
-.foundationLink {
-  display: block;
-  flex-shrink: 0;
-}
-
-/* logo Fondazione Darefrutto, in fondo a destra: 112×47 come nel figma */
-.foundationLogo {
-  height: 47px;
-  width: auto;
-  flex-shrink: 0;
-}
-
-/* mobile: in riga singola i contatti si spezzano, meglio impilati */
-@media (max-width: 700px) {
-  .footer {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 10px;
-    padding-top: 28px;
-  }
-
-  .left {
-    gap: 8px 20px;
-  }
-
-  .left > span {
-    white-space: nowrap;
-  }
 }

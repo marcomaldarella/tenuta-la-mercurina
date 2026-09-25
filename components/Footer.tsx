@@ -13,7 +13,7 @@ export default function Footer({
 }) {
   return (
     <footer className={styles.footer}>
-      <div className={styles.left}>
+      <div className={styles.col}>
         {settings?.instagram && (
           <a href={settings.instagram} target="_blank" rel="noreferrer">
             {t('instagram', locale)}
@@ -22,23 +22,11 @@ export default function Footer({
         {settings?.phone && (
           <a href={`tel:${settings.phone.replace(/\s/g, '')}`}>{settings.phone}</a>
         )}
-        {settings?.email && <a href={`mailto:${settings.email}`}>{settings.email}</a>}
-        <Link href={`/${locale}/privacy-policy`}>{t('privacy', locale)}</Link>
       </div>
-      <a
-        href="https://www.fondazionedarefrutto.it/"
-        target="_blank"
-        rel="noreferrer"
-        className={styles.foundationLink}
-        aria-label="Fondazione Darefrutto"
-      >
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src="/logos/darefrutto.png"
-          alt="Fondazione Darefrutto"
-          className={styles.foundationLogo}
-        />
-      </a>
+      <div className={styles.colRight}>
+        <Link href={`/${locale}/privacy-policy`}>{t('privacy', locale)}</Link>
+        {settings?.email && <a href={`mailto:${settings.email}`}>{settings.email}</a>}
+      </div>
     </footer>
   )
 }
