@@ -122,8 +122,23 @@ body.fixedPage footer {
    ViewTransition nel layout [locale]); vecchia e nuova pagina si
    sovrappongono, così il crema sotto non lampeggia mai. Header e footer
    stanno fuori dal gruppo e restano fermi */
+/* il gruppo NON si anima: di default il browser interpola la geometria
+   dalla posizione scrollata della vecchia pagina a 0, e lo snapshot si
+   vede "risalire" di scatto. Fermo il gruppo sulla geometria finale e
+   traslo la sola immagine vecchia di --vt-scroll (settata da SmoothScroll
+   al cambio pagina): resta inchiodata sul punto che si stava guardando
+   e si limita a sfumare */
+::view-transition-group(.page-fade) {
+  animation: none;
+}
+
+::view-transition-image-pair(.page-fade) {
+  isolation: isolate;
+}
+
 ::view-transition-old(.page-fade) {
   animation: 320ms ease-in-out both vt-fade reverse;
+  transform: translateY(calc(-1 * var(--vt-scroll, 0px)));
 }
 
 ::view-transition-new(.page-fade) {

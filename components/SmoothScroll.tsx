@@ -48,6 +48,11 @@ export default function SmoothScroll() {
   // paint, altrimenti si vede un salto/flash di contenuto che scatta in
   // cima un frame dopo la transizione invece di essere già lì
   useLayoutEffect(() => {
+    // prima di resettare, memorizziamo dov'era lo scroll: la view transition
+    // usa --vt-scroll per tenere fermo lo snapshot della pagina vecchia sul
+    // punto che si stava guardando (altrimenti il browser anima il gruppo
+    // dalla posizione scrollata a 0 e si vede la vecchia pagina "risalire")
+    document.documentElement.style.setProperty('--vt-scroll', `${window.scrollY}px`)
     lenisRef.current?.scrollTo(0, { immediate: true })
     window.scrollTo(0, 0)
   }, [pathname])
