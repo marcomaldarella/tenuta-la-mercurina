@@ -82,7 +82,12 @@ export const page = defineType({
             }),
           ],
           preview: {
-            select: { title: 'title.it', media: 'images.0' },
+            select: { title: 'title.it', text: 'text.it', media: 'images.0' },
+            prepare: ({ title, text, media }) => ({
+              title: title || text?.slice(0, 60) || 'Sezione',
+              subtitle: title ? text?.slice(0, 60) : undefined,
+              media,
+            }),
           },
         },
       ],

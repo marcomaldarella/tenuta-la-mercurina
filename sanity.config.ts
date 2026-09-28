@@ -5,6 +5,7 @@ import { defineConfig } from 'sanity'
 import { structureTool } from 'sanity/structure'
 import { dataset, projectId } from './lib/sanity/client'
 import { schemaTypes } from './sanity/schemaTypes'
+import { structure } from './sanity/structure'
 
 export default defineConfig({
   name: 'tenuta-la-mercurina',
@@ -12,6 +13,6 @@ export default defineConfig({
   projectId,
   dataset,
   basePath: '/studio',
-  plugins: [structureTool(), visionTool()],
+  plugins: [structureTool({ structure }), visionTool()],
   schema: { types: schemaTypes },
 })
