@@ -1,5 +1,6 @@
 import { ViewTransition } from 'react'
 import Carousel from './Carousel'
+import FitLine from './FitLine'
 import styles from './Hero.module.css'
 
 export default function Hero({
@@ -28,7 +29,11 @@ export default function Hero({
       <ViewTransition name="hero-media" share="auto">
         <Carousel urls={urls} className={styles.carousel} light shaded />
       </ViewTransition>
-      {lead && <Tag className={styles.text}>{lead}</Tag>}
+      {lead && (
+        <FitLine as={Tag} className={styles.text}>
+          {lead}
+        </FitLine>
+      )}
     </section>
   )
 }
