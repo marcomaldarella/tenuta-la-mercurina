@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import Arrow from './Arrow'
 import Carousel from './Carousel'
+import { noOrphans } from '../lib/typo'
 import styles from './SectionRow.module.css'
 
 export default function SectionRow({
@@ -22,19 +23,19 @@ export default function SectionRow({
 }) {
   const heading = href ? (
     <Link href={href} className={styles.titleLink}>
-      <h2 className={styles.title}>{title}</h2>
+      <h2 className={styles.title}>{noOrphans(title)}</h2>
     </Link>
   ) : (
-    <h2 className={styles.title}>{title}</h2>
+    <h2 className={styles.title}>{noOrphans(title)}</h2>
   )
 
   return (
     <section className={`${styles.row} ${reverse ? styles.reverse : ''}`}>
       <div className={styles.copy}>
         {heading}
-        {subtitle && <p className={styles.subtitle}>{subtitle}</p>}
+        {subtitle && <p className={styles.subtitle}>{noOrphans(subtitle)}</p>}
         <div className={styles.bottom}>
-          {text && <p className={styles.text}>{text}</p>}
+          {text && <p className={styles.text}>{noOrphans(text)}</p>}
           {cta && (
             <Link href={cta.href} className={styles.cta}>
               {cta.label}

@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import Arrow from './Arrow'
 import Carousel from './Carousel'
+import { noOrphans } from '../lib/typo'
 import styles from './GroupSection.module.css'
 
 /* blocco editoriale delle pagine unite (tenuta/foresteria): titolo grande,
@@ -24,14 +25,14 @@ export default function GroupSection({
   return (
     <section id={id} className={`${styles.row} ${reverse ? styles.reverse : ''}`}>
       <div className={styles.copy}>
-        <h2 className={styles.title}>{title}</h2>
+        <h2 className={styles.title}>{noOrphans(title)}</h2>
         <div className={styles.bottom}>
           {parts.map(
             (part) =>
               part.text && (
                 <div key={part.key}>
-                  {part.title && <h3 className={styles.partTitle}>{part.title}</h3>}
-                  <p className={styles.text}>{part.text}</p>
+                  {part.title && <h3 className={styles.partTitle}>{noOrphans(part.title)}</h3>}
+                  <p className={styles.text}>{noOrphans(part.text)}</p>
                 </div>
               )
           )}
