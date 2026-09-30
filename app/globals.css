@@ -11,7 +11,7 @@
      ancore, così l'atterraggio smooth-scroll lascia sempre un margine di
      crema visibile sotto il menu invece di finire a filo con la foto */
   --header-h: 84px;
-  --display: clamp(38px, 5.5vw, 72px);
+  --display: 40px;
   /* -5% da figma (richiesta cliente, sappiamo che è molto) + un pelo in più */
   --track-display: -0.07em;
   /* tarato sui testi reali (più lunghi del lorem dei mockup): il blocco
