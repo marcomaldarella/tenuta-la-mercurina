@@ -201,7 +201,13 @@ export default async function ContentPage({ params }: { params: Params }) {
         id: 'rigenerazione',
         title: locale === 'en' ? 'the regeneration' : 'la rigenerazione',
         parts: [
-          { key: 'rigenerazione', title: undefined, text: pick(rigenerazione.text, locale) },
+          /* il lead bold del foglio vive nel subtitle: il title "La rigenerazione"
+             resta l'h2 della pagina fondazione e il criterio di match qui sopra */
+          {
+            key: 'rigenerazione',
+            title: pick(rigenerazione.subtitle, locale),
+            text: pick(rigenerazione.text, locale),
+          },
         ],
         /* l'hero della fondazione solo come tappabuchi: se la sezione ha
            già le sue foto, la gallery resta quella */
