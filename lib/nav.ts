@@ -40,6 +40,10 @@ export const anchorGroups: Record<
   foresteria: {
     label: { it: 'foresteria', en: 'guesthouse' },
     items: [
+      /* blocco introduttivo dal foglio REV 3/11: il doc page-foresteria (che
+         dà anche l'hero del gruppo, essendo prima sotto-pagina) ha ora la sua
+         sezione "Ospitalità in natura" */
+      { slug: 'foresteria', label: { it: 'la foresteria', en: 'the guesthouse' } },
       { slug: 'camere', label: { it: 'le camere', en: 'the rooms' } },
       { slug: 'il-porticato', label: { it: 'il porticato', en: 'the portico' } },
       {

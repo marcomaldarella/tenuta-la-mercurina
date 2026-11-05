@@ -25,7 +25,9 @@ const nextConfig: NextConfig = {
       },
       { source: "/:locale/taneto", destination: "/:locale/tenuta#taneto", permanent: true },
       { source: "/:locale/prodotti", destination: "/:locale/tenuta#prodotti", permanent: true },
-      { source: "/:locale/camere", destination: "/:locale/foresteria", permanent: true },
+      // da quando "la foresteria" è il primo blocco (foglio REV 3/11) le
+      // camere non sono più in testa alla pagina: servono l'ancora
+      { source: "/:locale/camere", destination: "/:locale/foresteria#camere", permanent: true },
       {
         source: "/:locale/il-porticato",
         destination: "/:locale/foresteria#il-porticato",
@@ -64,17 +66,30 @@ const nextConfig: NextConfig = {
         destination: "/:locale/esperienze#workshop-floreali",
         permanent: true,
       },
-      // "visite-e-lezioni" esce dal menu (21 set): non è più un'ancora dentro
-      // esperienze, torna a essere una pagina a sé (contenuto Sanity intatto)
-      // -> niente redirect, ricade sulla route [slug] standalone
+      // rientrate nei gruppi come blocchi (23 set + foglio REV 3/11): anche
+      // questi slug atterrano sull'ancora, niente pagina standalone doppia
+      {
+        source: "/:locale/visite-e-lezioni",
+        destination: "/:locale/esperienze#visite-e-lezioni",
+        permanent: true,
+      },
+      { source: "/:locale/retreat", destination: "/:locale/esperienze#retreat", permanent: true },
       { source: "/:locale/il-mercato", destination: "/:locale/eventi", permanent: true },
+      {
+        source: "/:locale/pranzo-a-tema",
+        destination: "/:locale/eventi#pranzo-a-tema",
+        permanent: true,
+      },
       {
         source: "/:locale/matrimoni",
         destination: "/:locale/eventi#matrimoni",
         permanent: true,
       },
-      // "pranzo-a-tema" e "eventi-privati" escono dal menu (21 set): stesso
-      // discorso, tornano pagine a sé senza redirect verso un'ancora sparita
+      {
+        source: "/:locale/eventi-privati",
+        destination: "/:locale/eventi#eventi-privati",
+        permanent: true,
+      },
     ];
   },
 };

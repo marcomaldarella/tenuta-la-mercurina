@@ -190,13 +190,13 @@ export default async function ContentPage({ params }: { params: Params }) {
     })
     if (blocks.length === 0) notFound()
 
-    // sezione rigenerazione dopo "la storia": pesca dalla pagina fondazione
-    // (fuori nav) e rimanda lì, come nel figma
+    // sezione rigenerazione dopo l'ontaneto (ordine del foglio REV 3/11):
+    // pesca dalla pagina fondazione (fuori nav) e rimanda lì
     const rigenerazione = fondazione?.sections?.find((section) =>
       pick(section.title, locale)?.toLowerCase().includes('rigenerazione')
     )
     if (rigenerazione) {
-      const at = blocks.findIndex((block) => block.id === 'la-storia') + 1
+      const at = blocks.findIndex((block) => block.id === 'taneto') + 1
       blocks.splice(at > 0 ? at : blocks.length, 0, {
         id: 'rigenerazione',
         title: locale === 'en' ? 'the regeneration' : 'la rigenerazione',
