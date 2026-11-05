@@ -15,16 +15,26 @@ const nextConfig: NextConfig = {
   // tenuta/foresteria (set 2026): i vecchi slug atterrano sull'ancora
   async redirects() {
     return [
-      { source: "/:locale/chi-siamo", destination: "/:locale/tenuta", permanent: true },
-      { source: "/:locale/la-tenuta", destination: "/:locale/tenuta", permanent: true },
-      { source: "/:locale/la-storia", destination: "/:locale/tenuta#la-storia", permanent: true },
+      // la pagina unita vive su /chi-siamo da nov 2026 (la voce "tenuta" in
+      // menu ora porta in home): il vecchio url e le ancore seguono
+      { source: "/:locale/tenuta", destination: "/:locale/chi-siamo", permanent: true },
+      { source: "/:locale/la-tenuta", destination: "/:locale/chi-siamo", permanent: true },
       {
-        source: "/:locale/casa-di-caccia",
-        destination: "/:locale/tenuta#casa-di-caccia",
+        source: "/:locale/la-storia",
+        destination: "/:locale/chi-siamo#la-storia",
         permanent: true,
       },
-      { source: "/:locale/taneto", destination: "/:locale/tenuta#taneto", permanent: true },
-      { source: "/:locale/prodotti", destination: "/:locale/tenuta#prodotti", permanent: true },
+      {
+        source: "/:locale/casa-di-caccia",
+        destination: "/:locale/chi-siamo#casa-di-caccia",
+        permanent: true,
+      },
+      { source: "/:locale/taneto", destination: "/:locale/chi-siamo#taneto", permanent: true },
+      {
+        source: "/:locale/prodotti",
+        destination: "/:locale/chi-siamo#prodotti",
+        permanent: true,
+      },
       // da quando "la foresteria" è il primo blocco (foglio REV 3/11) le
       // camere non sono più in testa alla pagina: servono l'ancora
       { source: "/:locale/camere", destination: "/:locale/foresteria#camere", permanent: true },

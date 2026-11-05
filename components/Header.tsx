@@ -148,7 +148,8 @@ export default function Header({
             ) : (
               <Link
                 key={entry.slug}
-                href={`/${locale}/${entry.slug}`}
+                /* slug vuoto = voce "tenuta": porta in home */
+                href={entry.slug ? `/${locale}/${entry.slug}` : `/${locale}`}
                 className={styles.groupLabel}
                 data-nav-item
               >
@@ -200,7 +201,7 @@ export default function Header({
             {overlayRows.map((row, i) => (
               <Link
                 key={row.path}
-                href={`/${locale}/${row.path}`}
+                href={row.path ? `/${locale}/${row.path}` : `/${locale}`}
                 className={styles.overlayItem}
                 style={{ '--i': i } as React.CSSProperties}
                 onClick={() => setOpen(false)}

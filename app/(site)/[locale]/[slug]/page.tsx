@@ -132,7 +132,7 @@ export default async function ContentPage({ params }: { params: Params }) {
     const hasMarket = anchorItems.some((item) => item.slug === 'il-mercato')
     const [pages, fondazione, groupPage, marketDatesInGroup] = await Promise.all([
       Promise.all(anchorItems.map((item) => getPage(item.slug))),
-      slug === 'tenuta' ? getPage('fondazione') : Promise.resolve(null),
+      slug === 'chi-siamo' ? getPage('fondazione') : Promise.resolve(null),
       group.heroFrom ? getPage(group.heroFrom) : Promise.resolve(null),
       hasMarket ? getMarketDates() : Promise.resolve([]),
     ])

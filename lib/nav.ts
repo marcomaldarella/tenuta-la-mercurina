@@ -24,8 +24,10 @@ export const anchorGroups: Record<
   string,
   { label: L10nString; items: NavItem[]; heroFrom?: string }
 > = {
-  tenuta: {
-    label: { it: 'tenuta', en: 'estate' },
+  /* ex gruppo "tenuta": rinominato "chi siamo" (richiesta cliente nov 2026),
+     slug spostato con lui — "tenuta" in menu è ora la voce che porta in home */
+  'chi-siamo': {
+    label: { it: 'chi siamo', en: 'about us' },
     items: [
       { slug: 'la-tenuta', label: { it: 'la tenuta', en: 'the estate' } },
       { slug: 'la-storia', label: { it: 'la storia', en: 'the history' } },
@@ -102,7 +104,10 @@ export const anchorGroups: Record<
 }
 
 export const navEntries: NavEntry[] = [
-  { slug: 'tenuta', label: anchorGroups.tenuta.label },
+  /* slug vuoto = link alla home: la voce "tenuta" apre il sito, non una
+     pagina interna (il logo continua a fare lo stesso) */
+  { slug: '', label: { it: 'tenuta', en: 'estate' } },
+  { slug: 'chi-siamo', label: anchorGroups['chi-siamo'].label },
   { slug: 'foresteria', label: anchorGroups.foresteria.label },
   {
     slug: 'esperienze',
@@ -136,5 +141,8 @@ const anchorPaths: Record<string, string> = Object.fromEntries(
 
 export const pagePath = (slug: string): string => anchorPaths[slug] ?? slug
 
-/* pagine reali (le ancore non sono url a sé), per la sitemap */
-export const topLevelSlugs: string[] = navEntries.map((entry) => entry.slug)
+/* pagine reali (le ancore non sono url a sé), per la sitemap: la voce home
+   (slug vuoto) resta fuori, la home è già in sitemap per conto suo */
+export const topLevelSlugs: string[] = navEntries
+  .map((entry) => entry.slug)
+  .filter(Boolean)
