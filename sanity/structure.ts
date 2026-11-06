@@ -30,16 +30,21 @@ export const structure: StructureResolver = (S) =>
   S.list()
     .title('Contenuti')
     .items([
-      pagina(S, 'page-home', 'Home'),
+      pagina(S, 'page-home', 'Home — la voce “tenuta” del menu'),
       S.divider(),
-      gruppo(S, 'gruppo-tenuta', 'Tenuta', [
+      /* nov 2026: il gruppo non si chiama più "Tenuta" (quella voce ora porta
+         in home) ma "Chi siamo", come il menu del sito */
+      gruppo(S, 'gruppo-chi-siamo', 'Chi siamo', [
         ['page-chi-siamo', 'la tenuta'],
         ['page-la-storia', 'la storia'],
         ['page-casa-di-caccia', 'ex casa di caccia'],
         ['page-taneto', "l'ontaneto"],
         ['page-prodotti', 'i prodotti della tenuta'],
       ]),
+      /* "la foresteria" è il primo blocco del gruppo (e gli dà l'hero) dal
+         foglio REV 3/11: prima era archiviato tra le pagine fuori menu */
       gruppo(S, 'gruppo-foresteria', 'Foresteria', [
+        ['page-foresteria', 'la foresteria'],
         ['page-camere', 'le camere'],
         ['page-il-porticato', 'il porticato'],
         ['page-la-corte-giardino', 'la corte giardino'],
@@ -83,7 +88,6 @@ export const structure: StructureResolver = (S) =>
         ),
       S.divider(),
       gruppo(S, 'gruppo-altre', 'Altre pagine (fuori menu)', [
-        ['page-foresteria', 'foresteria (pagina propria)'],
         ['page-didattica-ambientale', 'didattica ambientale'],
         ['page-team-building', 'team building'],
         ['page-privacy-policy', 'privacy policy'],

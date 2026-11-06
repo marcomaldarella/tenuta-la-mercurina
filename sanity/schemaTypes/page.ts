@@ -81,13 +81,26 @@ export const page = defineType({
               hidden: ({ parent }) => parent?.cta !== 'page',
             }),
           ],
+          /* in lista ogni blocco deve dirsi da solo: come si chiama e quante
+             foto ha (il titolo ora è il lead in grassetto, può essere lungo) */
           preview: {
-            select: { title: 'title.it', text: 'text.it', media: 'images.0' },
-            prepare: ({ title, text, media }) => ({
-              title: title || text?.slice(0, 60) || 'Sezione',
-              subtitle: title ? text?.slice(0, 60) : undefined,
-              media,
-            }),
+            select: {
+              title: 'title.it',
+              subtitle: 'subtitle.it',
+              text: 'text.it',
+              media: 'images.0',
+              images: 'images',
+            },
+            prepare: ({ title, subtitle, text, media, images }) => {
+              const n = Array.isArray(images) ? images.length : 0
+              const foto = n === 0 ? 'nessuna foto' : n === 1 ? '1 foto' : `${n} foto`
+              const nome = title || subtitle || text?.slice(0, 60)
+              return {
+                title: nome || 'Blocco senza titolo',
+                subtitle: nome && text ? `${foto} · ${text.slice(0, 70)}` : foto,
+                media,
+              }
+            },
           },
         },
       ],
