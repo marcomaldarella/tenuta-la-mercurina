@@ -8,10 +8,12 @@ export default function BodyText({
   text,
   textClass,
   titleClass,
+  className,
 }: {
   text: string
   textClass: string
   titleClass: string
+  className?: string
 }) {
   const blocchi: { titolo: boolean; righe: string[] }[] = []
 
@@ -26,8 +28,10 @@ export default function BodyText({
     else blocchi.push({ titolo: false, righe: [riga] })
   }
 
+  /* un solo figlio del contenitore: così il gap del blocco non si infila
+     fra il titoletto e il suo testo, la spaziatura la decide solo il CSS qui */
   return (
-    <>
+    <div className={className}>
       {blocchi.map((blocco, i) =>
         blocco.titolo ? (
           <h3 key={i} className={titleClass}>
@@ -41,6 +45,6 @@ export default function BodyText({
           )
         )
       )}
-    </>
+    </div>
   )
 }

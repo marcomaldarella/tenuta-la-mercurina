@@ -66,8 +66,12 @@
   font-size: 14px;
   font-weight: 600;
   line-height: 1.4;
-  margin-top: -14px;
-  margin-bottom: -14px;
+  margin: 0;
+}
+
+/* corpo con i suoi titoletti: righe consecutive, nessuno stacco in più */
+.body > * {
+  margin: 0;
 }
 
 .arrow {
