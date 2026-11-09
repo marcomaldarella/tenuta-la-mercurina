@@ -59,14 +59,15 @@
   margin-bottom: -10px; /* annulla il gap di .bottom: sta attaccato al testo */
 }
 
-/* titoletto in mezzo al corpo (**così** nel CMS): più aria sopra che sotto,
-   così si lega al paragrafo che introduce e stacca da quello precedente */
+/* titoletto in mezzo al corpo (**così** nel CMS): scorre dentro al testo
+   come una riga qualsiasi, solo in grassetto — i margini negativi annullano
+   il gap di .bottom, che qui non deve vedersi */
 .innerTitle {
   font-size: 14px;
   font-weight: 600;
   line-height: 1.4;
-  margin-top: 12px;
-  margin-bottom: -6px;
+  margin-top: -14px;
+  margin-bottom: -14px;
 }
 
 .arrow {
