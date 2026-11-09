@@ -17,7 +17,7 @@ export default function GroupSection({
 }: {
   id: string
   title: string
-  parts: { key: string; title?: string; text?: string }[]
+  parts: { key: string; title?: string; subtitle?: string; text?: string }[]
   urls: string[]
   reverse?: boolean
   cta?: { label: string; href: string }
@@ -29,9 +29,12 @@ export default function GroupSection({
         <div className={styles.bottom}>
           {parts.map(
             (part) =>
-              (part.title || part.text) && (
+              (part.title || part.subtitle || part.text) && (
                 <div key={part.key}>
                   {part.title && <h3 className={styles.partTitle}>{noOrphans(part.title)}</h3>}
+                  {part.subtitle && (
+                    <h3 className={styles.partTitle}>{noOrphans(part.subtitle)}</h3>
+                  )}
                   {part.text && <p className={styles.text}>{noOrphans(part.text)}</p>}
                 </div>
               )

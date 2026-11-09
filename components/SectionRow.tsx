@@ -33,8 +33,10 @@ export default function SectionRow({
     <section className={`${styles.row} ${reverse ? styles.reverse : ''}`}>
       <div className={styles.copy}>
         {heading}
-        {subtitle && <p className={styles.subtitle}>{noOrphans(subtitle)}</p>}
         <div className={styles.bottom}>
+          {/* il sottotitolo è il titoletto in grassetto del foglio: sta
+              attaccato al suo paragrafo, non sotto il titolo grande */}
+          {subtitle && <p className={styles.subtitle}>{noOrphans(subtitle)}</p>}
           {text && <p className={styles.text}>{noOrphans(text)}</p>}
           {cta && (
             <Link href={cta.href} className={styles.cta}>

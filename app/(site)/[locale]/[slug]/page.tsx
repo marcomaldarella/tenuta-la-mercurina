@@ -158,6 +158,9 @@ export default async function ContentPage({ params }: { params: Params }) {
             ...(page.sections ?? []).map((section: Section) => ({
               key: section._key,
               title: pick(section.title, locale),
+              /* titolo e sottotitolo sono entrambi titoletti in grassetto:
+                 in Studio il testo sta ora nell'uno ora nell'altro campo */
+              subtitle: pick(section.subtitle, locale),
               text: pick(section.text, locale),
             })),
             ...dateParts,

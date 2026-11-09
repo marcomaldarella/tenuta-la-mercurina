@@ -28,6 +28,7 @@ export default async function HomePage({
         <SectionRow
           key={section._key}
           title={pick(section.title, locale)}
+          subtitle={pick(section.subtitle, locale)}
           text={pick(section.text, locale)}
           urls={imageUrls(section.images, 1200)}
           reverse={index % 2 === 1}
