@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import Arrow from './Arrow'
+import BodyText from './BodyText'
 import Carousel from './Carousel'
 import { noOrphans } from '../lib/typo'
 import styles from './GroupSection.module.css'
@@ -35,7 +36,13 @@ export default function GroupSection({
                   {part.subtitle && (
                     <h3 className={styles.partTitle}>{noOrphans(part.subtitle)}</h3>
                   )}
-                  {part.text && <p className={styles.text}>{noOrphans(part.text)}</p>}
+                  {part.text && (
+                    <BodyText
+                      text={part.text}
+                      textClass={styles.text}
+                      titleClass={styles.partTitle}
+                    />
+                  )}
                 </div>
               )
           )}

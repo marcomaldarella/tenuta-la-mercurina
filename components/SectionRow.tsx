@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import Arrow from './Arrow'
+import BodyText from './BodyText'
 import Carousel from './Carousel'
 import { noOrphans } from '../lib/typo'
 import styles from './SectionRow.module.css'
@@ -37,7 +38,9 @@ export default function SectionRow({
           {/* il sottotitolo è il titoletto in grassetto del foglio: sta
               attaccato al suo paragrafo, non sotto il titolo grande */}
           {subtitle && <p className={styles.subtitle}>{noOrphans(subtitle)}</p>}
-          {text && <p className={styles.text}>{noOrphans(text)}</p>}
+          {text && (
+            <BodyText text={text} textClass={styles.text} titleClass={styles.subtitle} />
+          )}
           {cta && (
             <Link href={cta.href} className={styles.cta}>
               {cta.label}
