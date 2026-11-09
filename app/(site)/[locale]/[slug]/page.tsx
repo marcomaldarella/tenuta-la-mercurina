@@ -147,6 +147,7 @@ export default async function ContentPage({ params }: { params: Params }) {
           ? marketDatesInGroup.map((entry) => ({
               key: entry._id,
               title: formatDate(entry.date),
+              subtitle: undefined,
               text: pick(entry.text, locale),
             }))
           : []
@@ -209,6 +210,7 @@ export default async function ContentPage({ params }: { params: Params }) {
           {
             key: 'rigenerazione',
             title: pick(rigenerazione.subtitle, locale),
+            subtitle: undefined,
             text: pick(rigenerazione.text, locale),
           },
         ],
