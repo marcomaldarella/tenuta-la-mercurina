@@ -40,7 +40,7 @@ export default function GroupSection({
                     <BodyText
                       text={part.text}
                       textClass={styles.text}
-                      titleClass={styles.partTitle}
+                      titleClass={styles.innerTitle}
                     />
                   )}
                 </div>

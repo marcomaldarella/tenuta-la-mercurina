@@ -39,7 +39,7 @@ export default function SectionRow({
               attaccato al suo paragrafo, non sotto il titolo grande */}
           {subtitle && <p className={styles.subtitle}>{noOrphans(subtitle)}</p>}
           {text && (
-            <BodyText text={text} textClass={styles.text} titleClass={styles.subtitle} />
+            <BodyText text={text} textClass={styles.text} titleClass={styles.innerTitle} />
           )}
           {cta && (
             <Link href={cta.href} className={styles.cta}>

@@ -60,6 +60,14 @@
   margin-bottom: 2px;
 }
 
+/* titoletto in mezzo al corpo: stacco maggiore dell'interlinea del testo */
+.innerTitle {
+  font-size: 14px;
+  font-weight: 600;
+  margin-top: 16px;
+  margin-bottom: 3px;
+}
+
 .text {
   font-size: 14px;
   /* paragrafi lunghi: interlinea più stretta del 1.45 del body */
