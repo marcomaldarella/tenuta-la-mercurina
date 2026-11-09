@@ -29,10 +29,10 @@ export default function GroupSection({
         <div className={styles.bottom}>
           {parts.map(
             (part) =>
-              part.text && (
+              (part.title || part.text) && (
                 <div key={part.key}>
                   {part.title && <h3 className={styles.partTitle}>{noOrphans(part.title)}</h3>}
-                  <p className={styles.text}>{noOrphans(part.text)}</p>
+                  {part.text && <p className={styles.text}>{noOrphans(part.text)}</p>}
                 </div>
               )
           )}
