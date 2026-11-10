@@ -37,13 +37,19 @@ export default async function HomePage({
               ? `/${locale}/${pagePath(section.pageSlug)}`
               : undefined
           }
-          /* il figma chiude la home con "Contattaci" sotto l'ultimo blocco */
+          /* doc CT ULTIMO 10/11: ogni card di menu chiude con "scopri" +
+             freccia verso la sua pagina */
           cta={
-            section.cta === 'contatti'
-              ? { label: t('contact', locale), href: `/${locale}/contatti` }
-              : section.cta === 'prenota'
-                ? { label: t('book', locale), href: `/${locale}/prenota` }
-                : undefined
+            section.cta === 'page' && section.pageSlug
+              ? {
+                  label: t('discover', locale),
+                  href: `/${locale}/${pagePath(section.pageSlug)}`,
+                }
+              : section.cta === 'contatti'
+                ? { label: t('contact', locale), href: `/${locale}/contatti` }
+                : section.cta === 'prenota'
+                  ? { label: t('book', locale), href: `/${locale}/prenota` }
+                  : undefined
           }
         />
       ))}

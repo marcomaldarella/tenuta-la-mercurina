@@ -132,3 +132,15 @@
     align-self: start;
   }
 }
+
+/* data del mercato cliccabile: stessa riga sotto al testo del tasto cta,
+   la freccia passa sopra la linea */
+.partLink {
+  display: inline-block;
+  border-bottom: 1px solid currentColor;
+  padding-bottom: 2px;
+}
+
+.partLink:hover {
+  opacity: 0.7;
+}

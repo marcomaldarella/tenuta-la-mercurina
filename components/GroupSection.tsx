@@ -18,7 +18,7 @@ export default function GroupSection({
 }: {
   id: string
   title: string
-  parts: { key: string; title?: string; subtitle?: string; text?: string }[]
+  parts: { key: string; title?: string; subtitle?: string; text?: string; href?: string }[]
   urls: string[]
   reverse?: boolean
   cta?: { label: string; href: string }
@@ -32,7 +32,23 @@ export default function GroupSection({
             (part) =>
               (part.title || part.subtitle || part.text) && (
                 <div key={part.key}>
-                  {part.title && <h3 className={styles.partTitle}>{noOrphans(part.title)}</h3>}
+                  {part.title &&
+                    (part.href ? (
+                      /* titolo-link (es. data del mercato → foto dell'edizione) */
+                      <h3 className={styles.partTitle}>
+                        <a
+                          href={part.href}
+                          target="_blank"
+                          rel="noreferrer"
+                          className={styles.partLink}
+                        >
+                          {noOrphans(part.title)}
+                          <Arrow size="0.58em" />
+                        </a>
+                      </h3>
+                    ) : (
+                      <h3 className={styles.partTitle}>{noOrphans(part.title)}</h3>
+                    ))}
                   {part.subtitle && (
                     <h3 className={styles.partTitle}>{noOrphans(part.subtitle)}</h3>
                   )}

@@ -13,6 +13,12 @@ export const marketDate = defineType({
     }),
     defineField({ name: 'text', title: 'Testo', type: 'localeText' }),
     defineField({
+      name: 'link',
+      title: 'Link foto (Dropbox)',
+      description: 'Se presente, la data diventa cliccabile e apre la galleria',
+      type: 'url',
+    }),
+    defineField({
       name: 'images',
       title: 'Immagini',
       type: 'array',

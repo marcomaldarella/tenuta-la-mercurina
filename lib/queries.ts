@@ -37,6 +37,7 @@ export type MarketDate = {
   _id: string
   date: string
   text?: L10n
+  link?: string
   images?: SanityImage[]
   bookable?: boolean
 }
@@ -74,7 +75,7 @@ export async function getPage(slug: string): Promise<Page | null> {
 export async function getMarketDates(): Promise<MarketDate[]> {
   return client.fetch(
     groq`*[_type == "marketDate"] | order(date desc){
-      _id, date, text, bookable,
+      _id, date, text, link, bookable,
       "images": images[]${imageProjection}
     }`
   )

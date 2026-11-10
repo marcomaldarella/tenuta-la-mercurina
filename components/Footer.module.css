@@ -20,14 +20,21 @@
   opacity: 0.7;
 }
 
-/* il logo porta al sito della Fondazione */
+/* il logo porta al sito della Fondazione; la riga "è parte di" gli sta
+   accanto, sulla stessa base (doc CT ULTIMO 10/11, logo rimpicciolito) */
 .foundationLink {
-  display: block;
+  display: flex;
+  align-items: flex-end;
+  gap: 10px;
   flex-shrink: 0;
 }
 
+.foundationText {
+  white-space: nowrap;
+}
+
 .foundationLogo {
-  height: 47px;
+  height: 38px;
   width: auto;
 }
 
@@ -40,5 +47,12 @@
     flex-direction: column;
     gap: 0;
     line-height: 1.35;
+  }
+
+  /* da stretti la riga + logo in fila non ci stanno: impilati a destra */
+  .foundationLink {
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 4px;
   }
 }

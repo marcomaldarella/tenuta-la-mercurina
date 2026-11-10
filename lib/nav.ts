@@ -31,7 +31,9 @@ export const anchorGroups: Record<
     items: [
       { slug: 'la-tenuta', label: { it: 'la tenuta', en: 'the estate' } },
       { slug: 'la-storia', label: { it: 'la storia', en: 'the history' } },
-      { slug: 'casa-di-caccia', label: { it: 'ex casa di caccia', en: 'ex hunting lodge' } },
+      /* "toglierei ex dal Titolo" — doc CT ULTIMO 10/11: il blocco si chiama
+         la casa di caccia, l'(Ex) resta solo dentro al testo */
+      { slug: 'casa-di-caccia', label: { it: 'la casa di caccia', en: 'the hunting lodge' } },
       { slug: 'taneto', label: { it: "l'ontaneto", en: 'the alder grove' } },
       {
         slug: 'prodotti',

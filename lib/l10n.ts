@@ -47,6 +47,9 @@ export const ui = {
   cookieNotice: { it: 'questo sito usa cookie', en: 'this website uses cookies' },
   cookieOk: { it: 'ok', en: 'ok' },
   instagram: { it: 'instagram', en: 'instagram' },
+  discover: { it: 'scopri', en: 'discover' },
+  /* footer: riga sopra il logo Darefrutto (doc CT ULTIMO 10/11) */
+  partOf: { it: 'Tenuta Lamercurina è parte di', en: 'Tenuta Lamercurina is part of' },
 } as const
 
 export type UiKey = keyof typeof ui

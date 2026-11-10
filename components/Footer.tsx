@@ -32,6 +32,8 @@ export default function Footer({
         className={styles.foundationLink}
         aria-label="Fondazione Darefrutto"
       >
+        {/* doc CT ULTIMO 10/11: riga di appartenenza prima del logo */}
+        <span className={styles.foundationText}>{t('partOf', locale)}</span>
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src="/logos/darefrutto.png"
