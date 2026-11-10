@@ -149,8 +149,10 @@ export default async function ContentPage({ params }: { params: Params }) {
               title: formatDate(entry.date),
               subtitle: undefined,
               text: pick(entry.text, locale),
-              /* data cliccabile: apre la selezione di foto dell'edizione */
-              href: entry.link,
+              /* data cliccabile: apre la pagina gallery dell'edizione */
+              href: entry.images?.length
+                ? `/${locale}/mercato/${entry.date}`
+                : undefined,
             }))
           : []
       return [

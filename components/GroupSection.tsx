@@ -34,17 +34,24 @@ export default function GroupSection({
                 <div key={part.key}>
                   {part.title &&
                     (part.href ? (
-                      /* titolo-link (es. data del mercato → foto dell'edizione) */
+                      /* titolo-link (es. data del mercato → gallery dell'edizione) */
                       <h3 className={styles.partTitle}>
-                        <a
-                          href={part.href}
-                          target="_blank"
-                          rel="noreferrer"
-                          className={styles.partLink}
-                        >
-                          {noOrphans(part.title)}
-                          <Arrow size="0.58em" />
-                        </a>
+                        {part.href.startsWith('/') ? (
+                          <Link href={part.href} className={styles.partLink}>
+                            {noOrphans(part.title)}
+                            <Arrow size="0.58em" />
+                          </Link>
+                        ) : (
+                          <a
+                            href={part.href}
+                            target="_blank"
+                            rel="noreferrer"
+                            className={styles.partLink}
+                          >
+                            {noOrphans(part.title)}
+                            <Arrow size="0.58em" />
+                          </a>
+                        )}
                       </h3>
                     ) : (
                       <h3 className={styles.partTitle}>{noOrphans(part.title)}</h3>
