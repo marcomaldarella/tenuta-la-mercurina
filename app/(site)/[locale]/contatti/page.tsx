@@ -103,14 +103,18 @@ export default async function ContactsPage({
         <span className={styles.line}>
           <a href={instagramLink} target="_blank" rel="noreferrer">
             <ContactIcon name="instagram" size="0.8em" />
-            {locale === 'en' ? 'follow us on IG' : 'seguici su IG'}
+            {locale === 'en'
+              ? 'follow us on tenuta_lamercurina'
+              : 'seguici su tenuta_lamercurina'}
           </a>
         </span>
         {facebookLink && (
           <span className={styles.line}>
             <a href={facebookLink} target="_blank" rel="noreferrer">
               <ContactIcon name="facebook" size="0.8em" />
-              {locale === 'en' ? 'follow us on FB' : 'seguici su FB'}
+              {locale === 'en'
+                ? 'follow us on tenuta lamercurina'
+                : 'seguici su tenuta lamercurina'}
             </a>
           </span>
         )}

@@ -1,5 +1,5 @@
 import type { MetadataRoute } from 'next'
-import { locales } from '../lib/i18n'
+import { onlineLocales } from '../lib/i18n'
 import { topLevelSlugs } from '../lib/nav'
 import { getMarketDates } from '../lib/queries'
 
@@ -19,12 +19,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   ]
 
   return paths.flatMap((path) =>
-    locales.map((locale) => ({
+    onlineLocales.map((locale) => ({
       url: `${siteUrl}/${locale}${path}`,
       lastModified: new Date(),
       alternates: {
         languages: Object.fromEntries(
-          locales.map((l) => [l, `${siteUrl}/${l}${path}`])
+          onlineLocales.map((l) => [l, `${siteUrl}/${l}${path}`])
         ),
       },
     }))

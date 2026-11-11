@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useEffect, useRef, useState } from 'react'
 import type { Locale } from '../lib/i18n'
-import { locales } from '../lib/i18n'
+import { onlineLocales } from '../lib/i18n'
 import { t } from '../lib/l10n'
 import { navEntries, overlayRows } from '../lib/nav'
 import Logo from './Logo'
@@ -161,8 +161,10 @@ export default function Header({
           )}
         </nav>
 
+        {/* con una sola lingua online lo switch non si mostra */}
+        {onlineLocales.length > 1 && (
         <div className={styles.lang} data-nav-item>
-          {locales.map((l, i) => (
+          {onlineLocales.map((l, i) => (
             <span key={l}>
               {i > 0 && <span className={styles.langSep}>|</span>}
               <Link
@@ -174,6 +176,7 @@ export default function Header({
             </span>
           ))}
         </div>
+        )}
 
         <button
           className={styles.menuButton}
@@ -211,11 +214,12 @@ export default function Header({
                 {row.label[locale]}
               </Link>
             ))}
+            {onlineLocales.length > 1 && (
             <div
               className={`${styles.overlayLang} ${styles.overlayItemAnim}`}
               style={{ '--i': overlayRows.length } as React.CSSProperties}
             >
-              {locales.map((l) => (
+              {onlineLocales.map((l) => (
                 <Link
                   key={l}
                   href={switchLocale(l)}
@@ -226,6 +230,7 @@ export default function Header({
                 </Link>
               ))}
             </div>
+            )}
           </nav>
 
           <div

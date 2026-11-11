@@ -6,7 +6,7 @@ import CookieNotice from '../../../components/CookieNotice'
 import Footer from '../../../components/Footer'
 import Header from '../../../components/Header'
 import SmoothScroll from '../../../components/SmoothScroll'
-import { isLocale, locales, type Locale } from '../../../lib/i18n'
+import { isLocale, locales, onlineLocales, type Locale } from '../../../lib/i18n'
 import { pick } from '../../../lib/l10n'
 import { getSiteSettings } from '../../../lib/queries'
 import '../../globals.css'
@@ -43,7 +43,7 @@ export async function generateMetadata({
     metadataBase: new URL(siteUrl),
     alternates: {
       canonical: `/${locale}`,
-      languages: Object.fromEntries(locales.map((l) => [l, `/${l}`])),
+      languages: Object.fromEntries(onlineLocales.map((l) => [l, `/${l}`])),
     },
     openGraph: {
       siteName: 'Tenuta Lamercurina',
