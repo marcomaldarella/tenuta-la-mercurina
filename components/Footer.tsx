@@ -19,9 +19,15 @@ export default function Footer({
             {t('instagram', locale)}
           </a>
         )}
-        {settings?.phone && (
-          <a href={`tel:${settings.phone.replace(/\s/g, '')}`}>{settings.phone}</a>
-        )}
+        {settings?.phone &&
+          (settings.whatsapp ? (
+            /* il numero apre la chat WhatsApp della Tenuta */
+            <a href={settings.whatsapp} target="_blank" rel="noreferrer">
+              {settings.phone}
+            </a>
+          ) : (
+            <a href={`tel:${settings.phone.replace(/\s/g, '')}`}>{settings.phone}</a>
+          ))}
         {settings?.email && <a href={`mailto:${settings.email}`}>{settings.email}</a>}
         <Link href={`/${locale}/privacy-policy`}>{t('privacy', locale)}</Link>
       </div>

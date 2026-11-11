@@ -41,7 +41,13 @@ export default async function ContactsPage({
     'Tenuta Lamercurina\nVia Cascina San Marzano, 5\nPieve del Cairo, Pavia'
 
   const emailLink = settings?.email ? `mailto:${settings.email}` : '#'
-  const phoneLink = settings?.phone ? `tel:${settings.phone.replace(/\s/g, '')}` : null
+  /* col link WhatsApp il numero apre la chat; senza, resta la chiamata */
+  const phoneLink = settings?.whatsapp
+    ? settings.whatsapp
+    : settings?.phone
+      ? `tel:${settings.phone.replace(/\s/g, '')}`
+      : null
+  const phoneBlank = settings?.whatsapp ? { target: '_blank', rel: 'noreferrer' } : {}
   const instagramLink = settings?.instagram ?? '#'
   const facebookLink = settings?.facebook ?? null
 
@@ -82,7 +88,7 @@ export default async function ContactsPage({
       <p className={`${styles.block} ${styles.body} ${styles.contact}`}>
         {phoneLink && (
           <span className={styles.line}>
-            <a href={phoneLink}>
+            <a href={phoneLink} {...phoneBlank}>
               <ContactIcon name="phone" size="0.8em" />
               {settings?.phone}
             </a>

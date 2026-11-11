@@ -101,6 +101,7 @@ export default async function LocaleLayout({
         <Header
           locale={locale as Locale}
           phone={settings?.phone}
+          whatsapp={settings?.whatsapp}
           email={settings?.email}
           instagram={settings?.instagram}
         />

@@ -9,6 +9,12 @@ export const siteSettings = defineType({
     defineField({ name: 'description', title: 'Descrizione', type: 'localeText' }),
     defineField({ name: 'email', title: 'Email', type: 'string' }),
     defineField({ name: 'phone', title: 'Telefono', type: 'string' }),
+    defineField({
+      name: 'whatsapp',
+      title: 'Link WhatsApp',
+      description: 'Se presente, il numero di telefono sul sito apre questa chat',
+      type: 'url',
+    }),
     defineField({ name: 'address', title: 'Indirizzo', type: 'localeText' }),
     defineField({ name: 'instagram', title: 'Instagram', type: 'url' }),
     defineField({ name: 'facebook', title: 'Facebook', type: 'url' }),

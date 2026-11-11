@@ -46,6 +46,7 @@ export type SiteSettings = {
   description?: L10n
   email?: string
   phone?: string
+  whatsapp?: string
   address?: L10n
   instagram?: string
   facebook?: string
@@ -82,6 +83,6 @@ export async function getMarketDates(): Promise<MarketDate[]> {
 
 export async function getSiteSettings(): Promise<SiteSettings | null> {
   return client.fetch(
-    groq`*[_type == "siteSettings"][0]{ title, description, email, phone, address, instagram, facebook }`
+    groq`*[_type == "siteSettings"][0]{ title, description, email, phone, whatsapp, address, instagram, facebook }`
   )
 }

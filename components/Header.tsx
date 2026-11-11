@@ -16,11 +16,13 @@ const THEME_BROWN = '#4b3a2f'
 export default function Header({
   locale,
   phone,
+  whatsapp,
   email,
   instagram,
 }: {
   locale: Locale
   phone?: string
+  whatsapp?: string
   email?: string
   instagram?: string
 }) {
@@ -236,7 +238,14 @@ export default function Header({
                   {t('instagram', locale)}
                 </a>
               )}
-              {phone && <a href={`tel:${phone.replace(/\s/g, '')}`}>{phone}</a>}
+              {phone &&
+                (whatsapp ? (
+                  <a href={whatsapp} target="_blank" rel="noreferrer">
+                    {phone}
+                  </a>
+                ) : (
+                  <a href={`tel:${phone.replace(/\s/g, '')}`}>{phone}</a>
+                ))}
             </div>
             <div className={styles.overlayFooterRight}>
               <Link
