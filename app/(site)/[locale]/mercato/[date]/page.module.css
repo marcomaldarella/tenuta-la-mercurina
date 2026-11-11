@@ -1,4 +1,7 @@
-/* niente hero: il blocco parte sotto l'header flottante */
+/* niente hero: il blocco parte sotto l'header flottante; sotto, aria
+   prima del footer così la pagina scorre in modo franco e il footer
+   non resta appeso al filo del fold */
 .main {
   padding-top: clamp(96px, 14vh, 160px);
+  padding-bottom: clamp(48px, 8vh, 96px);
 }
