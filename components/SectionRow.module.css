@@ -56,7 +56,7 @@
   font-size: 14px;
   font-weight: 600;
   line-height: 1.4;
-  margin-bottom: -10px; /* annulla il gap di .bottom: sta attaccato al testo */
+  margin-bottom: 0; /* il gap di .bottom ora è 0: niente più negativo */
 }
 
 /* titoletto in mezzo al corpo (**così** nel CMS): scorre dentro al testo
@@ -81,7 +81,8 @@
 .bottom {
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  /* richiesta cliente 11/11: testo continuo, nessuno stacco (era 14px) */
+  gap: 0;
   /* niente cap: la misura la dà la colonna della griglia */
   max-width: none;
 }

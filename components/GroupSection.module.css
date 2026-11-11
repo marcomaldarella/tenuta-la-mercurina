@@ -49,7 +49,9 @@
 .bottom {
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  /* richiesta cliente 11/11: nessuno stacco tra le sezioni del blocco,
+     il testo scorre continuo (era 14px) */
+  gap: 0;
   /* niente cap: la misura la dà la colonna della griglia */
   max-width: none;
 }

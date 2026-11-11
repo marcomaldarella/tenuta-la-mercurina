@@ -39,17 +39,33 @@ export default function BodyText({
           </h3>
         ) : (
           /* richiesta cliente 11/11: niente a-capo né righe vuote nei testi —
-             le righe del CMS si fondono in un paragrafo unico continuo */
-          blocco.righe.join(' ').trim() && (
-            <p key={i} className={textClass}>
-              {noOrphans(
-                blocco.righe
-                  .map((r) => r.trim())
-                  .filter(Boolean)
-                  .join(' ')
-              )}
-            </p>
-          )
+             le righe del CMS si fondono in un paragrafo continuo. ECCEZIONE:
+             le voci di elenco (righe che iniziano con •) restano una per riga */
+          (() => {
+            const linee: string[] = []
+            for (const r of blocco.righe) {
+              const riga = r.trim()
+              if (!riga) continue
+              const puntata = riga.startsWith('•') || riga.startsWith('- ')
+              const prec = linee[linee.length - 1]
+              if (puntata || !prec || prec.startsWith('•') || prec.startsWith('- ')) {
+                linee.push(riga)
+              } else {
+                linee[linee.length - 1] = `${prec} ${riga}`
+              }
+            }
+            if (!linee.length) return null
+            return (
+              <p key={i} className={textClass}>
+                {linee.map((l, j) => (
+                  <span key={j}>
+                    {j > 0 && <br />}
+                    {noOrphans(l)}
+                  </span>
+                ))}
+              </p>
+            )
+          })()
         )
       )}
     </div>
