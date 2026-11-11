@@ -56,7 +56,9 @@ export default function GroupSection({
                     ) : (
                       <h3 className={styles.partTitle}>{noOrphans(part.title)}</h3>
                     ))}
-                  {part.subtitle && (
+                  {/* in Studio capita che titolo e sottotitolo vengano
+                      compilati con la stessa frase: il doppione non si rende */}
+                  {part.subtitle && part.subtitle.trim() !== part.title?.trim() && (
                     <h3 className={styles.partTitle}>{noOrphans(part.subtitle)}</h3>
                   )}
                   {part.text && (

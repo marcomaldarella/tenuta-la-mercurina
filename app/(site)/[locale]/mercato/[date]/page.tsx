@@ -45,10 +45,12 @@ export default async function MercatoGalleryPage({
 
   return (
     <main className={styles.main}>
+      {/* titolo grande = il nome del mercato, la data fa da titoletto
+          (richiesta Marco 11/11: prima erano invertiti) */}
       <GroupSection
         id="gallery"
-        title={formatDate(date)}
-        parts={[{ key: 'label', title: marketLabel?.[locale] }]}
+        title={marketLabel?.[locale] ?? formatDate(date)}
+        parts={[{ key: 'label', title: formatDate(date) }]}
         urls={imageUrls(entry.images, 1200)}
         cta={{ label: t('backToEvents', locale), href: `/${locale}/eventi#il-mercato` }}
       />

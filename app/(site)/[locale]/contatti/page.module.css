@@ -21,9 +21,14 @@
   line-height: 1.06;
 }
 
-/* indirizzo e contatti: corpo minore del titolo, come nel figma */
+/* indirizzo e contatti: corpo minore del titolo, come nel figma.
+   L'interlinea 1.06 di .block qui è troppo stretta: il discendente
+   della g finisce FUORI dalla riga (ink overflow) e al primo paint
+   Chrome lo scarta — la g appariva mozzata finché qualcosa non
+   ridipingeva. Con 1.3 il glifo sta dentro la riga, niente culling */
 .body {
   font-size: var(--contatti-body);
+  line-height: 1.3;
 }
 
 /* logo e indirizzo/contatti nella stessa colonna (Marco, 21-22 set):
