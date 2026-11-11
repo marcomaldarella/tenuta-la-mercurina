@@ -38,9 +38,16 @@ export default function BodyText({
             {noOrphans(blocco.righe[0])}
           </h3>
         ) : (
-          blocco.righe.join('\n').trim() && (
+          /* richiesta cliente 11/11: niente a-capo né righe vuote nei testi —
+             le righe del CMS si fondono in un paragrafo unico continuo */
+          blocco.righe.join(' ').trim() && (
             <p key={i} className={textClass}>
-              {noOrphans(blocco.righe.join('\n').trim())}
+              {noOrphans(
+                blocco.righe
+                  .map((r) => r.trim())
+                  .filter(Boolean)
+                  .join(' ')
+              )}
             </p>
           )
         )

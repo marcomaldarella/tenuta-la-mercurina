@@ -54,27 +54,29 @@
   max-width: none;
 }
 
+/* richiesta cliente 11/11: nessuno stacco sotto i titoletti in grassetto */
 .partTitle {
   font-size: 14px;
   font-weight: 600;
-  margin-bottom: 2px;
+  margin-bottom: 0;
 }
 
-/* titoletto in mezzo al corpo: stacco maggiore dell'interlinea del testo */
+/* titoletto in mezzo al corpo: attaccato al suo paragrafo, piccolo
+   respiro solo sopra per staccarlo dal testo precedente */
 .innerTitle {
   font-size: 14px;
   font-weight: 600;
-  margin-top: 16px;
-  margin-bottom: 3px;
+  margin-top: 8px;
+  margin-bottom: 0;
 }
 
 .text {
   font-size: 14px;
   /* paragrafi lunghi: interlinea più stretta del 1.45 del body */
   line-height: 1.3;
-  /* i \n del testo (singoli = a capo, doppi = stacco) vanno rispettati,
-     altrimenti il browser li collassa in un unico spazio */
-  white-space: pre-line;
+  /* richiesta cliente 11/11: testo continuo senza stacchi — gli a-capo
+     li collassa già BodyText, qui si azzera il margine dei paragrafi */
+  margin: 0;
 }
 
 .cta {
