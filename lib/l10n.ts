@@ -50,7 +50,7 @@ export const ui = {
   discover: { it: 'scopri', en: 'discover' },
   backToEvents: { it: 'torna agli eventi', en: 'back to events' },
   /* footer: riga sopra il logo Darefrutto (doc CT ULTIMO 10/11) */
-  partOf: { it: 'Tenuta Lamercurina è parte di', en: 'Tenuta Lamercurina is part of' },
+  partOf: { it: 'tenuta lamercurina è parte di', en: 'tenuta lamercurina is part of' },
 } as const
 
 export type UiKey = keyof typeof ui
