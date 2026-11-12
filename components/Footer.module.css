@@ -34,8 +34,13 @@
 }
 
 .foundationLogo {
-  height: 38px;
+  /* png RIFILATO al contenuto (il file originale ha ~33px di trasparente
+     ai lati): altezza riproporzionata (38*111/113) e base del wordmark
+     DAREFRUTTO portata sulla baseline del testo accanto — il box del
+     testo scende sotto la baseline di discendente+mezza interlinea */
+  height: 37px;
   width: auto;
+  margin-bottom: 6px;
 }
 
 @media (max-width: 700px) {

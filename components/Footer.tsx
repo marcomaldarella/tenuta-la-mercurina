@@ -42,7 +42,7 @@ export default function Footer({
         <span className={styles.foundationText}>{t('partOf', locale)}</span>
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src="/logos/darefrutto.png"
+          src="/logos/darefrutto-trim.png"
           alt="Fondazione Darefrutto"
           className={styles.foundationLogo}
         />
