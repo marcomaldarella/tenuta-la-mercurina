@@ -118,11 +118,9 @@
   min-height: 260px;
 }
 
-/* solo home (fine tuning 17/11): quattro card sole, testi corti → corpi
-   e titoli su di parecchio per riempire il bianco; le pagine interne
-   restano alle misure standard */
-/* i titoli NON si toccano: uguali ovunque (Marco 17/11), ingrandiscono
-   solo i corpi */
+/* solo home (fine tuning 17/11): quattro card sole, testi corti → il BODY
+   sale per riempire il bianco; titoli (e hero) identici al resto del sito,
+   pagine interne alle misure standard */
 .large .subtitle,
 .large .innerTitle,
 .large .text,

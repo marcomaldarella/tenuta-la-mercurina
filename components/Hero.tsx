@@ -9,7 +9,6 @@ export default function Hero({
   subheading,
   text,
   headingTag: Tag = 'h1',
-  large = false,
 }: {
   urls: string[]
   heading?: string
@@ -17,8 +16,6 @@ export default function Hero({
   text?: string
   /* h2 per i blocchi successivi delle pagine unite (un solo h1 a pagina) */
   headingTag?: 'h1' | 'h2'
-  /* solo home: testi HP ingranditi (fine tuning 17/11) */
-  large?: boolean
 }) {
   /* dal figma l'hero porta un solo testo: il pre-header, piccolo e largo in
      basso a sinistra. Niente display grande sopra la foto */
@@ -33,7 +30,7 @@ export default function Hero({
         <Carousel urls={urls} className={styles.carousel} light shaded />
       </ViewTransition>
       {lead && (
-        <FitLine as={Tag} className={`${styles.text} ${large ? styles.textLarge : ''}`}>
+        <FitLine as={Tag} className={styles.text}>
           {lead}
         </FitLine>
       )}

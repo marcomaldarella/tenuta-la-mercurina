@@ -32,12 +32,6 @@
   white-space: nowrap;
 }
 
-/* solo home (fine tuning 17/11): tutti i testi della HP più grandi, qui il
-   pre-header; FitLine continua a garantire la riga unica da web */
-.textLarge {
-  font-size: clamp(17px, 1.72vw, 25px);
-}
-
 @media (max-width: 700px) {
   .text {
     white-space: normal;
