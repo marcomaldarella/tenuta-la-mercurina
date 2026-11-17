@@ -15,6 +15,24 @@ const nextConfig: NextConfig = {
   // tenuta/foresteria (set 2026): i vecchi slug atterrano sull'ancora
   async redirects() {
     return [
+      // richiesta cliente 17/11: il sito NON deve essere visibile, il dominio
+      // porta tutto alla pagina della tenuta sul sito della Fondazione.
+      // 307 (non 308): se ci si ripensa i browser non lo tengono cachato.
+      // Vincolato all'host: la preview tenuta-la-mercurina.vercel.app resta
+      // viva per lavorarci (e per lo Studio). Per riaccendere il sito basta
+      // togliere questo blocco
+      {
+        source: "/:path*",
+        has: [{ type: "host", value: "tenutalamercurina.it" }],
+        destination: "https://www.fondazionedarefrutto.it/fdf/tenuta-lamercurina/",
+        permanent: false,
+      },
+      {
+        source: "/:path*",
+        has: [{ type: "host", value: "www.tenutalamercurina.it" }],
+        destination: "https://www.fondazionedarefrutto.it/fdf/tenuta-lamercurina/",
+        permanent: false,
+      },
       // la pagina unita vive su /chi-siamo da nov 2026 (la voce "tenuta" in
       // menu ora porta in home): il vecchio url e le ancore seguono
       { source: "/:locale/tenuta", destination: "/:locale/chi-siamo", permanent: true },
