@@ -49,6 +49,8 @@ export const ui = {
   instagram: { it: 'instagram', en: 'instagram' },
   discover: { it: 'scopri', en: 'discover' },
   backToEvents: { it: 'torna agli eventi', en: 'back to events' },
+  /* blocco mercato su /eventi: al posto dell'elenco date (fine tuning 17/11) */
+  marketGallery: { it: 'Scopri la gallery', en: 'Discover the gallery' },
   /* footer: riga sopra il logo Darefrutto (doc CT ULTIMO 10/11) */
   partOf: { it: 'tenuta lamercurina è parte di', en: 'tenuta lamercurina is part of' },
 } as const

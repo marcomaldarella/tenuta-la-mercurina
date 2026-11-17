@@ -100,6 +100,12 @@ const nextConfig: NextConfig = {
         destination: "/:locale/eventi#eventi-privati",
         permanent: true,
       },
+      // le gallery per singola data sono confluite nella pagina unica (17/11)
+      {
+        source: "/:locale/mercato/:date",
+        destination: "/:locale/mercato",
+        permanent: true,
+      },
     ];
   },
 };

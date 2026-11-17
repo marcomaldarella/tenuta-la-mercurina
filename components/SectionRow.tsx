@@ -13,6 +13,7 @@ export default function SectionRow({
   reverse = false,
   href,
   cta,
+  large = false,
 }: {
   title?: string
   subtitle?: string
@@ -21,6 +22,8 @@ export default function SectionRow({
   reverse?: boolean
   href?: string
   cta?: { label: string; href: string }
+  /* solo home: con 4 card i corpi a 14px lasciavano troppo bianco */
+  large?: boolean
 }) {
   const heading = href ? (
     <Link href={href} className={styles.titleLink}>
@@ -31,7 +34,9 @@ export default function SectionRow({
   )
 
   return (
-    <section className={`${styles.row} ${reverse ? styles.reverse : ''}`}>
+    <section
+      className={`${styles.row} ${reverse ? styles.reverse : ''} ${large ? styles.large : ''}`}
+    >
       <div className={styles.copy}>
         {heading}
         <div className={styles.bottom}>

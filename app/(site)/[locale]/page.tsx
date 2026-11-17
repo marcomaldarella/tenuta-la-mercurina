@@ -23,10 +23,12 @@ export default async function HomePage({
         heading={pick(page?.hero?.heading, locale)}
         subheading={pick(page?.hero?.subheading, locale)}
         text={pick(page?.hero?.text, locale)}
+        large
       />
       {page?.sections?.map((section, index) => (
         <SectionRow
           key={section._key}
+          large
           title={pick(section.title, locale)}
           subtitle={pick(section.subtitle, locale)}
           text={pick(section.text, locale)}

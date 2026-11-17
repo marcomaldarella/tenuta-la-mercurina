@@ -136,25 +136,13 @@ export default async function ContentPage({ params }: { params: Params }) {
       group.heroFrom ? getPage(group.heroFrom) : Promise.resolve(null),
       hasMarket ? getMarketDates() : Promise.resolve([]),
     ])
-    const todayInGroup = new Date().toISOString().slice(0, 10)
+    /* fine tuning 17/11: niente più elenco date nel blocco — una sola CTA
+       "Scopri la gallery" verso /mercato, se almeno un'edizione ha foto */
+    const hasGallery = marketDatesInGroup.some((entry) => entry.images?.length)
 
     const blocks = anchorItems.flatMap((item, index) => {
       const page = pages[index]
       if (!page) return []
-      /* il mercato non ha sezioni: il suo contenuto sono le date */
-      const dateParts =
-        item.slug === 'il-mercato'
-          ? marketDatesInGroup.map((entry) => ({
-              key: entry._id,
-              title: formatDate(entry.date),
-              subtitle: undefined,
-              text: pick(entry.text, locale),
-              /* data cliccabile: apre la pagina gallery dell'edizione */
-              href: entry.images?.length
-                ? `/${locale}/mercato/${entry.date}`
-                : undefined,
-            }))
-          : []
       return [
         {
           id: item.slug,
@@ -168,7 +156,6 @@ export default async function ContentPage({ params }: { params: Params }) {
               subtitle: pick(section.subtitle, locale),
               text: pick(section.text, locale),
             })),
-            ...dateParts,
           ],
           /* se la sotto-pagina non ha sezioni con foto (il mercato) la
              gallery del blocco resta vuota: si usa il suo hero */
@@ -183,15 +170,13 @@ export default async function ContentPage({ params }: { params: Params }) {
           /* le pagine con bookCta portavano "prenota ora" in fondo: da blocco
              il bottone resta, ancorato alla sua sezione; endCta = contattaci */
           cta: (
-            page.bookCta ||
-            (item.slug === 'il-mercato' &&
-              marketDatesInGroup.some(
-                (entry) => entry.bookable && entry.date >= todayInGroup
-              ))
-              ? { label: t('book', locale), href: `/${locale}/prenota` }
-              : page.endCta
-                ? { label: t('contact', locale), href: `/${locale}/contatti` }
-                : undefined
+            item.slug === 'il-mercato' && hasGallery
+              ? { label: t('marketGallery', locale), href: `/${locale}/mercato` }
+              : page.bookCta
+                ? { label: t('book', locale), href: `/${locale}/prenota` }
+                : page.endCta
+                  ? { label: t('contact', locale), href: `/${locale}/contatti` }
+                  : undefined
           ) as { label: string; href: string } | undefined,
         },
       ]

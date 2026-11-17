@@ -6,16 +6,15 @@ import { getMarketDates } from '../lib/queries'
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://tenutalamercurina.com'
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  /* le gallery del mercato esistono solo per le edizioni con foto */
+  /* la gallery del mercato (pagina unica) esiste solo se almeno
+     un'edizione ha foto */
   const marketDates = await getMarketDates()
   const paths = [
     '',
     ...topLevelSlugs.map((slug) => `/${slug}`),
     '/prenota',
     '/privacy-policy',
-    ...marketDates
-      .filter((entry) => entry.images?.length)
-      .map((entry) => `/mercato/${entry.date}`),
+    ...(marketDates.some((entry) => entry.images?.length) ? ['/mercato'] : []),
   ]
 
   return paths.flatMap((path) =>

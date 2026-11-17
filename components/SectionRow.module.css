@@ -118,6 +118,24 @@
   min-height: 260px;
 }
 
+/* solo home (fine tuning 17/11): quattro card sole, testi corti → corpi
+   e titoli su di parecchio per riempire il bianco; le pagine interne
+   restano alle misure standard */
+.large .title {
+  font-size: clamp(44px, 4.4vw, 66px);
+}
+
+.large .subtitle,
+.large .innerTitle,
+.large .text,
+.large .cta {
+  font-size: 19px;
+}
+
+.large .text {
+  line-height: 1.35;
+}
+
 @media (max-width: 900px) {
   .row,
   .reverse {
@@ -153,5 +171,16 @@
 
   .bottom {
     order: 3;
+  }
+
+  .large .title {
+    font-size: clamp(36px, 10.5vw, 52px);
+  }
+
+  .large .subtitle,
+  .large .innerTitle,
+  .large .text,
+  .large .cta {
+    font-size: 17px;
   }
 }
