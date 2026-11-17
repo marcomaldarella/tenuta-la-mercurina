@@ -121,10 +121,8 @@
 /* solo home (fine tuning 17/11): quattro card sole, testi corti → corpi
    e titoli su di parecchio per riempire il bianco; le pagine interne
    restano alle misure standard */
-.large .title {
-  font-size: clamp(42px, 4.2vw, 63px);
-}
-
+/* i titoli NON si toccano: uguali ovunque (Marco 17/11), ingrandiscono
+   solo i corpi */
 .large .subtitle,
 .large .innerTitle,
 .large .text,
@@ -171,10 +169,6 @@
 
   .bottom {
     order: 3;
-  }
-
-  .large .title {
-    font-size: clamp(34px, 10vw, 50px);
   }
 
   .large .subtitle,
