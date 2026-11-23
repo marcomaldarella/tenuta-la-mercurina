@@ -49,8 +49,14 @@ export default async function ContactsPage({
       : null
   const phoneBlank = settings?.whatsapp ? { target: '_blank', rel: 'noreferrer' } : {}
   const instagramLink = settings?.instagram ?? '#'
-  const facebookLink = settings?.facebook ?? null
+  /* account completo con la chiocciola (mail CORREZIONI SITO 23/11) */
+  const instagramHandle = settings?.instagram
+    ?.replace(/\/+$/, '')
+    .split('/')
+    .pop()
 
+  /* mail CORREZIONI SITO 23/11: prima i modi di contattarci, in corpo
+     ridotto; si chiude con logo e indirizzo. Niente facebook */
   return (
     <main className={styles.main}>
       <FixedPage />
@@ -60,6 +66,32 @@ export default async function ContactsPage({
       </div>
       <div className={styles.identity}>
       <LogoWidthMatch>
+      <p className={`${styles.block} ${styles.body} ${styles.contact}`}>
+        {settings?.email && (
+          <span className={styles.line}>
+            <a href={emailLink}>
+              <ContactIcon name="email" size="0.8em" />
+              {settings.email}
+            </a>
+          </span>
+        )}
+        {phoneLink && (
+          <span className={styles.line}>
+            <a href={phoneLink} {...phoneBlank}>
+              <ContactIcon name="phone" size="0.8em" />
+              {locale === 'en' ? 'contact us' : 'contattaci'}
+            </a>
+          </span>
+        )}
+        {instagramHandle && (
+          <span className={styles.line}>
+            <a href={instagramLink} target="_blank" rel="noreferrer">
+              <ContactIcon name="instagram" size="0.8em" />
+              @{instagramHandle}
+            </a>
+          </span>
+        )}
+      </p>
       {/* il nome lo dice il logo: dall'indirizzo cade l'eventuale prima riga.
           Il logo è largo quanto la riga di indirizzo più lunga (misurata via
           LogoWidthMatch), non un clamp indipendente: così flexa sempre alla
@@ -84,40 +116,6 @@ export default async function ContactsPage({
               {line}
             </span>
           ))}
-      </p>
-      <p className={`${styles.block} ${styles.body} ${styles.contact}`}>
-        {phoneLink && (
-          <span className={styles.line}>
-            <a href={phoneLink} {...phoneBlank}>
-              <ContactIcon name="phone" size="0.8em" />
-              {settings?.phone}
-            </a>
-          </span>
-        )}
-        <span className={styles.line}>
-          <a href={emailLink}>
-            <ContactIcon name="email" size="0.8em" />
-            {locale === 'en' ? 'write us an email' : 'scrivici una email'}
-          </a>
-        </span>
-        <span className={styles.line}>
-          <a href={instagramLink} target="_blank" rel="noreferrer">
-            <ContactIcon name="instagram" size="0.8em" />
-            {locale === 'en'
-              ? 'follow us on tenuta_lamercurina'
-              : 'seguici su tenuta_lamercurina'}
-          </a>
-        </span>
-        {facebookLink && (
-          <span className={styles.line}>
-            <a href={facebookLink} target="_blank" rel="noreferrer">
-              <ContactIcon name="facebook" size="0.8em" />
-              {locale === 'en'
-                ? 'follow us on tenuta lamercurina'
-                : 'seguici su tenuta lamercurina'}
-            </a>
-          </span>
-        )}
       </p>
       </LogoWidthMatch>
       </div>

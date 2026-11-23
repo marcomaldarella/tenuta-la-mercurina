@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import ContactIcon from './ContactIcon'
 import type { Locale } from '../lib/i18n'
 import { t } from '../lib/l10n'
 import type { SiteSettings } from '../lib/queries'
@@ -13,22 +14,20 @@ export default function Footer({
 }) {
   return (
     <footer className={styles.footer}>
+      {/* mail CORREZIONI SITO 23/11: nel piede restano solo il simbolo
+          instagram e la privacy — telefono e mail vivono su /contatti */}
       <div className={styles.col}>
         {settings?.instagram && (
-          <a href={settings.instagram} target="_blank" rel="noreferrer">
-            {t('instagram', locale)}
+          <a
+            href={settings.instagram}
+            target="_blank"
+            rel="noreferrer"
+            aria-label="Instagram"
+            className={styles.iconLink}
+          >
+            <ContactIcon name="instagram" size="1.15em" />
           </a>
         )}
-        {settings?.phone &&
-          (settings.whatsapp ? (
-            /* il numero apre la chat WhatsApp della Tenuta */
-            <a href={settings.whatsapp} target="_blank" rel="noreferrer">
-              {settings.phone}
-            </a>
-          ) : (
-            <a href={`tel:${settings.phone.replace(/\s/g, '')}`}>{settings.phone}</a>
-          ))}
-        {settings?.email && <a href={`mailto:${settings.email}`}>{settings.email}</a>}
         <Link href={`/${locale}/privacy-policy`}>{t('privacy', locale)}</Link>
       </div>
       <a

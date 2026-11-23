@@ -7,13 +7,24 @@
   gap: 24px;
   padding: 40px var(--gutter) 28px;
   font-size: 13px;
-  font-weight: 600;
+  /* mail CORREZIONI SITO 23/11: carattere non grassetto, come i testi */
+  font-weight: 400;
 }
 
 .col {
   display: flex;
+  align-items: center;
   gap: clamp(20px, 3vw, 44px);
   flex-wrap: wrap;
+}
+
+/* l'icona sta da sola: niente margine destro da testo accanto */
+.iconLink {
+  display: flex;
+}
+
+.iconLink svg {
+  margin-right: 0 !important;
 }
 
 .footer a:hover {

@@ -8,7 +8,7 @@ import Hero from '../../../../components/Hero'
 import RichText from '../../../../components/RichText'
 import SectionRow from '../../../../components/SectionRow'
 import type { Locale } from '../../../../lib/i18n'
-import { pick, t } from '../../../../lib/l10n'
+import { formatDateLong, pick, t } from '../../../../lib/l10n'
 import { anchorGroups } from '../../../../lib/nav'
 import {
   getMarketDates,
@@ -34,11 +34,6 @@ export async function generateMetadata({
   const page = await getPage(slug)
   const title = pick(page?.title, locale)
   return title ? { title } : {}
-}
-
-function formatDate(date: string): string {
-  const [year, month, day] = date.split('-')
-  return `${day}.${month}.${year}`
 }
 
 type RowData = {
@@ -253,7 +248,7 @@ export default async function ContentPage({ params }: { params: Params }) {
   const rows: RowData[] = isMarket
     ? marketDates.map((entry) => ({
         key: entry._id,
-        title: formatDate(entry.date),
+        title: formatDateLong(entry.date, locale),
         text: pick(entry.text, locale),
         urls: imageUrls(entry.images, 1200),
         cta:

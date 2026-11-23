@@ -97,13 +97,17 @@
 }
 
 .cta {
-  /* il bordo, non text-decoration: la sottolineatura deve correre anche
-     sotto la freccia, e text-decoration salta gli inline-block (l’svg) */
-  display: inline-block;
-  font-size: 14px;
+  /* mail CORREZIONI SITO 23/11: piccola e MAIUSCOLA per staccarsi dal corpo,
+     scorre inline in coda all'ultimo paragrafo così il testo resta allineato
+     alla foto con o senza pulsante. Il bordo, non text-decoration: la
+     sottolineatura deve correre anche sotto la freccia */
+  display: inline;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  white-space: nowrap;
   border-bottom: 1px solid currentColor;
-  padding-bottom: 3px;
-  align-self: flex-start;
+  padding-bottom: 2px;
 }
 
 .cta:hover {
@@ -116,20 +120,6 @@
   aspect-ratio: 627 / 451;
   align-self: start;
   min-height: 260px;
-}
-
-/* solo home (fine tuning 17/11): quattro card sole, testi corti → il BODY
-   sale per riempire il bianco; titoli (e hero) identici al resto del sito,
-   pagine interne alle misure standard */
-.large .subtitle,
-.large .innerTitle,
-.large .text,
-.large .cta {
-  font-size: 18px;
-}
-
-.large .text {
-  line-height: 1.35;
 }
 
 @media (max-width: 900px) {
@@ -167,12 +157,5 @@
 
   .bottom {
     order: 3;
-  }
-
-  .large .subtitle,
-  .large .innerTitle,
-  .large .text,
-  .large .cta {
-    font-size: 16px;
   }
 }

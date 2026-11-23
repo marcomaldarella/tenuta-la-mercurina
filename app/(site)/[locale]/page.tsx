@@ -27,7 +27,6 @@ export default async function HomePage({
       {page?.sections?.map((section, index) => (
         <SectionRow
           key={section._key}
-          large
           title={pick(section.title, locale)}
           subtitle={pick(section.subtitle, locale)}
           text={pick(section.text, locale)}

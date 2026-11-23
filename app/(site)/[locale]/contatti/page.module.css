@@ -2,7 +2,8 @@
   /* misure dal figma 09_Contatti (1) (frame 1512×982): heading 72px, corpi 28px;
      scalano su viewport più piccoli senza traboccare sopra l'header */
   --contatti-display: clamp(26px, min(4.76vw, 7.3vh), 72px);
-  --contatti-body: clamp(17px, min(1.85vw, 2.85vh), 28px);
+  /* mail CORREZIONI SITO 23/11: corpo ridotto per contatti e indirizzo */
+  --contatti-body: clamp(15px, min(1.4vw, 2.2vh), 21px);
   /* stacco dall'alto: alzato un po' rispetto al figma (Marco, 21 set) */
   --contatti-header: clamp(80px, 20vh, 200px);
 
@@ -28,7 +29,9 @@
    ridipingeva. Con 1.3 il glifo sta dentro la riga, niente culling */
 .body {
   font-size: var(--contatti-body);
-  line-height: 1.3;
+  /* interlinea ridotta (mail 23/11) ma mai sotto 1.25: sotto, i discendenti
+     escono dalla riga e Chrome li mozza al primo paint (vedi sopra) */
+  line-height: 1.25;
 }
 
 /* logo e indirizzo/contatti nella stessa colonna (Marco, 21-22 set):
@@ -59,12 +62,17 @@
   height: auto;
 }
 
-.address {
-  margin-top: clamp(10px, 1.6vh, 16px);
+/* ordine invertito (mail 23/11): prima i contatti, poi logo + indirizzo */
+.contact {
+  margin-top: 0;
 }
 
-.contact {
-  margin-top: clamp(16px, 3.4vh, 34px);
+.logoLink {
+  margin-top: clamp(18px, 3.4vh, 36px);
+}
+
+.address {
+  margin-top: clamp(8px, 1.4vh, 14px);
 }
 
 /* l'indirizzo non va mai a capo: il corpo si adatta alla riga più lunga */
@@ -86,7 +94,7 @@
   .main {
     /* tarato sulla riga più lunga (l'indirizzo) perché non vada mai a capo */
     --contatti-display: clamp(22px, 8.4vw, 44px);
-    --contatti-body: clamp(17px, 6.6vw, 30px);
+    --contatti-body: clamp(15px, 5vw, 22px);
     /* titolo più staccato dall'header su mobile (Marco, 23 set) */
     --contatti-header: 140px;
     /* il blocco logo/indirizzi non tocca il footer (Marco, 25 set) */
@@ -94,15 +102,15 @@
   }
 
   .logoLink {
-    margin-top: 32px;
+    margin-top: 28px;
   }
 
   .address {
-    margin-top: 20px;
+    margin-top: 14px;
   }
 
   .contact {
-    margin-top: 18px;
+    margin-top: 0;
   }
 
   .sub {

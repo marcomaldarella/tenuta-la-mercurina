@@ -56,7 +56,9 @@
 .group .subList {
   position: absolute;
   top: 100%;
-  left: 0;
+  /* il pannello ha un padding: il rientro negativo tiene le sottovoci
+     allineate in colonna con la voce del gruppo */
+  left: -14px;
   width: max-content;
 }
 
@@ -79,11 +81,17 @@
     transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
+/* mail CORREZIONI SITO 23/11: le sottovoci sulle foto non si leggevano —
+   pannello pieno marrone (lo stesso dell'overlay mobile) e testo sempre
+   crema, qualunque cosa ci sia sotto */
 .subListInner {
   display: flex;
   flex-direction: column;
   overflow: hidden;
   min-height: 0;
+  background: var(--menu-bg);
+  padding: 10px 14px 12px;
+  gap: 3px;
 }
 
 .group:hover .subList {
@@ -99,6 +107,9 @@
   /* solo qui un filo più larghe del -7% globale: a questa taglia il testo si legge meglio */
   letter-spacing: -0.03em;
   opacity: 0.92;
+  /* sul pannello marrone il colore è fisso: il check geometrico
+     dell'header non tocca più queste voci */
+  color: var(--cream);
 }
 
 .subItem:hover,

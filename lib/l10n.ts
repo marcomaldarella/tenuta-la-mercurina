@@ -60,3 +60,24 @@ export type UiKey = keyof typeof ui
 export function t(key: UiKey, locale: Locale): string {
   return ui[key][locale] ?? ui[key].it
 }
+
+/* mail CORREZIONI SITO 23/11: le date del mercato scritte per esteso
+   ("11 ottobre 2026"), non più in cifre */
+const MONTHS = {
+  it: [
+    'gennaio', 'febbraio', 'marzo', 'aprile', 'maggio', 'giugno',
+    'luglio', 'agosto', 'settembre', 'ottobre', 'novembre', 'dicembre',
+  ],
+  en: [
+    'January', 'February', 'March', 'April', 'May', 'June',
+    'July', 'August', 'September', 'October', 'November', 'December',
+  ],
+} as const
+
+export function formatDateLong(date: string, locale: Locale): string {
+  const [year, month, day] = date.split('-').map(Number)
+  const name = MONTHS[locale][month - 1]
+  return locale === 'en'
+    ? `${name} ${day}, ${year}`
+    : `${day} ${name} ${year}`
+}

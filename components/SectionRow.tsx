@@ -13,7 +13,6 @@ export default function SectionRow({
   reverse = false,
   href,
   cta,
-  large = false,
 }: {
   title?: string
   subtitle?: string
@@ -22,8 +21,6 @@ export default function SectionRow({
   reverse?: boolean
   href?: string
   cta?: { label: string; href: string }
-  /* solo home: con 4 card i corpi a 14px lasciavano troppo bianco */
-  large?: boolean
 }) {
   const heading = href ? (
     <Link href={href} className={styles.titleLink}>
@@ -33,10 +30,17 @@ export default function SectionRow({
     <h2 className={styles.title}>{noOrphans(title)}</h2>
   )
 
+  /* mail CORREZIONI SITO 23/11: la cta scorre a fine testo (mai una riga
+     sua: il testo resta allineato alla foto), piccola e maiuscola */
+  const ctaLink = cta && (
+    <Link href={cta.href} className={styles.cta}>
+      {cta.label}
+      <Arrow size="0.58em" />
+    </Link>
+  )
+
   return (
-    <section
-      className={`${styles.row} ${reverse ? styles.reverse : ''} ${large ? styles.large : ''}`}
-    >
+    <section className={`${styles.row} ${reverse ? styles.reverse : ''}`}>
       <div className={styles.copy}>
         {heading}
         <div className={styles.bottom}>
@@ -49,14 +53,10 @@ export default function SectionRow({
               textClass={styles.text}
               titleClass={styles.innerTitle}
               className={styles.body}
+              tail={ctaLink}
             />
           )}
-          {cta && (
-            <Link href={cta.href} className={styles.cta}>
-              {cta.label}
-              <Arrow size="0.58em" />
-            </Link>
-          )}
+          {!text && ctaLink}
         </div>
       </div>
       {/* frecce crema come nel figma: stanno sopra la foto, non sul crema */}

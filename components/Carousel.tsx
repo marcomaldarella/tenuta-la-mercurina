@@ -40,7 +40,7 @@ export default function Carousel({
             aria-label="previous"
           >
             <svg viewBox="0 0 24 24" width="30" height="30" fill="none">
-              <path d="M15 4 7 12l8 8" stroke="currentColor" strokeWidth="1.6" />
+              <path d="M15 4 7 12l8 8" stroke="currentColor" strokeWidth="2.6" />
             </svg>
           </button>
           <button
@@ -49,7 +49,7 @@ export default function Carousel({
             aria-label="next"
           >
             <svg viewBox="0 0 24 24" width="30" height="30" fill="none">
-              <path d="m9 4 8 8-8 8" stroke="currentColor" strokeWidth="1.6" />
+              <path d="m9 4 8 8-8 8" stroke="currentColor" strokeWidth="2.6" />
             </svg>
           </button>
         </>
