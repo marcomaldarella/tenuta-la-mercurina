@@ -144,7 +144,7 @@ export default function Header({
                         style={{ '--i': i } as React.CSSProperties}
                         data-nav-item
                       >
-                        {item.label[locale]}
+                        {(item.navLabel ?? item.label)[locale]}
                       </Link>
                     ))}
                   </div>

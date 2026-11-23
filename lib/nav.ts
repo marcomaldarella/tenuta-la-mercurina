@@ -3,6 +3,9 @@ export type L10nString = { it: string; en: string }
 export type NavItem = {
   slug: string
   label: L10nString
+  /* etichetta corta SOLO per il menu (Marco 23/11): il titolo del blocco
+     in pagina resta label */
+  navLabel?: L10nString
   /* solo sulle voci CTA (es. "crea la tua esperienza"): link secco fuori
      dalla pagina di gruppo, non un'ancora #slug al suo interno */
   href?: string
@@ -78,6 +81,7 @@ export const anchorGroups: Record<
       {
         slug: 'visite-e-lezioni',
         label: { it: 'crea la tua esperienza', en: 'create your experience' },
+        navLabel: { it: 'la tua esperienza', en: 'your experience' },
       },
     ],
   },
@@ -90,6 +94,7 @@ export const anchorGroups: Record<
       {
         slug: 'il-mercato',
         label: { it: 'il mercato della domenica', en: 'the sunday market' },
+        navLabel: { it: 'il mercato', en: 'the market' },
       },
       /* reintegrato nel gruppo (Marco, 23 set): il foglio EVENTI lo prevede
          come sezione della pagina, tra mercato e matrimoni */
