@@ -105,6 +105,7 @@ export const anchorGroups: Record<
       {
         slug: 'eventi-privati',
         label: { it: 'crea il tuo evento', en: 'create your event' },
+        navLabel: { it: 'il tuo evento', en: 'your event' },
       },
     ],
   },
