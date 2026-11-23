@@ -3,6 +3,26 @@
 import { useState } from 'react'
 import styles from './Carousel.module.css'
 
+/* stessa freccia dei tasti (glifo ↘ di DM Sans, vedi Arrow.tsx), ruotata
+   via CSS in → e ← — mai forme angolari diverse dal resto del sito */
+function SliderArrow({ left = false }: { left?: boolean }) {
+  return (
+    <svg
+      viewBox="40 66 549 550"
+      width="22"
+      height="22"
+      aria-hidden="true"
+      style={{ transform: left ? 'rotate(135deg)' : 'rotate(-45deg)' }}
+    >
+      <path
+        d="M103 611 514 200V616H589V97L557 66H40V141H462L47 555Z"
+        transform="matrix(1 0 0 -1 0 682)"
+        fill="currentColor"
+      />
+    </svg>
+  )
+}
+
 export default function Carousel({
   urls,
   alt = '',
@@ -39,18 +59,14 @@ export default function Carousel({
             onClick={() => step(-1)}
             aria-label="previous"
           >
-            <svg viewBox="0 0 24 24" width="30" height="30" fill="none">
-              <path d="M15 4 7 12l8 8" stroke="currentColor" strokeWidth="2.6" />
-            </svg>
+            <SliderArrow left />
           </button>
           <button
             className={`${styles.arrow} ${styles.next} ${light ? styles.light : ''}`}
             onClick={() => step(1)}
             aria-label="next"
           >
-            <svg viewBox="0 0 24 24" width="30" height="30" fill="none">
-              <path d="m9 4 8 8-8 8" stroke="currentColor" strokeWidth="2.6" />
-            </svg>
+            <SliderArrow />
           </button>
         </>
       )}
