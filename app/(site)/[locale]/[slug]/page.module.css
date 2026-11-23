@@ -2,7 +2,8 @@
   /* come le cta dei blocchi: corpo testo, MAIUSCOLA (Marco 23/11) */
   display: block;
   padding: clamp(24px, 4vw, 56px) var(--gutter);
-  font-size: 14px;
+  font-size: 12px;
+  font-weight: 500;
   text-transform: uppercase;
   line-height: 1.05;
 }

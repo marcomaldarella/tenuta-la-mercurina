@@ -101,7 +101,8 @@
      l'ultima riga della colonna: il filo sta sul margine basso della foto */
   display: inline-block;
   position: relative;
-  font-size: 14px;
+  font-size: 12px;
+  font-weight: 500;
   text-transform: uppercase;
   white-space: nowrap;
   margin-top: 14px;
