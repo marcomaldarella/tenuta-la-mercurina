@@ -129,8 +129,6 @@ export default function Header({
                 </Link>
                 <div className={styles.subList}>
                   <div className={styles.subListInner}>
-                    {/* niente data-nav-item sulle sottovoci: il colore lo dà
-                        il pannello marrone, non la posizione sulle foto */}
                     {entry.items.map((item, i) => (
                       <Link
                         key={item.slug}
@@ -141,6 +139,7 @@ export default function Header({
                         }
                         className={styles.subItem}
                         style={{ '--i': i } as React.CSSProperties}
+                        data-nav-item
                       >
                         {item.label[locale]}
                       </Link>

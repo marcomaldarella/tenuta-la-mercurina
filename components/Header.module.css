@@ -18,6 +18,26 @@
   transition: color 0.25s ease;
 }
 
+/* velo nero alla maniera delle didascalie foto, a tutta larghezza, che
+   sfuma solo in verticale: tiene leggibile il menu (sottovoci aperte
+   comprese) su qualunque foto, senza pannelli (Marco 23/11) */
+.header::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 240px;
+  z-index: -1;
+  pointer-events: none;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.32) 0%,
+    rgba(0, 0, 0, 0.18) 45%,
+    rgba(0, 0, 0, 0) 100%
+  );
+}
+
 .header [data-nav-item] {
   transition: color 0.25s ease;
 }
@@ -56,9 +76,7 @@
 .group .subList {
   position: absolute;
   top: 100%;
-  /* il pannello ha un padding: il rientro negativo tiene le sottovoci
-     allineate in colonna con la voce del gruppo */
-  left: -14px;
+  left: 0;
   width: max-content;
 }
 
@@ -81,16 +99,12 @@
     transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* mail CORREZIONI SITO 23/11: le sottovoci sulle foto non si leggevano —
-   pannello pieno marrone (lo stesso dell'overlay mobile) e testo sempre
-   crema, qualunque cosa ci sia sotto */
 .subListInner {
   display: flex;
   flex-direction: column;
   overflow: hidden;
   min-height: 0;
-  background: var(--menu-bg);
-  padding: 10px 14px 12px;
+  padding-top: 4px;
   gap: 3px;
 }
 
@@ -107,9 +121,6 @@
   /* solo qui un filo più larghe del -7% globale: a questa taglia il testo si legge meglio */
   letter-spacing: -0.03em;
   opacity: 0.92;
-  /* sul pannello marrone il colore è fisso: il check geometrico
-     dell'header non tocca più queste voci */
-  color: var(--cream);
 }
 
 .subItem:hover,
