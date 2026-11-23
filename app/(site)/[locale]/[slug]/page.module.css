@@ -1,8 +1,9 @@
 .endCta {
-  /* come le cta dei blocchi: corpo testo, niente maiuscole (Marco 23/11) */
+  /* come le cta dei blocchi: corpo testo, MAIUSCOLA (Marco 23/11) */
   display: block;
   padding: clamp(24px, 4vw, 56px) var(--gutter);
   font-size: 14px;
+  text-transform: uppercase;
   line-height: 1.05;
 }
 

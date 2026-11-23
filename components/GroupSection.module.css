@@ -82,11 +82,12 @@
 }
 
 .cta {
-  /* come il corpo, iniziale maiuscola nei dati (Marco 23/11); vedi
-     SectionRow: la sottolineatura esiste solo in hover */
+  /* MAIUSCOLA (Marco 23/11, ripensamento finale), corpo come il testo;
+     vedi SectionRow: la sottolineatura esiste solo in hover */
   display: inline-block;
   position: relative;
   font-size: 14px;
+  text-transform: uppercase;
   white-space: nowrap;
   margin-top: 14px;
   align-self: flex-start;
