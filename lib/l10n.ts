@@ -11,8 +11,9 @@ export function pick<T>(
 export const ui = {
   menu: { it: 'menu', en: 'menu' },
   close: { it: 'close', en: 'close' },
-  contact: { it: 'contattaci', en: 'contact us' },
-  book: { it: 'prenota ora', en: 'book now' },
+  /* etichette CTA con l'iniziale maiuscola (Marco 23/11) */
+  contact: { it: 'Contattaci', en: 'Contact us' },
+  book: { it: 'Prenota ora', en: 'Book now' },
   send: { it: 'invia', en: 'send' },
   sending: { it: 'invio…', en: 'sending…' },
   sent: { it: 'richiesta inviata, grazie!', en: 'request sent, thank you!' },
@@ -47,8 +48,8 @@ export const ui = {
   cookieNotice: { it: 'questo sito usa cookie', en: 'this website uses cookies' },
   cookieOk: { it: 'ok', en: 'ok' },
   instagram: { it: 'instagram', en: 'instagram' },
-  discover: { it: 'scopri', en: 'discover' },
-  backToEvents: { it: 'torna agli eventi', en: 'back to events' },
+  discover: { it: 'Scopri', en: 'Discover' },
+  backToEvents: { it: 'Torna agli eventi', en: 'Back to events' },
   /* blocco mercato su /eventi: al posto dell'elenco date (fine tuning 17/11) */
   marketGallery: { it: 'Scopri la gallery', en: 'Discover the gallery' },
   /* footer: riga sopra il logo Darefrutto (doc CT ULTIMO 10/11) */
