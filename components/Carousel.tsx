@@ -49,6 +49,9 @@ export default function Carousel({
     <div
       className={`${styles.frame} ${shaded ? styles.shaded : ''} ${className}`}
       data-header-dark
+      /* shaded = hero: il velo safe dell'header si aggancia SOLO a questi
+         frame, non alle gallery dei blocchi (Marco 23/11) */
+      {...(shaded && { 'data-header-hero': '' })}
     >
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img src={urls[index]} alt={alt} className={styles.image} />

@@ -44,9 +44,15 @@ export default function Header({
       const zones = Array.from(document.querySelectorAll('[data-header-dark]'))
         .map((zone) => zone.getBoundingClientRect())
         .filter((rect) => rect.width > 0 && rect.bottom > 0 && rect.top < 200)
-      /* il velo nero dietro l'header serve solo sulle foto: sul crema
-         (es. /contatti) sparisce, in dissolvenza come il colore delle voci */
-      headerRef.current?.classList.toggle(styles.headerShade, zones.length > 0)
+      /* il velo nero dietro l'header è agganciato al SOLO hero: finché
+         l'hero sta sotto il menu il velo c'è, scrollato via si dissolve
+         e non torna sulle foto dei blocchi (Marco 23/11) */
+      const heroVisible = Array.from(
+        document.querySelectorAll('[data-header-hero]')
+      )
+        .map((zone) => zone.getBoundingClientRect())
+        .some((rect) => rect.width > 0 && rect.bottom > 0 && rect.top < 200)
+      headerRef.current?.classList.toggle(styles.headerShade, heroVisible)
       const items =
         headerRef.current?.querySelectorAll<HTMLElement>('[data-nav-item]') ?? []
       for (const item of items) {
