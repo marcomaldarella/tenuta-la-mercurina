@@ -3,7 +3,7 @@
   display: block;
   padding: clamp(24px, 4vw, 56px) var(--gutter);
   font-size: 12px;
-  font-weight: 500;
+  font-weight: 600;
   text-transform: uppercase;
   line-height: 1.05;
 }
