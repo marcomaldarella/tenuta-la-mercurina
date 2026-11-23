@@ -23,16 +23,6 @@ export default function GroupSection({
   reverse?: boolean
   cta?: { label: string; href: string }
 }) {
-  /* mail CORREZIONI SITO 23/11: la cta scorre in coda all'ultimo testo del
-     blocco (mai una riga sua), piccola e maiuscola */
-  const ctaLink = cta && (
-    <Link href={cta.href} className={styles.cta}>
-      {cta.label}
-      <Arrow size="0.58em" />
-    </Link>
-  )
-  const lastTextKey = [...parts].reverse().find((part) => part.text)?.key
-
   /* blocco senza nessuna foto (es. edizioni 2025 del mercato, raccontate
      solo a parole): niente riquadro grigio vuoto, il testo prende la riga */
   const noMedia = urls.length === 0
@@ -83,13 +73,17 @@ export default function GroupSection({
                       text={part.text}
                       textClass={styles.text}
                       titleClass={styles.innerTitle}
-                      tail={part.key === lastTextKey ? ctaLink : undefined}
                     />
                   )}
                 </div>
               )
           )}
-          {!lastTextKey && ctaLink}
+          {cta && (
+            <Link href={cta.href} className={styles.cta}>
+              {cta.label}
+              <Arrow size="0.58em" />
+            </Link>
+          )}
         </div>
       </div>
       {!noMedia && <Carousel urls={urls} className={styles.media} light />}
