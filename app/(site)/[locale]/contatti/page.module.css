@@ -66,13 +66,10 @@
   height: auto;
 }
 
-/* ordine invertito (mail 23/11): prima i contatti, poi logo + indirizzo */
+/* le voci di contatto vivono nel blocco del titolo, poco sotto il
+   sottotitolo (Marco 23/11); in fondo restano solo logo e indirizzo */
 .contact {
-  margin-top: 0;
-}
-
-.logoLink {
-  margin-top: clamp(18px, 3.4vh, 36px);
+  margin-top: clamp(22px, 4vh, 40px);
 }
 
 .address {
@@ -103,16 +100,12 @@
     padding-bottom: 40px;
   }
 
-  .logoLink {
-    margin-top: 28px;
-  }
-
   .address {
     margin-top: 14px;
   }
 
   .contact {
-    margin-top: 0;
+    margin-top: 20px;
   }
 
   .sub {

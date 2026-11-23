@@ -55,43 +55,53 @@ export default async function ContactsPage({
     .split('/')
     .pop()
 
-  /* mail CORREZIONI SITO 23/11: prima i modi di contattarci, in corpo
-     ridotto; si chiude con logo e indirizzo. Niente facebook */
+  /* mail CORREZIONI SITO 23/11 + revisione Marco: le voci di contatto
+     stanno SOTTO il titolo, nel suo blocco; in fondo restano logo e
+     indirizzo. Niente facebook */
   return (
     <main className={styles.main}>
       <FixedPage />
       <div className={styles.head}>
         <h1 className={styles.block}>{heading}</h1>
         <p className={styles.sub}>{sub}</p>
+        <p className={`${styles.block} ${styles.body} ${styles.contact}`}>
+          {settings?.email && (
+            <span className={styles.line}>
+              <a href={emailLink}>
+                <ContactIcon name="email" size="0.8em" />
+                {settings.email}
+              </a>
+            </span>
+          )}
+          {phoneLink && (
+            <span className={styles.line}>
+              <a href={phoneLink} {...phoneBlank}>
+                <ContactIcon
+                  name={settings?.whatsapp ? 'whatsapp' : 'phone'}
+                  size="0.8em"
+                />
+                {settings?.whatsapp
+                  ? locale === 'en'
+                    ? 'write to us on whatsapp'
+                    : 'scrivici su whatsapp'
+                  : locale === 'en'
+                    ? 'contact us'
+                    : 'contattaci'}
+              </a>
+            </span>
+          )}
+          {instagramHandle && (
+            <span className={styles.line}>
+              <a href={instagramLink} target="_blank" rel="noreferrer">
+                <ContactIcon name="instagram" size="0.8em" />
+                @{instagramHandle}
+              </a>
+            </span>
+          )}
+        </p>
       </div>
       <div className={styles.identity}>
       <LogoWidthMatch>
-      <p className={`${styles.block} ${styles.body} ${styles.contact}`}>
-        {settings?.email && (
-          <span className={styles.line}>
-            <a href={emailLink}>
-              <ContactIcon name="email" size="0.8em" />
-              {settings.email}
-            </a>
-          </span>
-        )}
-        {phoneLink && (
-          <span className={styles.line}>
-            <a href={phoneLink} {...phoneBlank}>
-              <ContactIcon name="phone" size="0.8em" />
-              {locale === 'en' ? 'contact us' : 'contattaci'}
-            </a>
-          </span>
-        )}
-        {instagramHandle && (
-          <span className={styles.line}>
-            <a href={instagramLink} target="_blank" rel="noreferrer">
-              <ContactIcon name="instagram" size="0.8em" />
-              @{instagramHandle}
-            </a>
-          </span>
-        )}
-      </p>
       {/* il nome lo dice il logo: dall'indirizzo cade l'eventuale prima riga.
           Il logo è largo quanto la riga di indirizzo più lunga (misurata via
           LogoWidthMatch), non un clamp indipendente: così flexa sempre alla

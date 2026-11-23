@@ -44,6 +44,9 @@ export default function Header({
       const zones = Array.from(document.querySelectorAll('[data-header-dark]'))
         .map((zone) => zone.getBoundingClientRect())
         .filter((rect) => rect.width > 0 && rect.bottom > 0 && rect.top < 200)
+      /* il velo nero dietro l'header serve solo sulle foto: sul crema
+         (es. /contatti) sparisce, in dissolvenza come il colore delle voci */
+      headerRef.current?.classList.toggle(styles.headerShade, zones.length > 0)
       const items =
         headerRef.current?.querySelectorAll<HTMLElement>('[data-nav-item]') ?? []
       for (const item of items) {

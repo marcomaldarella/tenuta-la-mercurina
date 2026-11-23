@@ -20,7 +20,9 @@
 
 /* velo nero alla maniera delle didascalie foto, a tutta larghezza, che
    sfuma solo in verticale: tiene leggibile il menu (sottovoci aperte
-   comprese) su qualunque foto, senza pannelli (Marco 23/11) */
+   comprese) su qualunque foto, senza pannelli (Marco 23/11). Visibile
+   SOLO quando sotto l'header c'è una foto (classe headerShade dal check
+   geometrico): sul crema si dissolve */
 .header::before {
   content: '';
   position: absolute;
@@ -30,12 +32,18 @@
   height: 240px;
   z-index: -1;
   pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.35s ease;
   background: linear-gradient(
     to bottom,
     rgba(0, 0, 0, 0.32) 0%,
     rgba(0, 0, 0, 0.18) 45%,
     rgba(0, 0, 0, 0) 100%
   );
+}
+
+.headerShade::before {
+  opacity: 1;
 }
 
 .header [data-nav-item] {
