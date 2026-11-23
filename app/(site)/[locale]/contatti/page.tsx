@@ -60,7 +60,7 @@ export default async function ContactsPage({
   return (
     <main className={styles.main}>
       <FixedPage />
-      <div>
+      <div className={styles.head}>
         <h1 className={styles.block}>{heading}</h1>
         <p className={styles.sub}>{sub}</p>
       </div>

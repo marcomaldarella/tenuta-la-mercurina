@@ -4,15 +4,19 @@
   --contatti-display: clamp(26px, min(4.76vw, 7.3vh), 72px);
   /* mail CORREZIONI SITO 23/11: corpo ridotto per contatti e indirizzo */
   --contatti-body: clamp(15px, min(1.4vw, 2.2vh), 21px);
-  /* stacco dall'alto: alzato un po' rispetto al figma (Marco, 21 set) */
-  --contatti-header: clamp(80px, 20vh, 200px);
 
   display: flex;
   flex-direction: column;
-  /* titolo in alto, blocco logo/indirizzo/contatti ancorato in basso,
-     il più vicino possibile al footer (Marco, 22 set) */
+  /* blocco logo/indirizzo/contatti ancorato in basso, il più vicino
+     possibile al footer (Marco, 22 set) */
   justify-content: space-between;
-  padding: calc(var(--gutter) + var(--contatti-header)) var(--gutter) 0;
+  padding: calc(var(--gutter) + var(--header-h)) var(--gutter) 0;
+}
+
+/* il titolo si centra nel vuoto tra header e blocco contatti (Marco 23/11):
+   i margini auto assorbono lo spazio libero in parti uguali */
+.head {
+  margin: auto 0;
 }
 
 .block {
@@ -95,8 +99,6 @@
     /* tarato sulla riga più lunga (l'indirizzo) perché non vada mai a capo */
     --contatti-display: clamp(22px, 8.4vw, 44px);
     --contatti-body: clamp(15px, 5vw, 22px);
-    /* titolo più staccato dall'header su mobile (Marco, 23 set) */
-    --contatti-header: 140px;
     /* il blocco logo/indirizzi non tocca il footer (Marco, 25 set) */
     padding-bottom: 40px;
   }
