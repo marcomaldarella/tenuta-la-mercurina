@@ -28,9 +28,11 @@ const PATHS = {
      currentColor delle altre icone — disegnata per stroke 2 su box 24,
      che a pari resa ottica equivale all'1.5 su box 18 delle vicine */
   whatsapp: {
-    viewBox: '0 0 24 24',
-    w: 24,
-    h: 24,
+    /* viewBox stretto sul glifo (il disegno Tabler vive in 3..21 del box
+       24): senza, l'icona rendeva più piccola delle vicine a parità di em */
+    viewBox: '2 2 20 20',
+    w: 20,
+    h: 20,
     stroke: true,
     sw: 2,
     d: 'M3 21l1.65 -3.8a9 9 0 1 1 3.4 2.9l-5.05 .9 M9 10a0.5 .5 0 0 0 1 0v-1a0.5 .5 0 0 0 -1 0v1a5 5 0 0 0 5 5h1a0.5 .5 0 0 0 0 -1h-1a0.5 .5 0 0 0 0 1',
