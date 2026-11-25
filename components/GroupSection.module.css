@@ -159,23 +159,14 @@
   }
 }
 
-/* blocco solo testo (nessuna foto): una colonna, gutter su entrambi i
-   lati, niente altezza minima — la riga è alta quanto il racconto */
-.noMedia,
-.noMedia.reverse {
-  grid-template-columns: 1fr;
-  padding: 0 var(--gutter) clamp(30px, 3.2vw, 52px);
-}
-
-.noMedia .copy {
-  min-height: 0;
-  /* senza la foto il salto titolo/testo non ha senso: colonna semplice */
-  justify-content: flex-start;
-}
-
-.noMedia .bottom {
-  /* misura di lettura: senza la foto accanto la riga piena è troppo larga */
-  max-width: 62ch;
+/* blocco solo testo (nessuna foto, es. edizioni 2025 del mercato): stessa
+   gabbia dei blocchi con gallery — colonna, altezza e stacchi come se la
+   foto ci fosse (richiesta 25/11); al posto dello slider resta il crema.
+   Su mobile la cella vuota sparisce: lì sarebbe solo un buco */
+@media (max-width: 900px) {
+  .noMedia .media {
+    display: none;
+  }
 }
 
 /* data del mercato cliccabile: stessa riga sotto al testo del tasto cta,

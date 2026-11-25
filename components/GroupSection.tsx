@@ -86,7 +86,14 @@ export default function GroupSection({
           )}
         </div>
       </div>
-      {!noMedia && <Carousel urls={urls} className={styles.media} light />}
+      {noMedia ? (
+        /* blocco senza foto: la cella della gallery resta come spazio vuoto,
+           così il testo tiene la stessa gabbia dei blocchi con le foto
+           (richiesta 25/11, edizioni 2025 del mercato) */
+        <div className={styles.media} aria-hidden="true" />
+      ) : (
+        <Carousel urls={urls} className={styles.media} light />
+      )}
     </section>
   )
 }
