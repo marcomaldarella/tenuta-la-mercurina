@@ -43,6 +43,9 @@ export default async function MercatoGalleryPage({
 
   return (
     <main className={styles.main}>
+      {/* 25/11: il titolo in pagina è stato tolto — "tenuta il mercato della
+          domenica" resta solo su /eventi. Qui regge la gerarchia dei titoli
+          senza farsi vedere */}
       <h1 className={styles.pageTitle}>{t('marketPageTitle', locale)}</h1>
       {entries.map((entry, index) => (
         <GroupSection

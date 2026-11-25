@@ -6,19 +6,15 @@
   padding-bottom: clamp(48px, 8vh, 96px);
 }
 
-/* titolo di pagina (mail Chiara 24/11): una volta sola in testa, le
-   edizioni sotto sono numerate — stessa voce dei titoli di blocco */
+/* il titolo non si vede più in pagina (25/11): resta solo per lettori di
+   schermo e motori, le edizioni sotto si presentano da sole con la data */
 .pageTitle {
-  font-size: 40px;
-  letter-spacing: var(--track-display);
-  font-weight: 400;
-  line-height: 1.05;
-  padding: 0 var(--gutter);
-  margin-bottom: clamp(30px, 3.2vw, 52px);
-}
-
-@media (max-width: 900px) {
-  .pageTitle {
-    font-size: clamp(30px, 9vw, 44px);
-  }
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
 }
