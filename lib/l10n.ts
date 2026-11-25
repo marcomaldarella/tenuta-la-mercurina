@@ -54,6 +54,11 @@ export const ui = {
   marketGallery: { it: 'Scopri la gallery', en: 'Discover the gallery' },
   /* footer: riga sopra il logo Darefrutto (doc CT ULTIMO 10/11) */
   partOf: { it: 'tenuta lamercurina è parte di', en: 'tenuta lamercurina is part of' },
+  /* /mercato (mail Chiara 24/11): un titolo di pagina unico in testa */
+  marketPageTitle: {
+    it: 'tenuta il mercato della domenica',
+    en: 'tenuta the sunday market',
+  },
 } as const
 
 export type UiKey = keyof typeof ui
@@ -74,6 +79,19 @@ const MONTHS = {
     'July', 'August', 'September', 'October', 'November', 'December',
   ],
 } as const
+
+/* mail Chiara 24/11: le edizioni del mercato numerate ("3ª edizione")
+   al posto del nome ripetuto su ogni blocco */
+export function formatEdition(n: number, locale: Locale): string {
+  if (locale === 'en') {
+    const suffix =
+      n % 100 >= 11 && n % 100 <= 13
+        ? 'th'
+        : (['th', 'st', 'nd', 'rd'][n % 10] ?? 'th')
+    return `${n}${suffix} edition`
+  }
+  return `${n}ª edizione`
+}
 
 export function formatDateLong(date: string, locale: Locale): string {
   const [year, month, day] = date.split('-').map(Number)

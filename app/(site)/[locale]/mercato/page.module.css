@@ -5,3 +5,20 @@
   padding-top: clamp(96px, 14vh, 160px);
   padding-bottom: clamp(48px, 8vh, 96px);
 }
+
+/* titolo di pagina (mail Chiara 24/11): una volta sola in testa, le
+   edizioni sotto sono numerate — stessa voce dei titoli di blocco */
+.pageTitle {
+  font-size: 40px;
+  letter-spacing: var(--track-display);
+  font-weight: 400;
+  line-height: 1.05;
+  padding: 0 var(--gutter);
+  margin-bottom: clamp(30px, 3.2vw, 52px);
+}
+
+@media (max-width: 900px) {
+  .pageTitle {
+    font-size: clamp(30px, 9vw, 44px);
+  }
+}
