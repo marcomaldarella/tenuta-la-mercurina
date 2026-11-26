@@ -141,7 +141,13 @@ export default async function ContentPage({ params }: { params: Params }) {
       return [
         {
           id: item.slug,
-          title: item.label[locale],
+          /* richiesta 26/11: il blocco del mercato su /eventi porta il titolo
+             esteso "tenuta il mercato della domenica" (la gallery /mercato
+             apre invece direttamente con la data) */
+          title:
+            item.slug === 'il-mercato'
+              ? t('marketPageTitle', locale)
+              : item.label[locale],
           parts: [
             ...(page.sections ?? []).map((section: Section) => ({
               key: section._key,
